@@ -14,11 +14,11 @@ function tad_lunch2_show($options){
   $config_handler =& xoops_gethandler('config');
   $xoopsModuleConfig =& $config_handler->getConfigsByCat(0, $xoopsModule->getVar('mid'));
 
-  $nowYm=empty($show_ym)?date("Y-m"):$show_ym;
+  $today=date("Y-m-d");
 
   $lunch_target=str_replace(";", ",", $xoopsModuleConfig['lunch_target']);
 
-  $sql = "select * from `".$xoopsDB->prefix("tad_lunch2_data")."` where lunch_date like '{$nowYm}-%' order by lunch_date , find_in_set(`lunch_target`,'{$lunch_target},') limit 0,{$options[0]}";
+  $sql = "select * from `".$xoopsDB->prefix("tad_lunch2_data")."` where lunch_date >= '{$today}' order by lunch_date , find_in_set(`lunch_target`,'{$lunch_target},') limit 0,{$options[0]}";
 
   $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
 
