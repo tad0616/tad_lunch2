@@ -1,10 +1,4 @@
 <?php
-//  ------------------------------------------------------------------------ //
-// 本模組由 tad 製作
-// 製作日期：2013-10-31
-// $Id:$
-// ------------------------------------------------------------------------- //
-
 define("_MB_TADLUNCH2_TAD_LUNCH2_SHOW_EDIT_BITEM0","顯示即日起幾天的營養午餐？");
 define("_MB_TAD_LUNCH2_DATA_SHORT_MENU","%s菜單");
 define("_MB_TADLUNCH2_LUNCH_DATE","日期");
@@ -16,4 +10,8 @@ define("_MB_TADLUNCH2_SIDE_DISH3","副菜3");
 define("_MB_TADLUNCH2_FRUIT","水果");
 define("_MB_TADLUNCH2_SOUP","湯點");
 define("_MB_TADLUNCH2_CALORIE","總熱量");
+
+define("_MB_TADLUNCH2_BLOCK_SHOW_MODE","菜單顯示模式");
+define("_MB_TADLUNCH2_BLOCK_SHOW_H","橫式");
+define("_MB_TADLUNCH2_BLOCK_SHOW_V","直式");
 ?>

@@ -1,10 +1,4 @@
 <?php
-//  ------------------------------------------------------------------------ //
-// 本模組由 tad 製作
-// 製作日期：2013-10-31
-// $Id:$
-// ------------------------------------------------------------------------- //
-
 //區塊主函式 (營養午餐公告(tad_lunch2_show))
 function tad_lunch2_show($options){
   global $xoopsDB;
@@ -21,6 +15,11 @@ function tad_lunch2_show($options){
   $sql = "select * from `".$xoopsDB->prefix("tad_lunch2_data")."` where lunch_date >= '{$today}' order by lunch_date , find_in_set(`lunch_target`,'{$lunch_target},') limit 0,{$options[0]}";
 
   $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
+  $total=$xoopsDB->getRowsNum($result);
+  if(empty($total)){
+    $sql = "select * from `".$xoopsDB->prefix("tad_lunch2_data")."` order by lunch_date , find_in_set(`lunch_target`,'{$lunch_target},') limit 0,{$options[0]}";
+    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
+  }
 
   $all_content="";
   $i=0;
@@ -62,8 +61,10 @@ function tad_lunch2_show($options){
   }
 
   //刪除確認的JS
+  $block['content']=$all_content;
+  $block['type']=empty($options[1])?"horizontal":$options[1];
 
- return $all_content;
+ return $block;
 }
 
 //區塊編輯函式
@@ -76,17 +77,30 @@ function tad_lunch2_show_edit($options){
   $seled0_5=($options[0]=="6")?"selected":"";
   $seled0_6=($options[0]=="7")?"selected":"";
 
+  $horizontal=($options[1]=="horizontal")?"checked":"";
+  $vertical=($options[1]=="vertical")?"checked":"";
+
   $form="
-  "._MB_TADLUNCH2_TAD_LUNCH2_SHOW_EDIT_BITEM0."
-  <select name='options[0]'>
-    <option $seled0_0 value='1'>1</option>
-    <option $seled0_1 value='2'>2</option>
-    <option $seled0_2 value='3'>3</option>
-    <option $seled0_3 value='4'>4</option>
-    <option $seled0_4 value='5'>5</option>
-    <option $seled0_5 value='6'>6</option>
-    <option $seled0_6 value='7'>7</option>
-  </select>
+  <div>
+    "._MB_TADLUNCH2_TAD_LUNCH2_SHOW_EDIT_BITEM0."
+    <select name='options[0]'>
+      <option $seled0_0 value='1'>1</option>
+      <option $seled0_1 value='2'>2</option>
+      <option $seled0_2 value='3'>3</option>
+      <option $seled0_3 value='4'>4</option>
+      <option $seled0_4 value='5'>5</option>
+      <option $seled0_5 value='6'>6</option>
+      <option $seled0_6 value='7'>7</option>
+    </select>
+  </div>
+  <div>
+    "._MB_TADLUNCH2_BLOCK_SHOW_MODE."
+    <input type='radio' name='options[1]' id='horizontal' value='horizontal' $horizontal>
+    <label for='horizontal'>"._MB_TADLUNCH2_BLOCK_SHOW_H."</label>
+
+    <input type='radio' name='options[1]' id='vertical' value='vertical' $vertical>
+    <label for='vertical'>"._MB_TADLUNCH2_BLOCK_SHOW_V."</label>
+  </div>
   ";
   return $form;
 }

@@ -1,10 +1,4 @@
 <?php
-//  ------------------------------------------------------------------------ //
-// 本模組由 tad 製作
-// 製作日期：2013-10-31
-// $Id:$
-// ------------------------------------------------------------------------- //
-
 /*-----------引入檔案區--------------*/
 include "header.php";
 $xoopsOption['template_main'] = "tad_lunch2_index.html";
@@ -163,7 +157,7 @@ function tad_lunch2_data_form($lunch_data_sn=""){
 
 //新增資料到tad_lunch2_data中
 function insert_tad_lunch2_data(){
-  global $xoopsDB,$xoopsUser;
+  global $xoopsDB,$xoopsUser,$xoopsModuleConfig;
 
 
   $myts =& MyTextSanitizer::getInstance();
@@ -267,33 +261,43 @@ function update_tad_lunch2_data($lunch_data_sn=""){
 }
 
 //列出所有tad_lunch2_data資料
-function list_tad_lunch2_data($show_ym=""){
+function list_tad_lunch2_data($show_ym="",$target=""){
   global $xoopsDB , $xoopsTpl , $isAdmin , $isManager ,$xoopsModuleConfig;
+  $now_Ym=date("Y-m");
+  $nowYm=empty($show_ym)?$now_Ym:$show_ym;
 
-  $nowYm=empty($show_ym)?date("Y-m"):$show_ym;
-
-  $sql = "select left(`lunch_date`,7) as dd from `".$xoopsDB->prefix("tad_lunch2_data")."` group by left(`lunch_date`,7) order by dd";
+  $sql = "select left(`lunch_date`,7) as dd from `".$xoopsDB->prefix("tad_lunch2_data")."` group by left(`lunch_date`,7) order by dd desc";
   $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
 
   $all_options="";
   $i=0;
+
+  //$all_options[0]['ym']=$now_Ym;
+  //$all_options[0]['ym_title']=str_replace("-", _MD_TADLUNCH2_Y, $now_Ym)._MD_TADLUNCH2_M;
+
+  //$i=1;
   while(list($dd)=$xoopsDB->fetchRow($result)){
+    //if($now_Ym==$dd)continue;
     $all_options[$i]['ym']=$dd;
     $all_options[$i]['ym_title']=str_replace("-", _MD_TADLUNCH2_Y, $dd)._MD_TADLUNCH2_M;
     $i++;
   }
+
+
   $xoopsTpl->assign('nowYm' , $nowYm);
   $xoopsTpl->assign('all_options' , $all_options);
 
-  $lunch_target=str_replace(";", ",", $xoopsModuleConfig['lunch_target']);
+  $lunch_target=str_replace(";" , ",", $xoopsModuleConfig['lunch_target']);
 
-  $sql = "select * from `".$xoopsDB->prefix("tad_lunch2_data")."` where lunch_date like '{$nowYm}-%' order by lunch_date , find_in_set(`lunch_target`,'{$lunch_target},')";
+  if($target==""){
+    $and_target="";
+    $order_target=", find_in_set(`lunch_target`,'{$lunch_target}')";
+  }else{
+    $and_target="and lunch_target='{$target}'";
+    $order_target="";
+  }
 
-  //getPageBar($原sql語法, 每頁顯示幾筆資料, 最多顯示幾個頁數選項);
-  $PageBar=getPageBar($sql,20,10);
-  $bar=$PageBar['bar'];
-  $sql=$PageBar['sql'];
-  $total=$PageBar['total'];
+  $sql = "select * from `".$xoopsDB->prefix("tad_lunch2_data")."` where lunch_date like '{$nowYm}-%' $and_target order by lunch_date $order_target";
 
   $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
 
@@ -338,10 +342,21 @@ function list_tad_lunch2_data($show_ym=""){
 
   //刪除確認的JS
 
-  $xoopsTpl->assign('bar' , $bar);
   $xoopsTpl->assign('action' , $_SERVER['PHP_SELF']);
   $xoopsTpl->assign('all_content' , $all_content);
   $xoopsTpl->assign('now_op' , 'list_tad_lunch2_data');
+
+  $xoopsTpl->assign('lunch_target' , $target);
+
+  $lunch_target_arr=explode(';',$xoopsModuleConfig['lunch_target']);
+
+  $target_arr="";
+  $i=0;
+  foreach($lunch_target_arr as $target){
+    $target_arr[$i]['title']=trim($target);
+    $i++;
+  }
+  $xoopsTpl->assign('lunch_target_arr' ,$target_arr);
 }
 
 
@@ -527,6 +542,8 @@ $lunch_sn=empty($_REQUEST['lunch_sn'])?"":intval($_REQUEST['lunch_sn']);
 $lunch_data_sn=empty($_REQUEST['lunch_data_sn'])?"":intval($_REQUEST['lunch_data_sn']);
 //$lunch_date=preg_match('/^\d{4}[-\/]\d{1,2}[-\/]\d{1,2}$/u', $_REQUEST['lunch_date'])?$_REQUEST['lunch_date']:"";
 $ym=(!empty($_REQUEST['ym']) and strlen($_REQUEST['ym'])==7)?$_REQUEST['ym']:"";
+$target=(!empty($_REQUEST['lunch_target']))?$_REQUEST['lunch_target']:"";
+
 
 
 switch($op){
@@ -574,7 +591,7 @@ switch($op){
     //預設動作
     default:
     if(empty($lunch_data_sn)){
-      list_tad_lunch2_data($ym);
+      list_tad_lunch2_data($ym,$target);
     }else{
       show_one_tad_lunch2_data($lunch_data_sn);
     }

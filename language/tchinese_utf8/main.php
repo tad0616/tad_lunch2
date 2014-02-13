@@ -1,10 +1,4 @@
 <?php
-//  ------------------------------------------------------------------------ //
-// 本模組由 tad 製作
-// 製作日期：2013-10-31
-// $Id:$
-// ------------------------------------------------------------------------- //
-
 //需加入模組語系
 define("_TAD_NEED_TADTOOLS"," 需要 tadtools 模組，可至<a href='http://www.tad0616.net/modules/tad_uploader/index.php?of_cat_sn=50' target='_blank'>Tad教材網</a>下載。");
 define("_MD_TADLUNCH2_SMNAME1", "營養午餐公告");
@@ -50,5 +44,33 @@ define("_MD_TAD_LUNCH2_DATA_MENU","「%s」%s菜單");
 define("_MD_TAD_LUNCH2_DATA_SHORT_MENU","%s菜單");
 define("_MD_TADLUNCH2_Y","年");
 define("_MD_TADLUNCH2_M","月菜單列表");
+define("_MD_TADLUNCH2_EMPTY","本月份尚未提供資料喔～");
+define("_MD_TADLUNCH2_SU","日");
+define("_MD_TADLUNCH2_MO","一");
+define("_MD_TADLUNCH2_TU","二");
+define("_MD_TADLUNCH2_WE","三");
+define("_MD_TADLUNCH2_TH","四");
+define("_MD_TADLUNCH2_FR","五");
+define("_MD_TADLUNCH2_SA","六");
+define("_MD_TADLUNCH2_WEEK","星期");
+define("_MD_TADLUNCH2_MONTH","月");
+define("_MD_TADLUNCH2_PRE_MONTH","上個月");
+define("_MD_TADLUNCH2_NEXT_MONTH","下個月");
+define("_MD_TADLUNCH2_TODAY","今天");
+define("_MD_TADLUNCH2", "營養午餐");
+
+define("_MD_TADLUNCH2_MONTH1","一");
+define("_MD_TADLUNCH2_MONTH2","二");
+define("_MD_TADLUNCH2_MONTH3","三");
+define("_MD_TADLUNCH2_MONTH4","四");
+define("_MD_TADLUNCH2_MONTH5","五");
+define("_MD_TADLUNCH2_MONTH6","六");
+define("_MD_TADLUNCH2_MONTH7","七");
+define("_MD_TADLUNCH2_MONTH8","八");
+define("_MD_TADLUNCH2_MONTH9","九");
+define("_MD_TADLUNCH2_MONTH10","十");
+define("_MD_TADLUNCH2_MONTH11","十一");
+define("_MD_TADLUNCH2_MONTH12","十二");
+
 
 ?>
