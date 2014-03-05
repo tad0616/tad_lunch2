@@ -1,25 +1,32 @@
 <?php
 include_once "header.php";
 
-$dates=dates_range($_POST['start'], $_POST['end']);
 
 $myts =& MyTextSanitizer::getInstance();
-$sitename=$myts->addSlashes($xoopsConfig['sitename']);
-$page_title="{$sitename} {$_POST['start']}~{$_POST['end']}"._MD_TADCAL_SIMPLE_CAL;
-$filename=str_replace(" ", "", $page_title);
+if(!empty($_GET['ym'])){
+  list($year,$month)=explode("-",$_GET['ym']);
+  $month=sprintf("%02s",$month);
+}else{
+  $year=date("Y");
+  $month=date("m");
+}
+$lunch_target=$myts->addSlashes($_GET['lunch_target']);
+$title=sprintf(_MD_TADLUNCH2_YM,$year,$month).$lunch_target._MD_TADLUNCH2_SMNAME1;
+
+
 
 require_once XOOPS_ROOT_PATH."/modules/tadtools/PHPWord.php";
 $PHPWord = new PHPWord();
 $PHPWord->setDefaultFontSize(9);     //設定預設字型大小
 $sectionStyle = array('orientation' => 'portrait',  'marginTop' =>900, 'marginLeft' =>900, 'marginRight' =>900, 'marginBottom' =>900);
 
-$cw=array(_MD_TADCAL_SU,_MD_TADCAL_MO,_MD_TADCAL_TU,_MD_TADCAL_WE,_MD_TADCAL_TH,_MD_TADCAL_FR,_MD_TADCAL_SA);
+
 
 $section = $PHPWord->createSection($sectionStyle);
 
 $fontStyle = array('color'=>'000000', 'size'=>16, 'bold'=>true);
 $PHPWord->addTitleStyle( 1, $fontStyle );
-$section->addTitle( $page_title, 1);
+$section->addTitle( $title, 1);
 $contentfontStyle = array('color'=>'000000', 'size'=>9, 'bold'=>false);
 
 $styleTable = array('borderColor'=>'000000', 'borderSize'=>6, 'cellMargin'=>50);
@@ -29,151 +36,59 @@ $table = $section->addTable('myTable');//建立表格
 
 $cellStyle =array('valign' => 'center'); //儲存格樣式（設定項：valign、textDirection、bgColor、borderTopSize、borderTopColor、borderLeftSize、borderLeftColor、borderRightSize、borderRightColor、borderBottomSize、borderBottomColor）
 $paraStyle = array('align' => 'center');
-$headStyle = array('bold' => true);
-
-//取得目前使用者可讀的群組
-$ok_cate_arr=chk_cate_power('enable_group');
-
-if(!empty($_POST['cate_sn'])){
-  foreach($_POST['cate_sn'] as $cate_sn){
-    if(in_array($cate_sn , $ok_cate_arr))$ok_arr[]=$cate_sn;
-  }
-}else{
-  $ok_arr=$ok_cate_arr;
-}
+$headStyle = array('bold' => true,'align' => 'center');
 
 
 $table->addRow(); //新增一列
-$table->addCell(1500, $cellStyle)->addText(_MD_TADCAL_SIMPLE_DATE,$headStyle,$paraStyle);
-$table->addCell(700, $cellStyle)->addText(_MD_TADCAL_WEEK,$headStyle,$paraStyle);
-if($_POST['show_type']=="separate"){
-  $cates=get_cal_array();
-  $cal_num=sizeof($ok_arr);
-  $width=round(11200/$cal_num);
-  foreach($ok_arr as $cate_sn){
-    $table->addCell($width, $cellStyle)->addText($cates[$cate_sn],$headStyle,$paraStyle);
-  }
-}else{
-  $table->addCell(11200, $cellStyle)->addText(_MD_TADCAL_SIMPLE_EVENT,$headStyle,$paraStyle);
-}
+$table->addCell(1500, $cellStyle)->addText(_MD_TADLUNCH2_LUNCH_DATE,null,$headStyle);
+$table->addCell(700, $cellStyle)->addText(_MD_TADLUNCH2_WEEK,null,$headStyle); //新增一格
+$table->addCell(1500, $cellStyle)->addText(_MD_TADLUNCH2_MDIN_FOOD,null,$headStyle);
+$table->addCell(1500, $cellStyle)->addText(_MD_TADLUNCH2_MDIN_DISH,null,$headStyle);
+$table->addCell(1500, $cellStyle)->addText(_MD_TADLUNCH2_SIDE_DISH1,null,$headStyle);
+$table->addCell(1500, $cellStyle)->addText(_MD_TADLUNCH2_SIDE_DISH2,null,$headStyle);
+$table->addCell(1500, $cellStyle)->addText(_MD_TADLUNCH2_SIDE_DISH3,null,$headStyle);
+$table->addCell(1000, $cellStyle)->addText(_MD_TADLUNCH2_FRUIT,null,$headStyle);
+$table->addCell(1500, $cellStyle)->addText(_MD_TADLUNCH2_SOUP,null,$headStyle);
+$table->addCell(1000, $cellStyle)->addText(_MD_TADLUNCH2_CALORIE,null,$headStyle);
 
-
-$all_ok_cate=implode(",",$ok_arr);
-$and_ok_cate=empty($all_ok_cate)?"and cate_sn='0'":"and cate_sn in($all_ok_cate)";
-$and_ok_cate2=empty($all_ok_cate)?"and a.sn='0'":"and b.cate_sn in($all_ok_cate)";
-
-$even_start=$_REQUEST['start'];
-$even_end=$_REQUEST['end'];
-
-
-//抓出事件
-$sql = "select * from ".$xoopsDB->prefix("tad_cal_event")." where `start` >= '$even_start' and `end` <= '$even_end' $and_ok_cate  order by `start` , `sequence`";
-//die($sql);
+$and_lunch_target=empty($lunch_target)?"":"and lunch_target='{$lunch_target}'";
+$sql = "select * from `".$xoopsDB->prefix("tad_lunch2_data")."` where lunch_date like '{$year}-{$month}-%' $and_lunch_target order by `lunch_date`,`lunch_target`";
 
 $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
-$i=0;
+
+
+$cw=array(_MD_TADLUNCH2_SU,_MD_TADLUNCH2_MO,_MD_TADLUNCH2_TU,_MD_TADLUNCH2_WE,_MD_TADLUNCH2_TH,_MD_TADLUNCH2_FR,_MD_TADLUNCH2_SA);
+$i=2;
 while($all=$xoopsDB->fetchArray($result)){
-//以下會產生這些變數： $sn , $title , $start , $end , $recurrence , $location , $kind , $details , $etag , $id , $sequence , $uid , $cate_sn
+    //以下會產生這些變數： `lunch_data_sn`, `lunch_target`, `lunch_sn`, `lunch_date`, `main_food`, `main_food_stuff`, `main_dish`, `main_dish_stuff`, `main_dish_cook`, `side_dish1`, `side_dish1_stuff`, `side_dish1_cook`, `side_dish2`, `side_dish2_stuff`, `side_dish2_cook`, `side_dish3`, `side_dish3_stuff`, `side_dish3_cook`, `fruit`, `soup`, `soup_stuff`, `soup_cook`, `protein`, `fat`, `carbohydrate`, `calorie`
   foreach($all as $k=>$v){
     $$k=$v;
   }
-  if(!empty($recurrence))continue;
-  $start=substr($start,0,10);
+  $w=date('w',strtotime($lunch_date));
 
-  if($_POST['show_type']=="separate"){
-    $all_event[$start][$cate_sn][$sn]=$title;
-  }else{
-    $all_event[$start][$sn]=$title;
-  }
-}
-
-//抓出重複事件
-$sql = "select a.*,b.title,b.cate_sn from ".$xoopsDB->prefix("tad_cal_repeat")." as a join ".$xoopsDB->prefix("tad_cal_event")." as b on a.sn=b.sn where a.`start` >= '$even_start' and a.`end` <= '$even_end' $and_ok_cate2  order by a.`start`";
-//die($sql);
-$result = $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
-
-while($all=$xoopsDB->fetchArray($result)){
-//以下會產生這些變數： $sn , $title , $start , $end , $recurrence , $location , $kind , $details , $etag , $id , $sequence , $uid , $cate_sn
-  foreach($all as $k=>$v){
-    $$k=$v;
-  }
-
-  $start=substr($start,0,10);
-  if($_POST['show_type']=="separate"){
-    $all_event[$start][$cate_sn][$sn]=$title;
-  }else{
-    $all_event[$start][$sn]=$title;
-  }
-}
-
-
-//die(var_export($all_event));
-
-foreach($dates as $start){
-
-  if($_POST['dl_type']=="only_event" and !isset($all_event[$start])){
-    continue;
-  }else{
-    $arr=$all_event[$start];
-  }
-  $w=date('w',strtotime($start));
-
-  if($w==0 or $w==6){
-    $cellStyle =array('bgColor'=>'FEE9E7');
-  }else{
-    $cellStyle =array('bgColor'=>'FFFFFF');
-  }
-
+  //  日 期 星期  主 食 副食 一  副食 二  副食 三  湯 水果  熱量(大卡 )
 
   $table->addRow(); //新增一列
-  $table->addCell(1500, $cellStyle)->addText($start,null,$paraStyle); //新增一格
+  $table->addCell(1500, $cellStyle)->addText($lunch_date,null,$paraStyle);
   $table->addCell(700, $cellStyle)->addText($cw[$w],null,$paraStyle); //新增一格
-
-  if($_POST['show_type']=="separate"){
-    foreach($ok_arr as $cate_sn){
-      $cell="";
-      foreach($arr[$cate_sn] as $sn=>$title){
-        $cell[]=$title;
-      }
-      $content=implode("\n",$cell);
-      $table->addCell($width, $cellStyle)->addText($content);
-    }
-  }else{
-
-    $cell="";
-    foreach($arr as $sn=>$title){
-      $cell[]=$title;
-    }
-    $content=implode("\n",$cell);
-
-    $table->addCell(11200, $cellStyle)->addText($content); //新增一格
-  }
+  $table->addCell(1500, $cellStyle)->addText($main_food,null,$paraStyle);
+  $table->addCell(1500, $cellStyle)->addText($main_dish,null,$paraStyle);
+  $table->addCell(1500, $cellStyle)->addText($side_dish1,null,$paraStyle);
+  $table->addCell(1500, $cellStyle)->addText($side_dish2,null,$paraStyle);
+  $table->addCell(1500, $cellStyle)->addText($side_dish3,null,$paraStyle);
+  $table->addCell(1000, $cellStyle)->addText($fruit,null,$paraStyle);
+  $table->addCell(1500, $cellStyle)->addText($soup,null,$paraStyle);
+  $table->addCell(1000, $cellStyle)->addText($calorie,null,$paraStyle);
 
 
 }
 
 
 header('Content-Type: application/vnd.ms-word');
-header("Content-Disposition: attachment;filename={$filename}.docx");
+header("Content-Disposition: attachment;filename={$title}.docx");
 header('Cache-Control: max-age=0');
 $objWriter = PHPWord_IOFactory::createWriter($PHPWord, 'Word2007');
 $objWriter->save('php://output');
 
 
-
-function dates_range($date1, $date2)
-{
-   if ($date1<$date2)
-   {
-       $dates_range[]=$date1;
-       $date1=strtotime($date1);
-       $date2=strtotime($date2);
-       while ($date1!=$date2)
-       {
-           $date1=mktime(0, 0, 0, date("m", $date1), date("d", $date1)+1, date("Y", $date1));
-           $dates_range[]=date('Y-m-d', $date1);
-       }
-   }
-   return $dates_range;
-}
 ?>

@@ -2,6 +2,7 @@
 /*-----------引入檔案區--------------*/
 include_once "header.php";
 
+$myts =& MyTextSanitizer::getInstance();
 if(!empty($_GET['ym'])){
   list($year,$month)=explode("-",$_GET['ym']);
   $month=sprintf("%02s",$month);
@@ -9,8 +10,8 @@ if(!empty($_GET['ym'])){
   $year=date("Y");
   $month=date("m");
 }
-
-$title=sprintf(_MD_TADLUNCH2_YM,$year,$month).$_GET['lunch_target']._MD_TADLUNCH2_SMNAME1;
+$lunch_target=$myts->addSlashes($_GET['lunch_target']);
+$title=sprintf(_MD_TADLUNCH2_YM,$year,$month).$lunch_target._MD_TADLUNCH2_SMNAME1;
 
 require_once TADTOOLS_PATH.'/PHPExcel.php';    //引入 PHPExcel 物件庫
 require_once TADTOOLS_PATH.'/PHPExcel/IOFactory.php';    //引入 PHPExcel_IOFactory 物件庫
@@ -82,17 +83,17 @@ $objActSheet->setCellValue("A1", _MD_TADLUNCH2_LUNCH_DATE)
             ->setCellValue("Z1", _MD_TADLUNCH2_CALORIE);
 
 
-$and_lunch_target=empty($_GET['lunch_target'])?"":"and lunch_target='{$_GET['lunch_target']}'";
+$and_lunch_target=empty($lunch_target)?"":"and lunch_target='{$lunch_target}'";
 $sql = "select * from `".$xoopsDB->prefix("tad_lunch2_data")."` where lunch_date like '{$year}-{$month}-%' $and_lunch_target order by `lunch_date`,`lunch_target`";
 
 $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
 
 $i=2;
 while($all=$xoopsDB->fetchArray($result)){
-		//以下會產生這些變數： `lunch_data_sn`, `lunch_target`, `lunch_sn`, `lunch_date`, `main_food`, `main_food_stuff`, `main_dish`, `main_dish_stuff`, `main_dish_cook`, `side_dish1`, `side_dish1_stuff`, `side_dish1_cook`, `side_dish2`, `side_dish2_stuff`, `side_dish2_cook`, `side_dish3`, `side_dish3_stuff`, `side_dish3_cook`, `fruit`, `soup`, `soup_stuff`, `soup_cook`, `protein`, `fat`, `carbohydrate`, `calorie`
-	foreach($all as $k=>$v){
-		$$k=$v;
-	}
+    //以下會產生這些變數： `lunch_data_sn`, `lunch_target`, `lunch_sn`, `lunch_date`, `main_food`, `main_food_stuff`, `main_dish`, `main_dish_stuff`, `main_dish_cook`, `side_dish1`, `side_dish1_stuff`, `side_dish1_cook`, `side_dish2`, `side_dish2_stuff`, `side_dish2_cook`, `side_dish3`, `side_dish3_stuff`, `side_dish3_cook`, `fruit`, `soup`, `soup_stuff`, `soup_cook`, `protein`, `fat`, `carbohydrate`, `calorie`
+  foreach($all as $k=>$v){
+    $$k=$v;
+  }
 
   //日期  主食  主菜  副菜1 副菜2 副菜3 水果  湯點  主食食材（請用 ; 隔開） 主菜食材（請用 ; 隔開） 副菜1食材（請用 ; 隔開）  副菜2食材（請用 ; 隔開）  副菜3食材（請用 ; 隔開）  水果食材（請用 ; 隔開） 湯點食材（請用 ; 隔開） 主食烹煮方式  主菜烹煮方式  副菜1烹煮方式 副菜2烹煮方式 副菜3烹煮方式 水果烹煮方式  湯點烹煮方式  蛋白質 脂肪  醣類  總熱量
 
