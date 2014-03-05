@@ -287,17 +287,16 @@ function list_tad_lunch2_data($show_ym="",$target=""){
   $xoopsTpl->assign('nowYm' , $nowYm);
   $xoopsTpl->assign('all_options' , $all_options);
 
-  $lunch_target=str_replace(";" , ",", $xoopsModuleConfig['lunch_target']);
+  //$lunch_target=str_replace(";" , ",", $xoopsModuleConfig['lunch_target']);
+  $lunch_target_arr=explode(';',$xoopsModuleConfig['lunch_target']);
 
   if($target==""){
-    $and_target="";
-    $order_target=", find_in_set(`lunch_target`,'{$lunch_target}')";
+    $lunch_target=$lunch_target_arr[0];
   }else{
-    $and_target="and lunch_target='{$target}'";
-    $order_target="";
+    $lunch_target=$target;
   }
 
-  $sql = "select * from `".$xoopsDB->prefix("tad_lunch2_data")."` where lunch_date like '{$nowYm}-%' $and_target order by lunch_date $order_target";
+  $sql = "select * from `".$xoopsDB->prefix("tad_lunch2_data")."` where lunch_date like '{$nowYm}-%' and lunch_target='{$lunch_target}' order by lunch_date";
 
   $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
 
@@ -345,10 +344,9 @@ function list_tad_lunch2_data($show_ym="",$target=""){
   $xoopsTpl->assign('action' , $_SERVER['PHP_SELF']);
   $xoopsTpl->assign('all_content' , $all_content);
   $xoopsTpl->assign('now_op' , 'list_tad_lunch2_data');
+  $xoopsTpl->assign('lunch_target' ,$lunch_target);
 
-  $xoopsTpl->assign('lunch_target' , $target);
 
-  $lunch_target_arr=explode(';',$xoopsModuleConfig['lunch_target']);
 
   $target_arr="";
   $i=0;
@@ -536,6 +534,7 @@ global $xoopsDB;
   redirect_header($_SERVER['PHP_SELF'],3,_MD_TAD_LUNCH2_DATA_IMPORT_OK);
 }
 
+
 /*-----------執行動作判斷區----------*/
 $op=empty($_REQUEST['op'])?"":$_REQUEST['op'];
 $lunch_sn=empty($_REQUEST['lunch_sn'])?"":intval($_REQUEST['lunch_sn']);
@@ -586,6 +585,7 @@ switch($op){
     case "import2DB":
     import2DB($lunch_sn,$_POST['lunch_target']);
     break;
+
 
 
     //預設動作

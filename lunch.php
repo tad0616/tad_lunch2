@@ -40,6 +40,15 @@ function show_one_tad_lunch2_data($lunch_data_sn=""){
 
     $title=sprintf(_MD_TAD_LUNCH2_DATA_MENU , $lunch_date , $lunch_target);
 
+    $tool="";
+    if($isAdmin or $isManager){
+      $tool="
+      <div class='span6 offset3 text-right'>
+        <a href='".XOOPS_URL."/modules/tad_lunch2/index.php?op=tad_lunch2_data_form&lunch_data_sn={$lunch_data_sn}' class='btn btn-mini btn-warning'>"._TAD_EDIT."</a>
+        <a href='".XOOPS_URL."/modules/tad_lunch2/index.php?op=tad_lunch2_data_form' class='btn btn-mini btn-info'>"._TAD_ADD."</a>
+      </div>";
+    }
+
     $all_data.="
     <div class='row-fluid'>
       <div class='span4' style='font-weight:bold;'>
@@ -129,7 +138,9 @@ function show_one_tad_lunch2_data($lunch_data_sn=""){
         <td style='text-align:center;'></td>
         <td style='text-align:center;'>$soup_cook</td>
       </tr>
-    </table>";
+    </table>
+    $tool
+    ";
   }
   die($all_data);
 }

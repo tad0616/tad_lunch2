@@ -14,4 +14,5 @@ define("_MB_TADLUNCH2_CALORIE","總熱量");
 define("_MB_TADLUNCH2_BLOCK_SHOW_MODE","菜單顯示模式");
 define("_MB_TADLUNCH2_BLOCK_SHOW_H","橫式");
 define("_MB_TADLUNCH2_BLOCK_SHOW_V","直式");
+define("_MB_TADLUNCH2_BLOCK_SHOW_ALL","觀看更多菜單");
 ?>

@@ -14,8 +14,7 @@ $modversion['dirname'] = basename(dirname(__FILE__));
 
 
 //---模組狀態資訊---//
-$modversion['status_version'] = '1.1';
-$modversion['release_date'] = '2014-02-12';
+$modversion['release_date'] = '2014-03-05';
 $modversion['module_website_url'] = 'http://tad0616.net';
 $modversion['module_website_name'] = _MI_TADLUNCH2_AUTHOR_WEB;
 $modversion['module_status'] = 'release';

@@ -15,6 +15,7 @@ define("_MD_TADLUNCH2_COOK","烹煮方式");
 define("_MD_TADLUNCH2_COOK_TIP","烹煮方式如：煎、煮、炒、炸、蒸、烤...等");
 define("_MD_TADLUNCH2_MDIN_FOOD","主食");
 define("_MD_TADLUNCH2_MDIN_FOOD_STUFF","主食食材（請用 ; 隔開）");
+define("_MD_TADLUNCH2_MDIN_FOOD_COOK","主食烹煮方式");
 define("_MD_TADLUNCH2_MDIN_DISH","主菜");
 define("_MD_TADLUNCH2_MDIN_DISH_STUFF","主菜食材（請用 ; 隔開）");
 define("_MD_TADLUNCH2_MDIN_DISH_COOK","主菜烹煮方式");
@@ -28,6 +29,8 @@ define("_MD_TADLUNCH2_SIDE_DISH3","副菜3");
 define("_MD_TADLUNCH2_SIDE_DISH3_STUFF","副菜3食材（請用 ; 隔開）");
 define("_MD_TADLUNCH2_SIDE_DISH3_COOK","副菜3烹煮方式");
 define("_MD_TADLUNCH2_FRUIT","水果");
+define("_MD_TADLUNCH2_FRUIT_STUFF","水果食材（請用 ; 隔開）");
+define("_MD_TADLUNCH2_FRUIT_COOK","水果烹煮方式");
 define("_MD_TADLUNCH2_SOUP","湯點");
 define("_MD_TADLUNCH2_SOUP_STUFF","湯點食材（請用 ; 隔開）");
 define("_MD_TADLUNCH2_SOUP_COOK","湯點烹煮方式");
@@ -35,7 +38,7 @@ define("_MD_TADLUNCH2_PROTEIN","蛋白質");
 define("_MD_TADLUNCH2_FAT","脂肪");
 define("_MD_TADLUNCH2_CARBOHYDRATE","醣類");
 define("_MD_TADLUNCH2_CALORIE","總熱量");
-define("_MD_TAD_LUNCH2_DATA_FORM","輸入表單");
+define("_MD_TAD_LUNCH2_DATA_FORM","營養午餐內容管理");
 define("_MD_TAD_LUNCH2_DATA_IMPORT","快速匯入");
 define("_MD_TAD_LUNCH2_DATA_IMPORT_FILE","請上傳Excel檔：");
 define("_MD_TAD_LUNCH2_DATA_IMPORT_FILE_DESC","請按照<a href='demo.xls'>範例格式</a>來製作上傳");
@@ -71,6 +74,9 @@ define("_MD_TADLUNCH2_MONTH9","九");
 define("_MD_TADLUNCH2_MONTH10","十");
 define("_MD_TADLUNCH2_MONTH11","十一");
 define("_MD_TADLUNCH2_MONTH12","十二");
+
+define("_MD_TADLUNCH2_YM", "%s年%s月");
+define("_MD_TADLUNCH2_DOWNLOAD","下載");
 
 
 ?>

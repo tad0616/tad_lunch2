@@ -26,72 +26,72 @@ $(document).ready(function(){
 </script>
 
   <{if $block.type=="vertical"}>
-  <table class="table table-striped table-bordered table-hover">
+    <table class="table table-striped table-bordered table-hover">
 
-    <{foreach from=$block.content item=data}>
-    <tr>
-      <th colspan=2 style="text-align:center;">
-        <a href="<{$xoops_url}>/modules/tad_lunch2/lunch.php?lunch_data_sn=<{$data.lunch_data_sn}>" class="lunch_block_fancy fancybox.ajax"><{$data.lunch_date}> <{$data.title}></a></div>
-      </th>
-    </tr>
-    <tr>
-      <th><!--主食-->
-        <img src="<{$xoops_url}>/modules/tad_lunch2/images/main_food.png" alt="<{$smarty.const._MB_TADLUNCH2_MDIN_FOOD}>">
-        <{$smarty.const._MB_TADLUNCH2_MDIN_FOOD}>
-      </th>
-      <td><{$data.main_food}></td>
-    </tr>
-    <tr>
-      <th><!--主菜-->
-        <img src="<{$xoops_url}>/modules/tad_lunch2/images/main_dish.png" alt="<{$smarty.const._MB_TADLUNCH2_MDIN_DISH}>">
-        <{$smarty.const._MB_TADLUNCH2_MDIN_DISH}>
-      </th>
-      <td><{$data.main_dish}></td>
-    </tr>
-    <tr>
-      <th><!--副菜1-->
-        <img src="<{$xoops_url}>/modules/tad_lunch2/images/side_dish1.png" alt="<{$smarty.const._MB_TADLUNCH2_SIDE_DISH1}>">
-        <{$smarty.const._MB_TADLUNCH2_SIDE_DISH1}>
-      </th>
-      <td><{$data.side_dish1}></td>
-    </tr>
-    <tr>
-      <th><!--副菜2-->
-        <img src="<{$xoops_url}>/modules/tad_lunch2/images/side_dish2.png" alt="<{$smarty.const._MB_TADLUNCH2_SIDE_DISH2}>">
-        <{$smarty.const._MB_TADLUNCH2_SIDE_DISH2}>
-      </th>
-      <td><{$data.side_dish2}></td>
-    </tr>
-    <tr>
-      <th><!--副菜3-->
-        <img src="<{$xoops_url}>/modules/tad_lunch2/images/side_dish3.png" alt="<{$smarty.const._MB_TADLUNCH2_SIDE_DISH3}>">
-        <{$smarty.const._MB_TADLUNCH2_SIDE_DISH3}>
-      </th>
-      <td><{$data.side_dish3}></td>
-    </tr>
-    <{if $data.fruit}>
-    <tr>
-      <th><!--水果-->
-        <img src="<{$xoops_url}>/modules/tad_lunch2/images/fruit.png" alt="<{$smarty.const._MB_TADLUNCH2_FRUIT}>">
-        <{$smarty.const._MB_TADLUNCH2_FRUIT}>
-      </th>
-      <td><{$data.fruit}></td>
-    </tr>
-    <{/if}>
-    <tr>
-      <th><!--湯點-->
-        <img src="<{$xoops_url}>/modules/tad_lunch2/images/soup.png" alt="<{$smarty.const._MB_TADLUNCH2_SOUP}>">
-        <{$smarty.const._MB_TADLUNCH2_SOUP}>
-      </th>
-      <td><{$data.soup}></td>
-    </tr>
-    <tr>
-      <th><!--總熱量--><{$smarty.const._MB_TADLUNCH2_CALORIE}></th>
-        <td><{$data.calorie}></td>
-    </tr>
+      <{foreach from=$block.content item=data}>
+      <tr>
+        <th colspan=2 style="text-align:center;">
+          <a href="<{$xoops_url}>/modules/tad_lunch2/lunch.php?lunch_data_sn=<{$data.lunch_data_sn}>" class="lunch_block_fancy fancybox.ajax"><{$data.lunch_date}> <{$data.title}></a></div>
+        </th>
+      </tr>
+      <tr>
+        <th><!--主食-->
+          <img src="<{$xoops_url}>/modules/tad_lunch2/images/main_food.png" alt="<{$smarty.const._MB_TADLUNCH2_MDIN_FOOD}>">
+          <{$smarty.const._MB_TADLUNCH2_MDIN_FOOD}>
+        </th>
+        <td><{$data.main_food}></td>
+      </tr>
+      <tr>
+        <th><!--主菜-->
+          <img src="<{$xoops_url}>/modules/tad_lunch2/images/main_dish.png" alt="<{$smarty.const._MB_TADLUNCH2_MDIN_DISH}>">
+          <{$smarty.const._MB_TADLUNCH2_MDIN_DISH}>
+        </th>
+        <td><{$data.main_dish}></td>
+      </tr>
+      <tr>
+        <th><!--副菜1-->
+          <img src="<{$xoops_url}>/modules/tad_lunch2/images/side_dish1.png" alt="<{$smarty.const._MB_TADLUNCH2_SIDE_DISH1}>">
+          <{$smarty.const._MB_TADLUNCH2_SIDE_DISH1}>
+        </th>
+        <td><{$data.side_dish1}></td>
+      </tr>
+      <tr>
+        <th><!--副菜2-->
+          <img src="<{$xoops_url}>/modules/tad_lunch2/images/side_dish2.png" alt="<{$smarty.const._MB_TADLUNCH2_SIDE_DISH2}>">
+          <{$smarty.const._MB_TADLUNCH2_SIDE_DISH2}>
+        </th>
+        <td><{$data.side_dish2}></td>
+      </tr>
+      <tr>
+        <th><!--副菜3-->
+          <img src="<{$xoops_url}>/modules/tad_lunch2/images/side_dish3.png" alt="<{$smarty.const._MB_TADLUNCH2_SIDE_DISH3}>">
+          <{$smarty.const._MB_TADLUNCH2_SIDE_DISH3}>
+        </th>
+        <td><{$data.side_dish3}></td>
+      </tr>
+      <{if $data.fruit}>
+      <tr>
+        <th><!--水果-->
+          <img src="<{$xoops_url}>/modules/tad_lunch2/images/fruit.png" alt="<{$smarty.const._MB_TADLUNCH2_FRUIT}>">
+          <{$smarty.const._MB_TADLUNCH2_FRUIT}>
+        </th>
+        <td><{$data.fruit}></td>
+      </tr>
+      <{/if}>
+      <tr>
+        <th><!--湯點-->
+          <img src="<{$xoops_url}>/modules/tad_lunch2/images/soup.png" alt="<{$smarty.const._MB_TADLUNCH2_SOUP}>">
+          <{$smarty.const._MB_TADLUNCH2_SOUP}>
+        </th>
+        <td><{$data.soup}></td>
+      </tr>
+      <tr>
+        <th><!--總熱量--><{$smarty.const._MB_TADLUNCH2_CALORIE}></th>
+          <td><{$data.calorie}></td>
+      </tr>
 
-    <{/foreach}>
-  </table>
+      <{/foreach}>
+    </table>
   <{else}>
     <table class="table table-striped table-bordered table-hover">
       <thead>
@@ -150,4 +150,7 @@ $(document).ready(function(){
       </tbody>
     </table>
   <{/if}>
+  <div class="text-right">
+    <a href="<{$xoops_url}>/modules/tad_lunch2" class="btn btn-mini btn-info"><{$smarty.const._MB_TADLUNCH2_BLOCK_SHOW_ALL}></a>
+  </div>
 <{/if}>

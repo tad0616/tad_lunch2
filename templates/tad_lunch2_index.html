@@ -7,14 +7,14 @@
 
 <{if $now_op=="tad_lunch2_data_form"}>
   <{$formValidator_code}>
-
+  <h1><{$lunch_date}><{$smarty.const._MD_TAD_LUNCH2_DATA_FORM}></h1>
   <form action="<{$action}>" method="post" id="myForm" enctype="multipart/form-data">
 
     <!--日期-->
     <div class="row-fluid">
-      <div class="span2">
+      <label class="span2 text-right">
         <{$smarty.const._MD_TADLUNCH2_LUNCH_DATE}>
-      </div>
+      </label>
 
       <div class="span2">
         <input type="text" name="lunch_date" id="lunch_date" class="span12 validate[required]" value="<{$lunch_date}>"  onClick="WdatePicker({dateFmt:"yyyy-MM-dd" , startDate:"%y-%M-%d"})" placeholder="<{$smarty.const._MD_TADLUNCH2_LUNCH_DATE}>">
@@ -22,9 +22,9 @@
 
 
       <!--供餐來源-->
-      <div class="span2">
+      <label class="span2 text-right">
         <{$smarty.const._MD_TADLUNCH2_LUNCH_TARGET}>
-      </div>
+      </label>
       <div class="span2">
         <select name="lunch_target" class="span12 " size=1>
           <{foreach from=$lunch_target_menu item=target}>
@@ -34,9 +34,9 @@
       </div>
 
       <!--廠商-->
-      <div class="span2">
+      <label class="span2 text-right">
         <{$smarty.const._MD_TADLUNCH2_LUNCH_SN}>
-      </div>
+      </label>
       <div class="span2">
         <select name="lunch_sn" class="span12 " size=1>
           <{foreach from=$lunch_company item=lunch}>
@@ -50,27 +50,27 @@
     <!--標題-->
 
       <div class="row-fluid">
-        <div class="span1">
+        <label class="span1">
           <{$smarty.const._MD_TADLUNCH2_KIND}>
-        </div>
-        <div class="span4">
+        </label>
+        <label class="span4">
           <{$smarty.const._MD_TADLUNCH2_FOOD}>
-        </div>
+        </label>
 
-        <div class="span5">
+        <label class="span5">
           <{$smarty.const._MD_TADLUNCH2_FOOD_STUFF}>
-        </div>
+        </label>
 
-        <div class="span2">
+        <label class="span2">
           <{$smarty.const._MD_TADLUNCH2_COOK}>
-        </div>
+        </label>
       </div>
 
     <!--主食-->
     <div class="row-fluid">
-      <div class="span1">
+      <label class="span1">
         <{$smarty.const._MD_TADLUNCH2_MDIN_FOOD}>
-      </div>
+      </label>
       <div class="span4">
         <input type="text" name="main_food" id="main_food" class="span12 validate[required , minSize[1] , maxSize[255]]" value="<{$main_food}>" placeholder="<{$smarty.const._MD_TADLUNCH2_MDIN_FOOD}>">
       </div>
@@ -82,9 +82,9 @@
 
     <!--主菜-->
     <div class="row-fluid">
-      <div class="span1">
+      <label class="span1">
         <{$smarty.const._MD_TADLUNCH2_MDIN_DISH}>
-      </div>
+      </label>
       <div class="span4">
         <input type="text" name="main_dish" id="main_dish" class="span12 validate[required , minSize[1] , maxSize[255]]" value="<{$main_dish}>" placeholder="<{$smarty.const._MD_TADLUNCH2_MDIN_DISH}>">
       </div>
@@ -100,9 +100,9 @@
 
     <!--副菜1-->
     <div class="row-fluid">
-      <div class="span1">
+      <label class="span1">
         <{$smarty.const._MD_TADLUNCH2_SIDE_DISH1}>
-      </div>
+      </label>
       <div class="span4">
         <input type="text" name="side_dish1" id="side_dish1" class="span12 " value="<{$side_dish1}>" placeholder="<{$smarty.const._MD_TADLUNCH2_SIDE_DISH1}>">
       </div>
@@ -118,9 +118,9 @@
 
     <!--副菜2-->
     <div class="row-fluid">
-      <div class="span1">
+      <label class="span1">
         <{$smarty.const._MD_TADLUNCH2_SIDE_DISH2}>
-      </div>
+      </label>
       <div class="span4">
         <input type="text" name="side_dish2" id="side_dish2" class="span12 " value="<{$side_dish2}>" placeholder="<{$smarty.const._MD_TADLUNCH2_SIDE_DISH2}>">
       </div>
@@ -136,9 +136,9 @@
 
     <!--副菜3-->
     <div class="row-fluid">
-      <div class="span1">
+      <label class="span1">
         <{$smarty.const._MD_TADLUNCH2_SIDE_DISH3}>
-      </div>
+      </label>
       <div class="span4">
         <input type="text" name="side_dish3" id="side_dish3" class="span12 " value="<{$side_dish3}>" placeholder="<{$smarty.const._MD_TADLUNCH2_SIDE_DISH3}>">
       </div>
@@ -154,9 +154,9 @@
 
     <!--水果-->
     <div class="row-fluid">
-      <div class="span1">
+      <label class="span1">
         <{$smarty.const._MD_TADLUNCH2_FRUIT}>
-      </div>
+      </label>
       <div class="span4">
         <input type="text" name="fruit" id="fruit" class="span12 " value="<{$fruit}>" placeholder="<{$smarty.const._MD_TADLUNCH2_FRUIT}>">
       </div>
@@ -164,9 +164,9 @@
 
     <!--湯點-->
     <div class="row-fluid">
-      <div class="span1">
+      <label class="span1">
         <{$smarty.const._MD_TADLUNCH2_SOUP}>
-      </div>
+      </label>
       <div class="span4">
         <input type="text" name="soup" id="soup" class="span12 " value="<{$soup}>" placeholder="<{$smarty.const._MD_TADLUNCH2_SOUP}>">
       </div>
@@ -183,7 +183,6 @@
 
     <!--蛋白質-->
     <div class="row-fluid">
-
       <div class="span2 input-prepend input-append">
         <span class="add-on"><{$smarty.const._MD_TADLUNCH2_PROTEIN}></span>
         <input type="text" name="protein" id="protein" class="span6" value="<{$protein}>" placeholder="<{$smarty.const._MD_TADLUNCH2_PROTEIN}>">
@@ -227,9 +226,9 @@
   <form action="index.php" method="post" enctype="multipart/form-data">
     <div class="controls">
       <!--供餐來源-->
-      <div class="span2">
+      <label class="span2 text-right">
         <{$smarty.const._MD_TADLUNCH2_LUNCH_TARGET}>
-      </div>
+      </label>
       <div class="span4">
         <select name="lunch_target" class="span12 " size=1>
           <{foreach from=$lunch_target_menu item=target}>
@@ -239,9 +238,9 @@
       </div>
 
       <!--廠商-->
-      <div class="span2">
+      <label class="span2 text-right">
         <{$smarty.const._MD_TADLUNCH2_LUNCH_SN}>
-      </div>
+      </label>
       <div class="span4">
         <select name="lunch_sn" class="span12 " size=1>
           <{foreach from=$lunch_company item=lunch}>
@@ -252,9 +251,9 @@
     </div>
 
     <div class="controls">
-      <div class="span2">
+      <label class="span2 text-right">
         <{$smarty.const._MD_TAD_LUNCH2_DATA_IMPORT_FILE}>
-      </div>
+      </label>
       <div class="span4">
         <input type="file" name="importfile">
       </div>
@@ -308,7 +307,7 @@
       monthNames: ["<{$smarty.const._MD_TADLUNCH2_MONTH1}>","<{$smarty.const._MD_TADLUNCH2_MONTH2}>","<{$smarty.const._MD_TADLUNCH2_MONTH3}>","<{$smarty.const._MD_TADLUNCH2_MONTH4}>","<{$smarty.const._MD_TADLUNCH2_MONTH5}>","<{$smarty.const._MD_TADLUNCH2_MONTH6}>","<{$smarty.const._MD_TADLUNCH2_MONTH7}>","<{$smarty.const._MD_TADLUNCH2_MONTH8}>","<{$smarty.const._MD_TADLUNCH2_MONTH9}>","<{$smarty.const._MD_TADLUNCH2_MONTH10}>","<{$smarty.const._MD_TADLUNCH2_MONTH11}>","<{$smarty.const._MD_TADLUNCH2_MONTH12}>"],
       monthNamesShort: ["1<{$smarty.const._MD_TADLUNCH2_MONTH}>","2<{$smarty.const._MD_TADLUNCH2_MONTH}>","3<{$smarty.const._MD_TADLUNCH2_MONTH}>","4<{$smarty.const._MD_TADLUNCH2_MONTH}>","5<{$smarty.const._MD_TADLUNCH2_MONTH}>","6<{$smarty.const._MD_TADLUNCH2_MONTH}>","7<{$smarty.const._MD_TADLUNCH2_MONTH}>","8<{$smarty.const._MD_TADLUNCH2_MONTH}>","9<{$smarty.const._MD_TADLUNCH2_MONTH}>","10<{$smarty.const._MD_TADLUNCH2_MONTH}>","11<{$smarty.const._MD_TADLUNCH2_MONTH}>","12<{$smarty.const._MD_TADLUNCH2_MONTH}>"],
       dayNames: ["<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_SU}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_MO}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_TU}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_WE}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_TH}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_FR}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_SA}>"],
-      dayNamesShort: ["<{$smarty.const._MD_TADLUNCH2_SU}>","<{$smarty.const._MD_TADLUNCH2_MO}>","<{$smarty.const._MD_TADLUNCH2_TU}>","<{$smarty.const._MD_TADLUNCH2_WE}>","<{$smarty.const._MD_TADLUNCH2_TH}>","<{$smarty.const._MD_TADLUNCH2_FR}>","<{$smarty.const._MD_TADLUNCH2_SA}>"],
+      dayNamesShort: ["<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_SU}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_MO}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_TU}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_WE}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_TH}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_FR}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_SA}>"],
       eventClick: function(calEvent, jsEvent, view) {
         $(this).attr("class", "lunch_fancy fancybox.ajax");
         $(this).attr("href", calEvent.rel);
@@ -327,22 +326,42 @@
         });
 
       }
-    })
+    });
+
+
+
+    $('#Excel').click(function() {
+      var date = $("#lunch2_calendar").fullCalendar('getDate');
+      var year = date.getFullYear();
+      var month_int = date.getMonth()+1;
+      location.href="excel.php?op=dl_excel&ym="+year+"-"+month_int+"&lunch_target=<{$lunch_target}>";
+    });
+
+    $('#Word').click(function() {
+      var date = $("#lunch2_calendar").fullCalendar('getDate');
+      var year = date.getFullYear();
+      var month_int = date.getMonth()+1;
+      location.href="word.php?op=dl_word&ym="+year+"-"+month_int+"&lunch_target=<{$lunch_target}>";
+    });
+
   });
+
   </script>
 
   <div class="row-fluid">
-    <div class="span3">
-      <select class="span12" id="lunch_target" onChange="location.href='index.php?ym=' + $('#ym').val() + '&lunch_target=' + this.value">
+    <div class="span6">
+      <select class="span6" id="lunch_target" onChange="location.href='index.php?lunch_target=' + this.value">
         <{foreach from=$lunch_target_arr item=target}>
           <option value="<{$target.title}>" <{if $lunch_target==$target.title}>selected<{/if}>>
             <{$target.title}>
           </option>
         <{/foreach}>
       </select>
+      <button class="btn btn-primary" id="Excel"><{$smarty.const._MD_TADLUNCH2_DOWNLOAD}>Excel</button>
+      <button class="btn btn-primary" id="Word"><{$smarty.const._MD_TADLUNCH2_DOWNLOAD}>Word</button>
     </div>
     <{if $isAdmin or $isManager}>
-      <div class="span6 offset3 text-right">
+      <div class="span6 text-right">
         <a href="<{$action}>?op=tad_lunch2_data_form" class="btn btn-info"><{$smarty.const._TAD_ADD}></a>
       </div>
     <{/if}>
