@@ -23,13 +23,13 @@ while($all=$xoopsDB->fetchArray($result)){
   }
 
   $name="";
-  if(!empty($main_food))$name.=$main_food."\n";
-  if(!empty($main_dish))$name.=$main_dish."\n";
-  if(!empty($side_dish1))$name.=$side_dish1."\n";
-  if(!empty($side_dish2))$name.=$side_dish2."\n";
-  if(!empty($side_dish3))$name.=$side_dish3."\n";
-  if(!empty($fruit))$name.=$fruit."\n";
-  if(!empty($soup))$name.=$soup."\n";
+  if(!empty($main_food))$name.=_MD_TADLUNCH2_MDIN_FOOD._TAD_FOR.$main_food."\n";
+  if(!empty($main_dish))$name.=_MD_TADLUNCH2_MDIN_DISH._TAD_FOR.$main_dish."\n";
+  if(!empty($side_dish1))$name.=_MD_TADLUNCH2_SIDE_DISH1._TAD_FOR.$side_dish1."\n";
+  if(!empty($side_dish2))$name.=_MD_TADLUNCH2_SIDE_DISH2._TAD_FOR.$side_dish2."\n";
+  if(!empty($side_dish3))$name.=_MD_TADLUNCH2_SIDE_DISH3._TAD_FOR.$side_dish3."\n";
+  if(!empty($fruit))$name.=_MD_TADLUNCH2_FRUIT._TAD_FOR.$fruit."\n";
+  if(!empty($soup))$name.=_MD_TADLUNCH2_SOUP._TAD_FOR.$soup."\n";
 
   $myEvents[$i]['id']=$lunch_data_sn;
   $myEvents[$i]['title']=$name;

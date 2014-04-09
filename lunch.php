@@ -43,7 +43,15 @@ function show_one_tad_lunch2_data($lunch_data_sn=""){
     $tool="";
     if($isAdmin or $isManager){
       $tool="
-      <div class='span6 offset3 text-right'>
+      <script type='text/javascript'>
+      function delete_tad_lunch2_data_func(lunch_data_sn){
+        var sure = window.confirm('"._TAD_DEL_CONFIRM."');
+        if (!sure)  return;
+        location.href='".XOOPS_URL."/modules/tad_lunch2/index.php?op=delete_tad_lunch2_data&lunch_data_sn=' + lunch_data_sn;
+      }
+      </script>
+        <div class='span6 offset3 text-right'>
+        <a href='javascript:delete_tad_lunch2_data_func($lunch_data_sn)' class='btn btn-mini btn-danger'>"._TAD_DEL."</a>
         <a href='".XOOPS_URL."/modules/tad_lunch2/index.php?op=tad_lunch2_data_form&lunch_data_sn={$lunch_data_sn}' class='btn btn-mini btn-warning'>"._TAD_EDIT."</a>
         <a href='".XOOPS_URL."/modules/tad_lunch2/index.php?op=tad_lunch2_data_form' class='btn btn-mini btn-info'>"._TAD_ADD."</a>
       </div>";
