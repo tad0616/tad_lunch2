@@ -83,7 +83,7 @@ while($all=$xoopsDB->fetchArray($result)){
 
 }
 
-
+$title=(_CHARSET=='UTF-8')?iconv("UTF-8","Big5",$title):$title;
 header('Content-Type: application/vnd.ms-word');
 header("Content-Disposition: attachment;filename={$title}.docx");
 header('Cache-Control: max-age=0');

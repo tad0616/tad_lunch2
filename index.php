@@ -4,11 +4,13 @@ include "header.php";
 $xoopsOption['template_main'] = "tad_lunch2_index.html";
 include_once XOOPS_ROOT_PATH."/header.php";
 
+include_once XOOPS_ROOT_PATH."/modules/tadtools/TadUpFiles.php" ;
+$TadUpFiles=new TadUpFiles("tad_lunch2");
 /*-----------功能函數區--------------*/
 
 //tad_lunch2_data編輯表單
 function tad_lunch2_data_form($lunch_data_sn=""){
-  global $xoopsDB , $xoopsTpl ,$xoopsModuleConfig;
+  global $xoopsDB , $xoopsTpl ,$xoopsModuleConfig ,$TadUpFiles;
   //include_once(XOOPS_ROOT_PATH."/class/xoopsformloader.php");
   //include_once(XOOPS_ROOT_PATH."/class/xoopseditor/xoopseditor.php");
 
@@ -150,10 +152,37 @@ function tad_lunch2_data_form($lunch_data_sn=""){
     $i++;
   }
   $xoopsTpl->assign('lunch_target_menu' , $lunch_target_menu);
+  $xoopsTpl->assign('main_food_source' , get_source("main_food"));
+  $xoopsTpl->assign('main_dish_source' , get_source("main_dish"));
+  $xoopsTpl->assign('side_dish1_source' , get_source("side_dish1"));
+  $xoopsTpl->assign('side_dish2_source' , get_source("side_dish2"));
+  $xoopsTpl->assign('side_dish3_source' , get_source("side_dish3"));
+  $xoopsTpl->assign('fruit_source' , get_source("fruit"));
+  $xoopsTpl->assign('soup_source' , get_source("soup"));
+
+
+
+  $TadUpFiles->set_col('lunch_data_sn' , $lunch_data_sn); //若 $show_list_del_file ==true 時一定要有
+  $upform=$TadUpFiles->upform(false,'lunch');
+  $xoopsTpl->assign('upform' , $upform);
+
 
 }
 
+//取得過去菜單提示來源
+function get_source($col="main_food"){
+  global $xoopsDB,$TadUpFiles;
 
+  $sql = "select `{$col}` from `".$xoopsDB->prefix("tad_lunch2_data")."` group by `{$col}` order by `{$col}`";
+  $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
+
+  $all_options="";
+  while(list($data)=$xoopsDB->fetchRow($result)){
+    $arr[]=$data;
+  }
+  $main="'".implode("','",$arr)."'";
+  return $main;
+}
 
 //新增資料到tad_lunch2_data中
 function insert_tad_lunch2_data(){
@@ -194,12 +223,17 @@ function insert_tad_lunch2_data(){
 
   //取得最後新增資料的流水編號
   $lunch_data_sn = $xoopsDB->getInsertId();
+
+
+  $TadUpFiles->set_col('lunch_data_sn' , $lunch_data_sn);
+  $desc=sprintf(_MD_TADLUNCH2_PIC_DESC,$_POST['lunch_date']);
+  $TadUpFiles->upload_file('lunch',1024,400,NULL,$desc,true);
   return $lunch_data_sn;
 }
 
 //更新tad_lunch2_data某一筆資料
 function update_tad_lunch2_data($lunch_data_sn=""){
-  global $xoopsDB,$xoopsUser;
+  global $xoopsDB,$xoopsUser,$TadUpFiles;
 
 
   $myts =& MyTextSanitizer::getInstance();
@@ -257,6 +291,11 @@ function update_tad_lunch2_data($lunch_data_sn=""){
    `calorie` = '{$_POST['calorie']}'
   where `lunch_data_sn` = '$lunch_data_sn'";
   $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
+
+  $TadUpFiles->set_col('lunch_data_sn' , $lunch_data_sn);
+  $desc=sprintf(_MD_TADLUNCH2_PIC_DESC,$_POST['lunch_date']);
+  $TadUpFiles->upload_file('lunch',1024,400,NULL,$desc,true);
+
   return $lunch_data_sn;
 }
 
@@ -355,6 +394,15 @@ function list_tad_lunch2_data($show_ym="",$target=""){
     $i++;
   }
   $xoopsTpl->assign('lunch_target_arr' ,$target_arr);
+
+  if(!file_exists(XOOPS_ROOT_PATH."/modules/tadtools/fancybox.php")){
+     redirect_header("index.php",3, _MA_NEED_TADTOOLS);
+    }
+  include_once XOOPS_ROOT_PATH."/modules/tadtools/fancybox.php";
+  $fancybox=new fancybox('.lunch_fancy');
+  $fancybox_code=$fancybox->render(false);
+  $xoopsTpl->assign('fancybox_code',$fancybox_code);
+  //加在連結中：class="edit_dropdown" rel="group"（圖） data-fancybox-type="iframe"（HTML）
 }
 
 
@@ -454,7 +502,9 @@ function import_excel($lunch_sn="",$lunch_target="",$file=""){
     for ($column = 0; $column <= 25; $column++) {
 
       if( PHPExcel_Shared_Date::isDateTime($sheet->getCellByColumnAndRow($column, $row) )){
-        $val = PHPExcel_Shared_Date::ExcelToPHPObject($sheet->getCellByColumnAndRow($column, $row)->getValue())->format('Y/m/d');
+        $v=$sheet->getCellByColumnAndRow($column, $row)->getValue();
+        if($column==0 and empty($v))break;
+        $val = PHPExcel_Shared_Date::ExcelToPHPObject($v)->format('Y/m/d');
       }else{
         $val =  $sheet->getCellByColumnAndRow($column, $row)->getCalculatedValue();
       }
@@ -586,6 +636,12 @@ switch($op){
     import2DB($lunch_sn,$_POST['lunch_target']);
     break;
 
+    case "update_pic":
+    $TadUpFiles->set_col('lunch_data_sn' , $lunch_data_sn);
+    $desc=sprintf(_MD_TADLUNCH2_PIC_DESC,$_POST['lunch_date']);
+    $TadUpFiles->upload_file('lunch',1024,400,NULL,$desc,true);
+    header("location: {$_SERVER['PHP_SELF']}");
+    break;
 
 
     //預設動作

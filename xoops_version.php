@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLUNCH2_NAME;
-$modversion['version']	= '1.3';
+$modversion['version']	= '1.51';
 $modversion['description'] = _MI_TADLUNCH2_DESC;
 $modversion['author'] = _MI_TADLUNCH2_AUTHOR;
 $modversion['credits']	= _MI_TADLUNCH2_CREDITS;
@@ -14,7 +14,7 @@ $modversion['dirname'] = basename(dirname(__FILE__));
 
 
 //---模組狀態資訊---//
-$modversion['release_date'] = '2014-03-06';
+$modversion['release_date'] = '2014-06-17';
 $modversion['module_website_url'] = 'http://tad0616.net';
 $modversion['module_website_name'] = _MI_TADLUNCH2_AUTHOR_WEB;
 $modversion['module_status'] = 'release';
@@ -33,9 +33,16 @@ $modversion ['paypal']['currency_code'] = 'USD';
 
 //---啟動後台管理界面選單---//
 $modversion['system_menu'] = 1;//---資料表架構---//
+
+//---安裝設定---//
+$modversion['onInstall'] = "include/onInstall.php";
+$modversion['onUpdate'] = "include/onUpdate.php";
+$modversion['onUninstall'] = "include/onUninstall.php";
+
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 $modversion['tables'][1] = "tad_lunch2";
 $modversion['tables'][2] = "tad_lunch2_data";
+$modversion['tables'][3] = "tad_lunch2_files_center";
 
 //---管理介面設定---//
 $modversion['hasAdmin'] = 1;
@@ -64,7 +71,7 @@ $modversion['blocks'][$i]['description'] = _MI_TADLUNCH2_BDESC1;
 $modversion['blocks'][$i]['show_func'] = "tad_lunch2_show";
 $modversion['blocks'][$i]['template'] = "tad_lunch2_block_tad_lunch2_show.html";
 $modversion['blocks'][$i]['edit_func'] = "tad_lunch2_show_edit";
-$modversion['blocks'][$i]['options'] = "1;horizontal";
+$modversion['blocks'][$i]['options'] = "1|horizontal|main_food,main_dish,side_dish1,side_dish2,side_dish3,fruit,soup,calorie";
 
 //---偏好設定---//
 $modversion['config'][1]['name']    = 'lunch_target';
@@ -82,4 +89,19 @@ $modversion['config'][2]['valuetype']   = 'array';
 $modversion['config'][2]['default'] = '1';
 
 
+$modversion['config'][3]['name']    = 'use_cols';
+$modversion['config'][3]['title']   = '_MI_TADLUNCH2_USE_COLS';
+$modversion['config'][3]['description'] = '_MI_TADLUNCH2_USE_COLS_DESC';
+$modversion['config'][3]['formtype']    = 'select_multi';
+$modversion['config'][3]['valuetype']   = 'array';
+$modversion['config'][3]['options'] = array(_MI_TADLUNCH2_MAIN_FOOD=>"main_food" , _MI_TADLUNCH2_MAIN_DISH=>"main_dish", _MI_TADLUNCH2_SIDE_DISH1=>"side_dish1", _MI_TADLUNCH2_SIDE_DISH2=>"side_dish2", _MI_TADLUNCH2_SIDE_DISH3=>"side_dish3", _MI_TADLUNCH2_FRUIT=>"fruit", _MI_TADLUNCH2_SOUP=>"soup", _MI_TADLUNCH2_CALORIE=>"calorie");
+$modversion['config'][3]['default'] = array('main_food','main_dish','side_dish1','side_dish2','side_dish3','fruit','soup','calorie');
+
+
+$modversion['config'][4]['name']    = 'show_kind';
+$modversion['config'][4]['title']   = '_MI_TADLUNCH2_SHOW_KIND';
+$modversion['config'][4]['description'] = '_MI_TADLUNCH2_SHOW_KIND_DESC';
+$modversion['config'][4]['formtype']    = 'yesno';
+$modversion['config'][4]['valuetype']   = 'int';
+$modversion['config'][4]['default'] = '1';
 ?>

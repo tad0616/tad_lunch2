@@ -127,8 +127,9 @@ while($all=$xoopsDB->fetchArray($result)){
 }
 
 
+$title=(_CHARSET=='UTF-8')?iconv("UTF-8","Big5",$title):$title;
 header('Content-Type: application/vnd.ms-excel');
-header('Content-Disposition: attachment;filename='.iconv("UTF-8","Big5",$title).'.xls');
+header("Content-Disposition: attachment;filename={$title}.xls");
 header('Cache-Control: max-age=0');
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 $objWriter->setPreCalculateFormulas(false);

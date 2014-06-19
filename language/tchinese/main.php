@@ -77,5 +77,7 @@ define("_MD_TADLUNCH2_MONTH12","十二");
 
 define("_MD_TADLUNCH2_YM", "%s年%s月");
 define("_MD_TADLUNCH2_DOWNLOAD","下載");
+define("_MD_TADLUNCH2_UPLOADPIC","上傳營養午餐照片");
+define("_MD_TADLUNCH2_PIC_DESC","%s 營養午餐照片");
 
 ?>
