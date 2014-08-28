@@ -13,13 +13,13 @@
 
   <script type="text/javascript">
   $(document).ready(function(){
-    $('#main_food').combobox([<{$main_food_source}>]);
-    $('#main_dish').combobox([<{$main_dish_source}>]);
-    $('#side_dish1').combobox([<{$side_dish1_source}>]);
-    $('#side_dish2').combobox([<{$side_dish2_source}>]);
-    $('#side_dish3').combobox([<{$side_dish3_source}>]);
-    $('#fruit').combobox([<{$fruit_source}>]);
-    $('#soup').combobox([<{$soup_source}>]);
+    <{if $main_food_source!="''"}>$('#main_food').combobox([<{$main_food_source}>]);<{/if}>
+    <{if $main_dish_source!="''"}>$('#main_dish').combobox([<{$main_dish_source}>]);<{/if}>
+    <{if $side_dish1_source!="''"}>$('#side_dish1').combobox([<{$side_dish1_source}>]);<{/if}>
+    <{if $side_dish2_source!="''"}>$('#side_dish2').combobox([<{$side_dish2_source}>]);<{/if}>
+    <{if $side_dish3_source!="''"}>$('#side_dish3').combobox([<{$side_dish3_source}>]);<{/if}>
+    <{if $fruit_source!="''"}>$('#fruit').combobox([<{$fruit_source}>]);<{/if}>
+    <{if $soup_source!="''"}>$('#soup').combobox([<{$soup_source}>]);<{/if}>
 
     $('#main_food').change(function(){
       $.post("get_stuff.php", { op: "get_stuff",  col: "main_food", val: $('#main_food').val() },

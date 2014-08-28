@@ -12,21 +12,22 @@ function tad_lunch2_show($options){
   $cw=explode(';',_MB_TADLUNCH2_WEEKS);
 
   $lunch_target=str_replace(";", ",", $xoopsModuleConfig['lunch_target']);
-
+  $tarr=explode(',', $lunch_target);
 
   $all_content="";
   $i=0;
-  for($n=0;$n<$options[0];$n++){
+  //for($n=0;$n<$options[0];$n++){
+  foreach($tarr as $target){
     $today=date("Y-m-d", mktime(0, 0, 0, date("m")  , date("d")+$n, date("Y")));
-    $w=date("w", mktime(0, 0, 0, date("m")  , date("d")+$n, date("Y")));
 
-    $sql = "select * from `".$xoopsDB->prefix("tad_lunch2_data")."` where lunch_date = '{$today}' order by lunch_date , find_in_set(`lunch_target`,'{$lunch_target},')";
+
+    $sql = "select * from `".$xoopsDB->prefix("tad_lunch2_data")."` where lunch_date = '{$today}' and lunch_target='{$target}' order by lunch_date ";
     //die($sql);
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
+    $result = $xoopsDB->query($sql);
     $total=$xoopsDB->getRowsNum($result);
     if(empty($total)){
-      $sql = "select * from `".$xoopsDB->prefix("tad_lunch2_data")."` order by lunch_date , find_in_set(`lunch_target`,'{$lunch_target},') limit 0,{$options[0]}";
-      $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
+      $sql = "select * from `".$xoopsDB->prefix("tad_lunch2_data")."` where lunch_target='{$target}'  order by lunch_date limit 0,{$options[0]}";
+      $result = $xoopsDB->query($sql);
     }
 
     while($all=$xoopsDB->fetchArray($result)){
@@ -34,7 +35,7 @@ function tad_lunch2_show($options){
       foreach($all as $k=>$v){
         $$k=$v;
       }
-
+      $w=date("w", strtotime($lunch_date));
 
       $all_content[$i]['lunch_data_sn']=$lunch_data_sn;
       $all_content[$i]['lunch_target']=$lunch_target;

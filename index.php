@@ -186,7 +186,7 @@ function get_source($col="main_food"){
 
 //新增資料到tad_lunch2_data中
 function insert_tad_lunch2_data(){
-  global $xoopsDB,$xoopsUser,$xoopsModuleConfig;
+  global $xoopsDB,$xoopsUser,$xoopsModuleConfig,$TadUpFiles;
 
 
   $myts =& MyTextSanitizer::getInstance();
@@ -487,7 +487,11 @@ function import_excel($lunch_sn="",$lunch_target="",$file=""){
   $myts = MyTextSanitizer::getInstance();
 
   include_once XOOPS_ROOT_PATH.'/modules/tadtools/PHPExcel/IOFactory.php';
-  $reader = PHPExcel_IOFactory::createReader('Excel5');
+  if ( preg_match('/\.(xlsx)$/i' ,$file_name) ){
+    $reader = PHPExcel_IOFactory::createReader('Excel2007');
+  }else{
+    $reader = PHPExcel_IOFactory::createReader('Excel5');
+  }
   $PHPExcel = $reader->load($file); // 檔案名稱
   $sheet = $PHPExcel->getSheet(0); // 讀取第一個工作表(編號從 0 開始)
   $highestRow = $sheet->getHighestRow(); // 取得總列數
@@ -501,7 +505,7 @@ function import_excel($lunch_sn="",$lunch_target="",$file=""){
     $isTitle=false;
     for ($column = 0; $column <= 25; $column++) {
 
-      if( PHPExcel_Shared_Date::isDateTime($sheet->getCellByColumnAndRow($column, $row) )){
+      if(($column == 0) and PHPExcel_Shared_Date::isDateTime($sheet->getCellByColumnAndRow($column, $row) )){
         $v=$sheet->getCellByColumnAndRow($column, $row)->getValue();
         if($column==0 and empty($v))break;
         $val = PHPExcel_Shared_Date::ExcelToPHPObject($v)->format('Y/m/d');
@@ -586,12 +590,13 @@ global $xoopsDB;
 
 
 /*-----------執行動作判斷區----------*/
-$op=empty($_REQUEST['op'])?"":$_REQUEST['op'];
+$myts =& MyTextSanitizer::getInstance();
+$op=empty($_REQUEST['op'])?"":$myts->htmlSpecialChars($_REQUEST['op']);
 $lunch_sn=empty($_REQUEST['lunch_sn'])?"":intval($_REQUEST['lunch_sn']);
 $lunch_data_sn=empty($_REQUEST['lunch_data_sn'])?"":intval($_REQUEST['lunch_data_sn']);
 //$lunch_date=preg_match('/^\d{4}[-\/]\d{1,2}[-\/]\d{1,2}$/u', $_REQUEST['lunch_date'])?$_REQUEST['lunch_date']:"";
-$ym=(!empty($_REQUEST['ym']) and strlen($_REQUEST['ym'])==7)?$_REQUEST['ym']:"";
-$target=(!empty($_REQUEST['lunch_target']))?$_REQUEST['lunch_target']:"";
+$ym=(!empty($_REQUEST['ym']) and strlen($_REQUEST['ym'])==7)?$myts->htmlSpecialChars($_REQUEST['ym']):"";
+$target=(!empty($_REQUEST['lunch_target']))?$myts->htmlSpecialChars($_REQUEST['lunch_target']):"";
 
 
 
