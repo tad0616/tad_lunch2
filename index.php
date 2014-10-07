@@ -582,7 +582,7 @@ global $xoopsDB;
     //25總熱量  calorie
 
     //把舊資料刪除掉
-    $sql = "DELETE FROM   " .$xoopsDB->prefix("tad_lunch2_data"). "  WHERE `lunch_date` = '{$col[0]}'  " ;
+    $sql = "DELETE FROM   " .$xoopsDB->prefix("tad_lunch2_data"). "  WHERE  `lunch_target`='{$lunch_target}'  and  `lunch_sn`='{$lunch_sn}' and  `lunch_date` = '{$col[0]}'  " ;
     $xoopsDB->queryF($sql)  ;
 
  
