@@ -36,7 +36,8 @@ CREATE TABLE `tad_lunch2_data` (
   `fat` smallint(6) unsigned NOT NULL default '0' COMMENT '脂肪',
   `carbohydrate` smallint(6) unsigned NOT NULL default '0' COMMENT '醣類',
   `calorie` smallint(6) unsigned NOT NULL default '0' COMMENT '總熱量',
-PRIMARY KEY (`lunch_data_sn`)
+  PRIMARY KEY (`lunch_data_sn`),
+  UNIQUE KEY `date_target` (`lunch_target`,`lunch_date`)
 ) ENGINE=MyISAM;
 
 CREATE TABLE `tad_lunch2_files_center` (

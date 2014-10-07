@@ -6,6 +6,7 @@ function xoops_module_update_tad_lunch2(&$module, $old_version) {
     mk_dir(XOOPS_ROOT_PATH."/uploads/tad_lunch2");
     mk_dir(XOOPS_ROOT_PATH."/uploads/tad_lunch2/thumbs");
     if(!chk_chk1()) go_update1();
+    if(!chk_chk2()) go_update2();
 
     return true;
 }
@@ -39,6 +40,26 @@ function go_update1(){
 ) ENGINE=MyISAM";
   $xoopsDB->queryF($sql);
 }
+
+
+function chk_chk2(){
+  global $xoopsDB;
+  $sql="SHOW INDEX FROM `".$xoopsDB->prefix("tad_lunch2_data")."` where Key_name='date_target'";
+  $result=$xoopsDB->query($sql);
+  $num=$xoopsDB->getAffectedRows();
+  if(empty($num)) return false;
+  return true;
+}
+
+
+function go_update2(){
+  global $xoopsDB;
+  $sql="ALTER TABLE `".$xoopsDB->prefix("tad_lunch2_data")."` ADD UNIQUE `date_target` ( `lunch_target` , `lunch_date` ) ";
+  $xoopsDB->queryF($sql);
+}
+
+
+
 
 
 //«Ø¥ß¥Ø¿ý

@@ -113,7 +113,7 @@
       <div class="span2">
         <select name="lunch_target" class="span12 " size=1>
           <{foreach from=$lunch_target_menu item=target}>
-          <option value="<{$target.title}>" <{if $lunch_target == $lunch.title}>selected="selected"<{/if}>><{$target.title}></option>
+            <option value="<{$target.title}>" <{if $lunch_target == $target.title}>selected="selected"<{/if}>><{$target.title}></option>
           <{/foreach}>
         </select>
       </div>
@@ -125,7 +125,7 @@
       <div class="span2">
         <select name="lunch_sn" class="span12 " size=1>
           <{foreach from=$lunch_company item=lunch}>
-          <option value="<{$lunch.lunch_sn}>" <{if $lunch_sn == $lunch.lunch_sn}>selected="selected"<{/if}>><{$lunch.lunch_title}></option>
+            <option value="<{$lunch.lunch_sn}>" <{if $lunch_sn == $lunch.lunch_sn}>selected="selected"<{/if}>><{$lunch.lunch_title}></option>
           <{/foreach}>
         </select>
       </div>
