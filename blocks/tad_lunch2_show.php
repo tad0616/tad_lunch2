@@ -18,7 +18,7 @@ function tad_lunch2_show($options){
   $i=0;
   //for($n=0;$n<$options[0];$n++){
   foreach($tarr as $target){
-    $today=date("Y-m-d", mktime(0, 0, 0, date("m")  , date("d")+$n, date("Y")));
+    $today=date("Y-m-d", mktime(0, 0, 0, date("m")  , date("d"), date("Y")));
 
 
     $sql = "select * from `".$xoopsDB->prefix("tad_lunch2_data")."` where lunch_date = '{$today}' and lunch_target='{$target}' order by lunch_date ";
