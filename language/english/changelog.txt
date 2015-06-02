@@ -1,0 +1,66 @@
+"Tad_lunch2 1.7 version released 2014-09-25"
+=================================================
+ 1. Import files added xlsx (Excel 2007) support
+ 2. Modify the program so that it conforms with WCAG
+ 3. Fixed in MySQL strict mode menu can not import problems
+ 4. Fixed menu import will repeat the question
+ 5. Fixed editing, object does not automatically load the correct values ​​issues
+
+"Version tad_lunch2 1.6 2014-08-20 release"
+=================================================
+ 1. Fixed block date if more than one day will display an error ratio of the number of problems.
+ 2. Fixed import, in a Linux environment may be a problem of bug
+ 3. Fixed Block avoid infinite loop problem.
+ 4. Fixed the incorrect block week issue
+ 5. fixed the problem of a single pen will blank
+ 6. Fixed the problem can not enter new dishes
+ 7. When solving the problem of vulnerability scanning will xss
+
+"Tad_lunch2 1.51 Version 2014-06-17 release"
+=================================================
+ 1. Default error correction block, resulting in page will appear endless loop problem.
+
+
+"Tad_lunch2 1.5 version released 2014-06-14"
+=================================================
+ 1. Fixed block date presents problems may be incorrect
+ 2. Since a few blocks week information
+
+
+"Version tad_lunch2 1.4 2014-06-13 release"
+=================================================
+ 1. Fixed block template syntax error
+ 2. Add the button to open presents weekly rest
+ 3. Download the Word file filename wrong question
+ 4. Fixed block If the data items are not multigrade right questions
+ 5. Add the old dishes Quick list (which can be selected directly from the old dishes in)
+ 6. Which fields can be presented from the Preferences decision
+ 7. Upload new photo features nutritious lunch
+
+
+"Tad_lunch2 1.3 version released 2014-03-06"
+=================================================
+ 1. Add a menu delete function
+ 2. trimming Home forum
+
+
+"Version tad_lunch2 1.2 2014-03-05 release"
+=================================================
+ 1. Add menu Edit button
+ 2. Fixed incorrect Big5 language problem
+ 3. Add function export menu of the month
+
+
+"Tad_lunch2 version 1.1 release 2014-02-12"
+=================================================
+ 1. Block presented the same day from the browser menu to change the date, in the absence of information, it will be picked up from recent data.
+ 2. The home page was changed by the calendar presented in a way to facilitate the inquiry and reading.
+ 3. Block added straight set presented
+ 4. landscaping picture, let alone one day menu display more attractive.
+
+
+ "Version tad_lunch2 1.0 2013-11-06 release"
+ =================================================
+  1. Supporting the bulk import menu.
+  2. Support all grades have different menus
+  3. Provide ingredients, cooking methods, nutrition and other information.
