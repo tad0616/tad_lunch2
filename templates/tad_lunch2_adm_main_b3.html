@@ -7,64 +7,64 @@
 
     <form action="<{$action}>" method="post" id="myForm" enctype="multipart/form-data" class="form-horizontal" role="form">
       <!--菜單名稱-->
-      <div class="control-group">
-        <label class="span2 control-label">
+      <div class="form-group">
+        <label class="col-md-2 control-label">
           <{$smarty.const._MA_TADLUNCH2_LUNCH_TITLE}>
         </label>
-        <div class="span10 controls">
-          <input type="text" name="lunch_title" id="lunch_title" class="span12 validate[required]" value="<{$lunch_title}>" placeholder="<{$smarty.const._MA_TADLUNCH2_LUNCH_TITLE}>">
+        <div class="col-md-10">
+          <input type="text" name="lunch_title" id="lunch_title" class="form-control validate[required]" value="<{$lunch_title}>" placeholder="<{$smarty.const._MA_TADLUNCH2_LUNCH_TITLE}>">
         </div>
       </div>
 
       <!--廠商名稱-->
-      <div class="control-group">
-        <label class="span2 control-label">
+      <div class="form-group">
+        <label class="col-md-2 control-label">
           <{$smarty.const._MA_TADLUNCH2_LUNCH_FACTORY}>
         </label>
-        <div class="span10 controls">
-          <input type="text" name="lunch_factory" id="lunch_factory" class="span12" value="<{$lunch_factory}>" placeholder="<{$smarty.const._MA_TADLUNCH2_LUNCH_FACTORY}>">
+        <div class="col-md-10">
+          <input type="text" name="lunch_factory" id="lunch_factory" class="form-control" value="<{$lunch_factory}>" placeholder="<{$smarty.const._MA_TADLUNCH2_LUNCH_FACTORY}>">
         </div>
       </div>
 
       <!--營養師-->
-      <div class="control-group">
-        <label class="span2 control-label">
+      <div class="form-group">
+        <label class="col-md-2 control-label">
           <{$smarty.const._MA_TADLUNCH2_LUNCH_DIETICIAN}>
         </label>
-        <div class="span10 controls">
-          <input type="text" name="lunch_dietician" id="lunch_dietician" class="span12" value="<{$lunch_dietician}>" placeholder="<{$smarty.const._MA_TADLUNCH2_LUNCH_DIETICIAN}>">
+        <div class="col-md-10">
+          <input type="text" name="lunch_dietician" id="lunch_dietician" class="form-control" value="<{$lunch_dietician}>" placeholder="<{$smarty.const._MA_TADLUNCH2_LUNCH_DIETICIAN}>">
         </div>
       </div>
 
       <!--廠商電話-->
-      <div class="control-group">
-        <label class="span2 control-label">
+      <div class="form-group">
+        <label class="col-md-2 control-label">
           <{$smarty.const._MA_TADLUNCH2_LUNCH_FACTORY_TEL}>
         </label>
-        <div class="span10 controls">
-          <input type="text" name="lunch_factory_tel" id="lunch_factory_tel" class="span12" value="<{$lunch_factory_tel}>" placeholder="<{$smarty.const._MA_TADLUNCH2_LUNCH_FACTORY_TEL}>">
+        <div class="col-md-10">
+          <input type="text" name="lunch_factory_tel" id="lunch_factory_tel" class="form-control" value="<{$lunch_factory_tel}>" placeholder="<{$smarty.const._MA_TADLUNCH2_LUNCH_FACTORY_TEL}>">
         </div>
       </div>
 
 
       <!--廠商傳真-->
-      <div class="control-group">
-        <label class="span2 control-label">
+      <div class="form-group">
+        <label class="col-md-2 control-label">
           <{$smarty.const._MA_TADLUNCH2_LUNCH_FACTORY_FAX}>
         </label>
-        <div class="span10 controls">
-          <input type="text" name="lunch_factory_fax" id="lunch_factory_fax" class="span12" value="<{$lunch_factory_fax}>" placeholder="<{$smarty.const._MA_TADLUNCH2_LUNCH_FACTORY_FAX}>">
+        <div class="col-md-10">
+          <input type="text" name="lunch_factory_fax" id="lunch_factory_fax" class="form-control" value="<{$lunch_factory_fax}>" placeholder="<{$smarty.const._MA_TADLUNCH2_LUNCH_FACTORY_FAX}>">
         </div>
       </div>
 
 
       <!--廠商地址-->
-      <div class="control-group">
-        <label class="span2 control-label">
+      <div class="form-group">
+        <label class="col-md-2 control-label">
           <{$smarty.const._MA_TADLUNCH2_LUNCH_FACTORY_ADDR}>
         </label>
-        <div class="span10 controls">
-          <input type="text" name="lunch_factory_addr" id="lunch_factory_addr" class="span12" value="<{$lunch_factory_addr}>" placeholder="<{$smarty.const._MA_TADLUNCH2_LUNCH_FACTORY_ADDR}>">
+        <div class="col-md-10">
+          <input type="text" name="lunch_factory_addr" id="lunch_factory_addr" class="form-control" value="<{$lunch_factory_addr}>" placeholder="<{$smarty.const._MA_TADLUNCH2_LUNCH_FACTORY_ADDR}>">
         </div>
       </div>
 
@@ -116,8 +116,8 @@
           <td><{$data.lunch_factory_addr}></td>
           <{if $isAdmin}>
           <td>
-            <a href="javascript:delete_tad_lunch2_func(<{$data.lunch_sn}>);" class="btn btn-mini btn-danger"><{$smarty.const._TAD_DEL}></a>
-            <a href="<{$action}>?op=tad_lunch2_form&lunch_sn=<{$data.lunch_sn}>" class="btn btn-mini btn-warning"><{$smarty.const._TAD_EDIT}></a>
+            <a href="javascript:delete_tad_lunch2_func(<{$data.lunch_sn}>);" class="btn btn-xs btn-danger"><{$smarty.const._TAD_DEL}></a>
+            <a href="<{$action}>?op=tad_lunch2_form&lunch_sn=<{$data.lunch_sn}>" class="btn btn-xs btn-warning"><{$smarty.const._TAD_EDIT}></a>
           </td>
           <{/if}>
         </tr>
@@ -134,7 +134,7 @@
 
     <{$bar}>
   <{elseif $now_op=="list_tad_lunch2"}>
-    <div class="hero-unit">
+    <div class="jumbotron">
       <{if $isAdmin}>
         <a href="<{$action}>?op=tad_lunch2_form" class="btn btn-info"><{$smarty.const._TAD_ADD}></a>
       <{/if}>
@@ -146,55 +146,56 @@
     <h2 class="text-center"><{$title}></h2>
     <hr>
 
-    <div class="row-fluid">
+    <div class="row">
         <!--廠商名稱-->
-      <div class="span3 text-right">
+      <div class="col-md-3 text-right">
         <{$smarty.const._MA_TADLUNCH2_LUNCH_FACTORY}>
       </div>
-      <div class="span9">
+      <div class="col-md-9">
         <{$lunch_factory}>
       </div>
     </div>
 
-    <div class="row-fluid">
+    <div class="row">
       <!--營養師-->
-      <div class="span3 text-right">
+      <div class="col-md-3 text-right">
         <{$smarty.const._MA_TADLUNCH2_LUNCH_DIETICIAN}>
       </div>
-      <div class="span9">
+      <div class="col-md-9">
         <{$lunch_dietician}>
       </div>
     </div>
 
-    <div class="row-fluid">
+    <div class="row">
       <!--廠商電話-->
-      <div class="span3 text-right">
+      <div class="col-md-3 text-right">
         <{$smarty.const._MA_TADLUNCH2_LUNCH_FACTORY_TEL}>
       </div>
-      <div class="span9">
+      <div class="col-md-9">
         <{$lunch_factory_tel}>
       </div>
     </div>
 
-    <div class="row-fluid">
+    <div class="row">
       <!--廠商傳真-->
-      <div class="span3 text-right">
+      <div class="col-md-3 text-right">
         <{$smarty.const._MA_TADLUNCH2_LUNCH_FACTORY_FAX}>
       </div>
-      <div class="span9">
+      <div class="col-md-9">
         <{$lunch_factory_fax}>
       </div>
     </div>
 
-    <div class="row-fluid">
+    <div class="row">
       <!--廠商地址-->
-      <div class="span3 text-right">
+      <div class="col-md-3 text-right">
         <{$smarty.const._MA_TADLUNCH2_LUNCH_FACTORY_ADDR}>
       </div>
-      <div class="span9">
+      <div class="col-md-9">
         <{$lunch_factory_addr}>
       </div>
     </div>
 
   <{/if}>
+
 </div>

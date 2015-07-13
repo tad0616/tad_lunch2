@@ -80,3 +80,4 @@ define('_MD_TADLUNCH2_YM', '%s %s of month');
 define('_MD_TADLUNCH2_DOWNLOAD', 'Download');
 define('_MD_TADLUNCH2_UPLOADPIC', 'Upload photos of Nutritious Lunch');
 define('_MD_TADLUNCH2_PIC_DESC', '%s Nutritious Lunch Photo');
+define('_MD_TADLUNCH2_NEED_MANAGER', 'You are not a manager, you do not have permission for this operation of the system.');

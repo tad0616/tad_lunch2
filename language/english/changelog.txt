@@ -1,3 +1,11 @@
+"Tad_lunch2 1.8 version released 2015-07-12"
+=================================================
+ 1. Add the English language
+ 2. Add BootStrap3 support
+ 3. Fix PHP syntax to conform to PSR2
+ 4. Strengthening security form
+
+
 "Tad_lunch2 1.7 version released 2014-09-25"
 =================================================
  1. Import files added xlsx (Excel 2007) support

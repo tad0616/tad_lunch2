@@ -1,9 +1,4 @@
 <?php
-//  ------------------------------------------------------------------------ //
-// 本模組由 tad 製作
-// 製作日期：2013-10-31
-// $Id:$
-// ------------------------------------------------------------------------- //
 include_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$xoopsConfig['language']}/modinfo_common.php";
 
 define('_MI_TADLUNCH2_NAME', 'Nutritious Lunch Bulletin');
@@ -33,7 +28,6 @@ define('_MI_TADLUNCH2_SOUP', 'Soups');
 define('_MI_TADLUNCH2_CALORIE', 'Total Calories');
 define('_MI_TADLUNCH2_SHOW_KIND', 'Module list is displayed category');
 define('_MI_TADLUNCH2_SHOW_KIND_DESC', 'If not selected, only show a simple" rice "," carrot onion scrambled eggs "... this kind of food names instead showed off the" Basic food "," entree "... and other category name ');
-
 
 define('_MI_TADLUNCH2_DIRNAME', basename(dirname(dirname(__DIR__))));
 define('_MI_TADLUNCH2_HELP_HEADER', __DIR__ . '/help/helpheader.html');
