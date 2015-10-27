@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name']        = _MI_TADLUNCH2_NAME;
-$modversion['version']     = '1.8';
+$modversion['version']     = '1.9';
 $modversion['description'] = _MI_TADLUNCH2_DESC;
 $modversion['author']      = _MI_TADLUNCH2_AUTHOR;
 $modversion['credits']     = _MI_TADLUNCH2_CREDITS;
@@ -13,14 +13,14 @@ $modversion['image']       = "images/logo.png";
 $modversion['dirname']     = basename(dirname(__FILE__));
 
 //---模組狀態資訊---//
-$modversion['release_date']        = '2015-07-12';
+$modversion['release_date']        = '2015-09-11';
 $modversion['module_website_url']  = 'http://tad0616.net';
 $modversion['module_website_name'] = _MI_TADLUNCH2_AUTHOR_WEB;
 $modversion['module_status']       = 'release';
 $modversion['author_website_url']  = 'http://tad0616.net';
 $modversion['author_website_name'] = _MI_TADLUNCH2_AUTHOR_WEB;
-$modversion['min_php']             = 5.3;
-$modversion['min_xoops']           = '2.5';
+$modversion['min_php']             = '5.3.7';
+$modversion['min_xoops']           = '2.5.7';
 
 //---paypal資訊---//
 $modversion['paypal']                  = array();
@@ -67,6 +67,14 @@ $i++;
 $modversion['templates'][$i]['file']        = 'tad_lunch2_index_b3.html';
 $modversion['templates'][$i]['description'] = 'tad_lunch2_index_b3.html';
 
+$i++;
+$modversion['templates'][$i]['file']        = 'tad_lunch2_adm_man.html';
+$modversion['templates'][$i]['description'] = 'tad_lunch2_adm_man.html';
+
+$i++;
+$modversion['templates'][$i]['file']        = 'tad_lunch2_adm_man_b3.html';
+$modversion['templates'][$i]['description'] = 'tad_lunch2_adm_man_b3.html';
+
 //---區塊設定---//
 $i                                       = 0;
 $modversion['blocks'][$i]['file']        = "tad_lunch2_show.php";
@@ -88,8 +96,8 @@ $modversion['config'][1]['default']     = _MI_TADLUNCH2_FOR_WHOM_DEFAULT;
 $modversion['config'][2]['name']        = 'lunch_manager';
 $modversion['config'][2]['title']       = '_MI_TADLUNCH2_MANAGER';
 $modversion['config'][2]['description'] = '_MI_TADLUNCH2_MANAGER_DESC';
-$modversion['config'][2]['formtype']    = 'user_multi';
-$modversion['config'][2]['valuetype']   = 'array';
+$modversion['config'][2]['formtype']    = 'textbox';
+$modversion['config'][2]['valuetype']   = 'text';
 $modversion['config'][2]['default']     = '1';
 
 $modversion['config'][3]['name']        = 'use_cols';

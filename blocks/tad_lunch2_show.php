@@ -26,7 +26,7 @@ function tad_lunch2_show($options)
         $result = $xoopsDB->query($sql);
         $total  = $xoopsDB->getRowsNum($result);
         if (empty($total)) {
-            $sql    = "select * from `" . $xoopsDB->prefix("tad_lunch2_data") . "` where  lunch_date >= '{$today}' and main_food<>'' and  lunch_target='{$target}'   order by lunch_date limit 0,{$options[0]}";
+            $sql    = "select * from `" . $xoopsDB->prefix("tad_lunch2_data") . "` where  lunch_date >= '{$today}' and main_food <>'' and  lunch_target='{$target}'   order by lunch_date limit 0,{$options[0]}";
             $result = $xoopsDB->query($sql);
         }
 

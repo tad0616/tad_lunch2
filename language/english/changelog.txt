@@ -1,3 +1,8 @@
+"Tad_lunch2 1.9 version released 2015-09-11"
+=================================================
+ 1. Fixed bug of lunch managers.
+
+
 "Tad_lunch2 1.8 version released 2015-07-12"
 =================================================
  1. Add the English language

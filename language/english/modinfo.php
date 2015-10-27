@@ -8,13 +8,15 @@ define('_MI_TADLUNCH2_DESC', 'This module is used for quick import of Nutritious
 define('_MI_TADLUNCH2_AUTHOR_WEB', 'Tad teaching network');
 define('_MI_TADLUNCH2_ADMENU1', 'Nutritious lunch set');
 define('_MI_TADLUNCH2_ADMENU1_DESC', 'Nutritious lunch set');
+define('_MI_TADLUNCH2_ADMENU2', 'Manager setup');
+define('_MI_TADLUNCH2_ADMENU2_DESC', 'Manager setup');
 define('_MI_TADLUNCH2_BNAME1', 'Nutritious lunches Notice');
 define('_MI_TADLUNCH2_BDESC1', 'Nutritious lunch Announcement (tad_lunch2_show)');
 define('_MI_TADLUNCH2_FOR_WHOM', 'Menu supply Year');
 define('_MI_TADLUNCH2_FOR_WHOM_DESC', 'If there are different grades of different vendors simultaneously feeding, please set this year, with a lowercase, and separate it with a semicolon ";"');
 define('_MI_TADLUNCH2_FOR_WHOM_DEFAULT', 'School');
-define('_MI_TADLUNCH2_MANAGER', 'Lunch manager');
-define('_MI_TADLUNCH2_MANAGER_DESC', 'Set lunch can enter or upload information officer (multiple options) <div> If the member were so many people, options preset to a null value, the need to point to "more users" setting conditions will produce Option </div> ');
+define('_MI_TADLUNCH2_MANAGER', 'Lunch manager (Don\'t change!)');
+define('_MI_TADLUNCH2_MANAGER_DESC', 'This config just saved data by module.');
 
 define('_MI_TADLUNCH2_USE_COLS', 'Show fields');
 define('_MI_TADLUNCH2_USE_COLS_DESC', 'Will form the block or anywhere in need presents (input is not affected)');
