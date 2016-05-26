@@ -1,7 +1,7 @@
 <?php
 include_once "header.php";
 
-$myts = &MyTextSanitizer::getInstance();
+$myts = MyTextSanitizer::getInstance();
 if (!empty($_GET['ym'])) {
     list($year, $month) = explode("-", $_GET['ym']);
     $month              = sprintf("%02s", $month);
@@ -48,7 +48,7 @@ $table->addCell(1000, $cellStyle)->addText(_MD_TADLUNCH2_CALORIE, null, $headSty
 $and_lunch_target = empty($lunch_target) ? "" : "and lunch_target='{$lunch_target}'";
 $sql              = "select * from `" . $xoopsDB->prefix("tad_lunch2_data") . "` where lunch_date like '{$year}-{$month}-%' $and_lunch_target order by `lunch_date`,`lunch_target`";
 
-$result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+$result = $xoopsDB->query($sql) or web_error($sql);
 
 $cw = array(_MD_TADLUNCH2_SU, _MD_TADLUNCH2_MO, _MD_TADLUNCH2_TU, _MD_TADLUNCH2_WE, _MD_TADLUNCH2_TH, _MD_TADLUNCH2_FR, _MD_TADLUNCH2_SA);
 $i  = 2;

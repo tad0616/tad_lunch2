@@ -173,7 +173,7 @@ function get_source($col = "main_food")
     global $xoopsDB, $TadUpFiles;
 
     $sql    = "select `{$col}` from `" . $xoopsDB->prefix("tad_lunch2_data") . "` group by `{$col}` order by `{$col}`";
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) or web_error($sql);
 
     $all_options = "";
     while (list($data) = $xoopsDB->fetchRow($result)) {
@@ -188,7 +188,7 @@ function insert_tad_lunch2_data()
 {
     global $xoopsDB, $xoopsUser, $xoopsModuleConfig, $TadUpFiles;
 
-    $myts                      = &MyTextSanitizer::getInstance();
+    $myts                      = MyTextSanitizer::getInstance();
     $_POST['lunch_date']       = $myts->addSlashes($_POST['lunch_date']);
     $_POST['lunch_target']     = $myts->addSlashes($_POST['lunch_target']);
     $_POST['main_food']        = $myts->addSlashes($_POST['main_food']);
@@ -217,7 +217,7 @@ function insert_tad_lunch2_data()
     $sql = "insert into `" . $xoopsDB->prefix("tad_lunch2_data") . "`
   (`lunch_target`,`lunch_sn` , `lunch_date` , `main_food` , `main_food_stuff` , `main_dish` , `main_dish_stuff` , `main_dish_cook` , `side_dish1` , `side_dish1_stuff` , `side_dish1_cook` , `side_dish2` , `side_dish2_stuff` , `side_dish2_cook` , `side_dish3` , `side_dish3_stuff` , `side_dish3_cook` , `fruit` , `soup` , `soup_stuff` , `soup_cook` , `protein` , `fat` , `carbohydrate` , `calorie`)
   values('{$_POST['lunch_target']}','{$_POST['lunch_sn']}' , '{$_POST['lunch_date']}' , '{$_POST['main_food']}' , '{$_POST['main_food_stuff']}' , '{$_POST['main_dish']}' , '{$_POST['main_dish_stuff']}' , '{$_POST['main_dish_cook']}' , '{$_POST['side_dish1']}' , '{$_POST['side_dish1_stuff']}' , '{$_POST['side_dish1_cook']}' , '{$_POST['side_dish2']}' , '{$_POST['side_dish2_stuff']}' , '{$_POST['side_dish2_cook']}' , '{$_POST['side_dish3']}' , '{$_POST['side_dish3_stuff']}' , '{$_POST['side_dish3_cook']}' , '{$_POST['fruit']}' , '{$_POST['soup']}' , '{$_POST['soup_stuff']}' , '{$_POST['soup_cook']}' , '{$_POST['protein']}' , '{$_POST['fat']}' , '{$_POST['carbohydrate']}' , '{$_POST['calorie']}')";
-    $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $xoopsDB->query($sql) or web_error($sql);
 
     //取得最後新增資料的流水編號
     $lunch_data_sn = $xoopsDB->getInsertId();
@@ -233,7 +233,7 @@ function update_tad_lunch2_data($lunch_data_sn = "")
 {
     global $xoopsDB, $xoopsUser, $TadUpFiles;
 
-    $myts                      = &MyTextSanitizer::getInstance();
+    $myts                      = MyTextSanitizer::getInstance();
     $_POST['lunch_date']       = $myts->addSlashes($_POST['lunch_date']);
     $_POST['lunch_target']     = $myts->addSlashes($_POST['lunch_target']);
     $_POST['main_food']        = $myts->addSlashes($_POST['main_food']);
@@ -286,7 +286,7 @@ function update_tad_lunch2_data($lunch_data_sn = "")
    `carbohydrate` = '{$_POST['carbohydrate']}' ,
    `calorie` = '{$_POST['calorie']}'
   where `lunch_data_sn` = '$lunch_data_sn'";
-    $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $xoopsDB->queryF($sql) or web_error($sql);
 
     $TadUpFiles->set_col('lunch_data_sn', $lunch_data_sn);
     $desc = sprintf(_MD_TADLUNCH2_PIC_DESC, $_POST['lunch_date']);
@@ -303,7 +303,7 @@ function list_tad_lunch2_data($show_ym = "", $target = "")
     $nowYm  = empty($show_ym) ? $now_Ym : $show_ym;
 
     $sql    = "select left(`lunch_date`,7) as dd from `" . $xoopsDB->prefix("tad_lunch2_data") . "` group by left(`lunch_date`,7) order by dd desc";
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) or web_error($sql);
 
     $all_options = "";
     $i           = 0;
@@ -333,7 +333,7 @@ function list_tad_lunch2_data($show_ym = "", $target = "")
 
     $sql = "select * from `" . $xoopsDB->prefix("tad_lunch2_data") . "` where lunch_date like '{$nowYm}-%' and lunch_target='{$lunch_target}' order by lunch_date";
 
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) or web_error($sql);
 
     $all_content = "";
     $i           = 0;
@@ -407,7 +407,7 @@ function get_tad_lunch2_data($lunch_data_sn = "")
     }
 
     $sql    = "select * from `" . $xoopsDB->prefix("tad_lunch2_data") . "` where `lunch_data_sn` = '{$lunch_data_sn}'";
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) or web_error($sql);
     $data   = $xoopsDB->fetchArray($result);
     return $data;
 }
@@ -417,7 +417,7 @@ function delete_tad_lunch2_data($lunch_data_sn = "")
 {
     global $xoopsDB, $isAdmin, $isManager;
     $sql = "delete from `" . $xoopsDB->prefix("tad_lunch2_data") . "` where `lunch_data_sn` = '{$lunch_data_sn}'";
-    $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $xoopsDB->queryF($sql) or web_error($sql);
 }
 
 //以流水號秀出某筆tad_lunch2_data資料內容
@@ -433,7 +433,7 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
 
     $sql = "select a.*,b.* from `" . $xoopsDB->prefix("tad_lunch2_data") . "` as a left join `" . $xoopsDB->prefix("tad_lunch2") . "` as b on a.lunch_sn=b.lunch_sn where a.`lunch_data_sn` = '{$lunch_data_sn}' ";
 
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) or web_error($sql);
     $i      = 0;
     while ($all = $xoopsDB->fetchArray($result)) {
 
@@ -468,7 +468,7 @@ function get_tad_lunch2_all()
 {
     global $xoopsDB;
     $sql      = "select * from `" . $xoopsDB->prefix("tad_lunch2") . "`";
-    $result   = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result   = $xoopsDB->query($sql) or web_error($sql);
     $data_arr = "";
     $i        = 0;
     while ($data = $xoopsDB->fetchArray($result)) {
@@ -595,7 +595,7 @@ function import2DB($lunch_sn = "", $lunch_target = "")
         $col[25] = intval($col[25]);
         $sql     = "replace into " . $xoopsDB->prefix("tad_lunch2_data") . " (`lunch_target`, `lunch_sn`, `lunch_date`, `main_food`, `main_food_stuff`, `main_dish`, `main_dish_stuff`, `main_dish_cook`, `side_dish1`, `side_dish1_stuff`, `side_dish1_cook`, `side_dish2`, `side_dish2_stuff`, `side_dish2_cook`, `side_dish3`, `side_dish3_stuff`, `side_dish3_cook`, `fruit`, `soup`, `soup_stuff`, `soup_cook`, `protein`, `fat`, `carbohydrate`, `calorie`) values('{$lunch_target}','{$lunch_sn}','{$col[0]}','{$col[1]}','{$col[8]}','{$col[2]}','{$col[9]}','{$col[16]}','{$col[3]}','{$col[10]}','{$col[17]}','{$col[4]}','{$col[11]}','{$col[18]}','{$col[5]}','{$col[12]}','{$col[19]}','{$col[6]}','{$col[7]}','{$col[14]}','{$col[21]}','{$col[22]}','{$col[23]}','{$col[24]}','{$col[25]}')";
 
-        $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error() . "<p>$sql</p>");
+        $xoopsDB->queryF($sql) or web_error($sql);
 
     }
 
@@ -608,7 +608,7 @@ $op            = system_CleanVars($_REQUEST, 'op', '', 'string');
 $lunch_sn      = system_CleanVars($_REQUEST, 'lunch_sn', 0, 'int');
 $lunch_data_sn = system_CleanVars($_REQUEST, 'lunch_data_sn', 0, 'int');
 
-$myts   = &MyTextSanitizer::getInstance();
+$myts   = MyTextSanitizer::getInstance();
 $ym     = (!empty($_REQUEST['ym']) and strlen($_REQUEST['ym']) == 7) ? $myts->htmlSpecialChars($_REQUEST['ym']) : "";
 $target = (!empty($_REQUEST['lunch_target'])) ? $myts->htmlSpecialChars($_REQUEST['lunch_target']) : "";
 
@@ -650,7 +650,7 @@ switch ($op) {
 
     case "import_excel":
         //import_excel($lunch_sn,$_POST['lunch_target'],$_FILES['importfile']['tmp_name']);
-        import_excel($lunch_sn, $_POST['lunch_target'], $_FILES['importfile']['tmp_name'], $_FILES['importfile']['name']);     //加入檔名
+        import_excel($lunch_sn, $_POST['lunch_target'], $_FILES['importfile']['tmp_name'], $_FILES['importfile']['name']); //加入檔名
         break;
 
     case "import2DB":

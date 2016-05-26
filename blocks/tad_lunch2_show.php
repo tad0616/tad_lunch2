@@ -4,9 +4,9 @@ function tad_lunch2_show($options)
 {
     global $xoopsDB;
 
-    $modhandler        = &xoops_gethandler('module');
+    $modhandler        = xoops_gethandler('module');
     $xoopsModule       = &$modhandler->getByDirname("tad_lunch2");
-    $config_handler    = &xoops_gethandler('config');
+    $config_handler    = xoops_gethandler('config');
     $xoopsModuleConfig = &$config_handler->getConfigsByCat(0, $xoopsModule->getVar('mid'));
 
     $today = date("Y-m-d");
@@ -74,10 +74,7 @@ function tad_lunch2_show($options)
     if (empty($options[2])) {
         $options[2] = array('main_food', 'main_dish', 'side_dish1', 'side_dish2', 'side_dish3', 'fruit', 'soup', 'calorie');
     }
-    $block['show_cols']         = explode(",", $options[2]);
-    $block['bootstrap_version'] = $_SESSION['bootstrap'];
-    $block['row']               = $_SESSION['bootstrap'] == '3' ? 'row' : 'row-fluid';
-    $block['span']              = $_SESSION['bootstrap'] == '3' ? 'col-md-' : 'span';
+    $block['show_cols'] = explode(",", $options[2]);
 
     if (!file_exists(XOOPS_ROOT_PATH . "/modules/tadtools/fancybox.php")) {
         redirect_header("index.php", 3, _MA_NEED_TADTOOLS);
@@ -92,9 +89,9 @@ function tad_lunch2_show($options)
 //區塊編輯函式
 function tad_lunch2_show_edit($options)
 {
-    $modhandler        = &xoops_gethandler('module');
+    $modhandler        = xoops_gethandler('module');
     $xoopsModule       = &$modhandler->getByDirname("tad_lunch2");
-    $config_handler    = &xoops_gethandler('config');
+    $config_handler    = xoops_gethandler('config');
     $xoopsModuleConfig = &$config_handler->getConfigsByCat(0, $xoopsModule->getVar('mid'));
 
     $seled0_0 = ($options[0] == "1") ? "selected" : "";

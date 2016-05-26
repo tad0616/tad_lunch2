@@ -72,7 +72,7 @@ function insert_tad_lunch2()
 {
     global $xoopsDB, $xoopsUser;
 
-    $myts                        = &MyTextSanitizer::getInstance();
+    $myts                        = MyTextSanitizer::getInstance();
     $_POST['lunch_title']        = $myts->addSlashes($_POST['lunch_title']);
     $_POST['lunch_factory']      = $myts->addSlashes($_POST['lunch_factory']);
     $_POST['lunch_dietician']    = $myts->addSlashes($_POST['lunch_dietician']);
@@ -83,7 +83,7 @@ function insert_tad_lunch2()
     $sql = "insert into `" . $xoopsDB->prefix("tad_lunch2") . "`
   (`lunch_title` , `lunch_factory` , `lunch_dietician` , `lunch_factory_tel` , `lunch_factory_fax` , `lunch_factory_addr`)
   values('{$_POST['lunch_title']}' , '{$_POST['lunch_factory']}' , '{$_POST['lunch_dietician']}' , '{$_POST['lunch_factory_tel']}' , '{$_POST['lunch_factory_fax']}' , '{$_POST['lunch_factory_addr']}')";
-    $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $xoopsDB->query($sql) or web_error($sql);
 
     //取得最後新增資料的流水編號
     $lunch_sn = $xoopsDB->getInsertId();
@@ -95,7 +95,7 @@ function update_tad_lunch2($lunch_sn = "")
 {
     global $xoopsDB, $xoopsUser;
 
-    $myts                        = &MyTextSanitizer::getInstance();
+    $myts                        = MyTextSanitizer::getInstance();
     $_POST['lunch_title']        = $myts->addSlashes($_POST['lunch_title']);
     $_POST['lunch_factory']      = $myts->addSlashes($_POST['lunch_factory']);
     $_POST['lunch_dietician']    = $myts->addSlashes($_POST['lunch_dietician']);
@@ -111,7 +111,7 @@ function update_tad_lunch2($lunch_sn = "")
    `lunch_factory_fax` = '{$_POST['lunch_factory_fax']}' ,
    `lunch_factory_addr` = '{$_POST['lunch_factory_addr']}'
   where `lunch_sn` = '$lunch_sn'";
-    $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $xoopsDB->queryF($sql) or web_error($sql);
     return $lunch_sn;
 }
 
@@ -128,7 +128,7 @@ function list_tad_lunch2()
     $sql     = $PageBar['sql'];
     $total   = $PageBar['total'];
 
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) or web_error($sql);
 
     $all_content = "";
     $i           = 0;
@@ -166,7 +166,7 @@ function get_tad_lunch2($lunch_sn = "")
     }
 
     $sql    = "select * from `" . $xoopsDB->prefix("tad_lunch2") . "` where `lunch_sn` = '{$lunch_sn}'";
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) or web_error($sql);
     $data   = $xoopsDB->fetchArray($result);
     return $data;
 }
@@ -176,7 +176,7 @@ function delete_tad_lunch2($lunch_sn = "")
 {
     global $xoopsDB, $isAdmin;
     $sql = "delete from `" . $xoopsDB->prefix("tad_lunch2") . "` where `lunch_sn` = '{$lunch_sn}'";
-    $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $xoopsDB->queryF($sql) or web_error($sql);
 }
 
 //以流水號秀出某筆tad_lunch2資料內容
@@ -191,7 +191,7 @@ function show_one_tad_lunch2($lunch_sn = "")
     }
 
     $sql    = "select * from `" . $xoopsDB->prefix("tad_lunch2") . "` where `lunch_sn` = '{$lunch_sn}' ";
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) or web_error($sql);
     $all    = $xoopsDB->fetchArray($result);
 
     //以下會產生這些變數： $lunch_sn , $lunch_title , $lunch_factory , $lunch_dietician , $lunch_factory_tel , $lunch_factory_fax , $lunch_factory_addr

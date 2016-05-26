@@ -21,19 +21,14 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
     //show_files($upname="",$thumb=true,$show_mode="",$show_description=false,$show_dl=false,$limit=NULL,$path=NULL,$hash=false,$playSpeed=5000)
     //
 
-    $bootstrap = get_bootstrap();
-    $jquery    = get_jquery();
-
-    $row       = ($_SESSION['bootstrap'] == '3') ? 'row' : 'row-fluid';
-    $span      = ($_SESSION['bootstrap'] == '3') ? 'col-md-' : 'span';
-    $mini      = ($_SESSION['bootstrap'] == '3') ? 'xs' : 'mini';
-    $important = ($_SESSION['bootstrap'] == '3') ? 'danger' : 'important';
+    get_bootstrap();
+    get_jquery();
 
     $all_data = "{$bootstrap}{$jquery}";
 
     $sql = "select a.*,b.* from `" . $xoopsDB->prefix("tad_lunch2_data") . "` as a left join `" . $xoopsDB->prefix("tad_lunch2") . "` as b on a.lunch_sn=b.lunch_sn where a.`lunch_data_sn` = '{$lunch_data_sn}' ";
 
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) or web_error($sql);
 
     while ($all = $xoopsDB->fetchArray($result)) {
 
@@ -71,21 +66,21 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
                 location.href='" . XOOPS_URL . "/modules/tad_lunch2/index.php?op=delete_tad_lunch2_data&lunch_data_sn=' + lunch_data_sn;
               }
             </script>
-            <div class='{$row}'>
+            <div class='row'>
               <form action='index.php' method='post' id='myForm' enctype='multipart/form-data'>
-                <div class='{$span}7'>
+                <div class='col-md-7'>
                   $upform
                 </div>
 
-                <div class='{$span}5 text-right'>
+                <div class='col-md-5 text-right'>
                   <input type='hidden' name='lunch_date' value='{$lunch_date}'>
                   <input type='hidden' name='lunch_data_sn' value='{$lunch_data_sn}'>
                   <input type='hidden' name='op' value='update_pic'>
-                  <button type='submit' class='btn btn-{$mini} btn-primary'>" . _TAD_SAVE . "</button>
+                  <button type='submit' class='btn btn-xs btn-primary'>" . _TAD_SAVE . "</button>
 
-                  <a href='javascript:delete_tad_lunch2_data_func($lunch_data_sn)' class='btn btn-{$mini} btn-danger'>" . _TAD_DEL . "</a>
-                  <a href='" . XOOPS_URL . "/modules/tad_lunch2/index.php?op=tad_lunch2_data_form&lunch_data_sn={$lunch_data_sn}' class='btn btn-{$mini} btn-warning'>" . _TAD_EDIT . "</a>
-                  <a href='" . XOOPS_URL . "/modules/tad_lunch2/index.php?op=tad_lunch2_data_form' class='btn btn-{$mini} btn-info'>" . _TAD_ADD . "</a>
+                  <a href='javascript:delete_tad_lunch2_data_func($lunch_data_sn)' class='btn btn-xs btn-danger'>" . _TAD_DEL . "</a>
+                  <a href='" . XOOPS_URL . "/modules/tad_lunch2/index.php?op=tad_lunch2_data_form&lunch_data_sn={$lunch_data_sn}' class='btn btn-xs btn-warning'>" . _TAD_EDIT . "</a>
+                  <a href='" . XOOPS_URL . "/modules/tad_lunch2/index.php?op=tad_lunch2_data_form' class='btn btn-xs btn-info'>" . _TAD_ADD . "</a>
                 </div>
 
               </form>
@@ -95,32 +90,32 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
         $show_protein = $show_fat = $show_carbohydrate = $show_calorie = "";
         if ($protein) {
             $show_protein = "
-            <div class='{$span}2'>
-              <{$span} class='label label-success'>" . _MD_TADLUNCH2_PROTEIN . "</{$span}>
+            <div class='col-md-2'>
+              <span class='label label-success'>" . _MD_TADLUNCH2_PROTEIN . "</span>
               {$protein} g
             </div>";
         }
 
         if ($fat) {
             $show_fat = "
-            <div class='{$span}2'>
-              <{$span} class='label label-warning'>" . _MD_TADLUNCH2_FAT . "</{$span}>
+            <div class='col-md-2'>
+              <span class='label label-warning'>" . _MD_TADLUNCH2_FAT . "</span>
               {$fat} g
             </div>";
         }
 
         if ($carbohydrate) {
             $show_carbohydrate = "
-            <div class='{$span}2'>
-              <{$span} class='label label-{$important}'>" . _MD_TADLUNCH2_CARBOHYDRATE . "</{$span}>
+            <div class='col-md-2'>
+              <span class='label label-danger'>" . _MD_TADLUNCH2_CARBOHYDRATE . "</span>
               {$carbohydrate} g
             </div>";
         }
 
         if ($calorie) {
             $show_calorie = "
-            <div class='{$span}2'>
-              <{$span} class='label label-info'>" . _MD_TADLUNCH2_CALORIE . "</{$span}>
+            <div class='col-md-2'>
+              <span class='label label-info'>" . _MD_TADLUNCH2_CALORIE . "</span>
               {$calorie} g
             </div>";
         }
@@ -269,14 +264,14 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
         if ($show_files) {
 
             $all_data .= "
-            <div class='{$row}'>
-              <div class='{$span}4'>
+            <div class='row'>
+              <div class='col-md-4'>
                 $show_files
               </div>
 
-              <div class='{$span}8'>
-                <div class='{$row}'>
-                  <div class='{$span}4' style='font-weight:bold;'>
+              <div class='col-md-8'>
+                <div class='row'>
+                  <div class='col-md-4' style='font-weight:bold;'>
                    $title
                   </div>
 
@@ -335,8 +330,8 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
             ";
         } else {
             $all_data .= "
-            <div class='{$row}'>
-              <div class='{$span}4' style='font-weight:bold;'>
+            <div class='row'>
+              <div class='col-md-4' style='font-weight:bold;'>
                $title
               </div>
 

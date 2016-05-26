@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name']        = _MI_TADLUNCH2_NAME;
-$modversion['version']     = '1.9';
+$modversion['version']     = '2.01';
 $modversion['description'] = _MI_TADLUNCH2_DESC;
 $modversion['author']      = _MI_TADLUNCH2_AUTHOR;
 $modversion['credits']     = _MI_TADLUNCH2_CREDITS;
@@ -13,7 +13,7 @@ $modversion['image']       = "images/logo.png";
 $modversion['dirname']     = basename(dirname(__FILE__));
 
 //---模組狀態資訊---//
-$modversion['release_date']        = '2015-09-11';
+$modversion['release_date']        = '2016-05-26';
 $modversion['module_website_url']  = 'http://tad0616.net';
 $modversion['module_website_name'] = _MI_TADLUNCH2_AUTHOR_WEB;
 $modversion['module_status']       = 'release';
@@ -52,24 +52,12 @@ $modversion['hasMain'] = 1;
 
 //---樣板設定---//
 $i                                          = 0;
-$modversion['templates'][$i]['file']        = 'tad_lunch2_adm_main.html';
-$modversion['templates'][$i]['description'] = 'tad_lunch2_adm_main.html';
-
-$i++;
 $modversion['templates'][$i]['file']        = 'tad_lunch2_adm_main_b3.html';
 $modversion['templates'][$i]['description'] = 'tad_lunch2_adm_main_b3.html';
 
 $i++;
-$modversion['templates'][$i]['file']        = 'tad_lunch2_index.html';
-$modversion['templates'][$i]['description'] = 'tad_lunch2_index.html';
-
-$i++;
 $modversion['templates'][$i]['file']        = 'tad_lunch2_index_b3.html';
 $modversion['templates'][$i]['description'] = 'tad_lunch2_index_b3.html';
-
-$i++;
-$modversion['templates'][$i]['file']        = 'tad_lunch2_adm_man.html';
-$modversion['templates'][$i]['description'] = 'tad_lunch2_adm_man.html';
 
 $i++;
 $modversion['templates'][$i]['file']        = 'tad_lunch2_adm_man_b3.html';

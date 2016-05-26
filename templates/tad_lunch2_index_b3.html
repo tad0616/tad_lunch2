@@ -364,9 +364,25 @@
 <!--列出所有資料-->
 <{if $now_op=="list_tad_lunch2_data"}>
   <{$fancybox_code}>
-
-  <script src="class/fullcalendar/fullcalendar.js" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="class/fullcalendar/redmond/theme.css" />
   <link rel="stylesheet" type="text/css" href="class/fullcalendar/fullcalendar.css">
+  <script src="class/fullcalendar/fullcalendar.js" type="text/javascript"></script>
+  <style type="text/css" media="screen">
+    .fc-event {
+      border:none; /* default BORDER color */
+      background-color: transparent; /* default BACKGROUND color */
+      color: #000000;               /* default TEXT color */
+      font-size: 12px;
+      cursor: default;
+    }
+
+    .fc-event-title{
+      font-size: 12px;
+      line-height: 120%;
+      padding: 0px 1px;
+      color: #000000;
+    }
+  </style>
 
   <script type="text/javascript">
   $(document).ready(function(){
@@ -376,7 +392,7 @@
       defaultView:"month",
       weekends: true,
       firstDay:1,
-      theme:false,
+      theme:true,
       titleFormat: {
         month: "yyyy<{$smarty.const._MD_TADLUNCH2_Y}>MMM<{$lunch_target}><{$smarty.const._MD_TADLUNCH2}>"
       },
@@ -387,7 +403,7 @@
       eventClick: function(calEvent, jsEvent, view) {
         $(this).attr("class", "lunch_fancy fancybox.ajax");
         $(this).attr("href", calEvent.rel);
-        $(this).css("background-color", "#3a87ad").css("color", "#fff").css("line-height", "150%");
+        $(this).css("background-color", "transparent").css("color", "#163266").css("line-height", "120%").css("border","none");
       },
       events: function(start, end, callback) {
         $.getJSON("get_events.php",
