@@ -68,11 +68,11 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
             </script>
             <div class='row'>
               <form action='index.php' method='post' id='myForm' enctype='multipart/form-data'>
-                <div class='col-md-7'>
+                <div class='col-sm-7'>
                   $upform
                 </div>
 
-                <div class='col-md-5 text-right'>
+                <div class='col-sm-5 text-right'>
                   <input type='hidden' name='lunch_date' value='{$lunch_date}'>
                   <input type='hidden' name='lunch_data_sn' value='{$lunch_data_sn}'>
                   <input type='hidden' name='op' value='update_pic'>
@@ -90,7 +90,7 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
         $show_protein = $show_fat = $show_carbohydrate = $show_calorie = "";
         if ($protein) {
             $show_protein = "
-            <div class='col-md-2'>
+            <div class='col-sm-2'>
               <span class='label label-success'>" . _MD_TADLUNCH2_PROTEIN . "</span>
               {$protein} g
             </div>";
@@ -98,7 +98,7 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
 
         if ($fat) {
             $show_fat = "
-            <div class='col-md-2'>
+            <div class='col-sm-2'>
               <span class='label label-warning'>" . _MD_TADLUNCH2_FAT . "</span>
               {$fat} g
             </div>";
@@ -106,7 +106,7 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
 
         if ($carbohydrate) {
             $show_carbohydrate = "
-            <div class='col-md-2'>
+            <div class='col-sm-2'>
               <span class='label label-danger'>" . _MD_TADLUNCH2_CARBOHYDRATE . "</span>
               {$carbohydrate} g
             </div>";
@@ -114,7 +114,7 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
 
         if ($calorie) {
             $show_calorie = "
-            <div class='col-md-2'>
+            <div class='col-sm-2'>
               <span class='label label-info'>" . _MD_TADLUNCH2_CALORIE . "</span>
               {$calorie} g
             </div>";
@@ -265,13 +265,13 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
 
             $all_data .= "
             <div class='row'>
-              <div class='col-md-4'>
+              <div class='col-sm-4'>
                 $show_files
               </div>
 
-              <div class='col-md-8'>
+              <div class='col-sm-8'>
                 <div class='row'>
-                  <div class='col-md-4' style='font-weight:bold;'>
+                  <div class='col-sm-4' style='font-weight:bold;'>
                    $title
                   </div>
 
@@ -331,7 +331,7 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
         } else {
             $all_data .= "
             <div class='row'>
-              <div class='col-md-4' style='font-weight:bold;'>
+              <div class='col-sm-4' style='font-weight:bold;'>
                $title
               </div>
 

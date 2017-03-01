@@ -1,6 +1,6 @@
 <?php
 /*-----------引入檔案區--------------*/
-$xoopsOption['template_main'] = "tad_lunch2_adm_man.html";
+$xoopsOption['template_main'] = "tad_lunch2_adm_man.tpl";
 include_once "header.php";
 include_once "../function.php";
 

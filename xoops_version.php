@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name']        = _MI_TADLUNCH2_NAME;
-$modversion['version']     = '2.01';
+$modversion['version']     = '2.02';
 $modversion['description'] = _MI_TADLUNCH2_DESC;
 $modversion['author']      = _MI_TADLUNCH2_AUTHOR;
 $modversion['credits']     = _MI_TADLUNCH2_CREDITS;
@@ -13,7 +13,7 @@ $modversion['image']       = "images/logo.png";
 $modversion['dirname']     = basename(dirname(__FILE__));
 
 //---模組狀態資訊---//
-$modversion['release_date']        = '2016-05-26';
+$modversion['release_date']        = '2017-01-08';
 $modversion['module_website_url']  = 'http://tad0616.net';
 $modversion['module_website_name'] = _MI_TADLUNCH2_AUTHOR_WEB;
 $modversion['module_status']       = 'release';
@@ -52,16 +52,16 @@ $modversion['hasMain'] = 1;
 
 //---樣板設定---//
 $i                                          = 0;
-$modversion['templates'][$i]['file']        = 'tad_lunch2_adm_main_b3.html';
-$modversion['templates'][$i]['description'] = 'tad_lunch2_adm_main_b3.html';
+$modversion['templates'][$i]['file']        = 'tad_lunch2_adm_main.tpl';
+$modversion['templates'][$i]['description'] = 'tad_lunch2_adm_main.tpl';
 
 $i++;
-$modversion['templates'][$i]['file']        = 'tad_lunch2_index_b3.html';
-$modversion['templates'][$i]['description'] = 'tad_lunch2_index_b3.html';
+$modversion['templates'][$i]['file']        = 'tad_lunch2_index.tpl';
+$modversion['templates'][$i]['description'] = 'tad_lunch2_index.tpl';
 
 $i++;
-$modversion['templates'][$i]['file']        = 'tad_lunch2_adm_man_b3.html';
-$modversion['templates'][$i]['description'] = 'tad_lunch2_adm_man_b3.html';
+$modversion['templates'][$i]['file']        = 'tad_lunch2_adm_man.tpl';
+$modversion['templates'][$i]['description'] = 'tad_lunch2_adm_man.tpl';
 
 //---區塊設定---//
 $i                                       = 0;
@@ -69,7 +69,7 @@ $modversion['blocks'][$i]['file']        = "tad_lunch2_show.php";
 $modversion['blocks'][$i]['name']        = _MI_TADLUNCH2_BNAME1;
 $modversion['blocks'][$i]['description'] = _MI_TADLUNCH2_BDESC1;
 $modversion['blocks'][$i]['show_func']   = "tad_lunch2_show";
-$modversion['blocks'][$i]['template']    = "tad_lunch2_block_tad_lunch2_show.html";
+$modversion['blocks'][$i]['template']    = "tad_lunch2_block_tad_lunch2_show.tpl";
 $modversion['blocks'][$i]['edit_func']   = "tad_lunch2_show_edit";
 $modversion['blocks'][$i]['options']     = "1|horizontal|main_food,main_dish,side_dish1,side_dish2,side_dish3,fruit,soup,calorie";
 
