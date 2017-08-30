@@ -363,7 +363,7 @@
 
 <!--列出所有資料-->
 <{if $now_op=="list_tad_lunch2_data"}>
-  <{$fancybox_code}>
+
   <link rel="stylesheet" type="text/css" href="class/fullcalendar/redmond/theme.css" />
   <link rel="stylesheet" type="text/css" href="class/fullcalendar/fullcalendar.css">
   <script src="class/fullcalendar/fullcalendar.js" type="text/javascript"></script>
@@ -400,17 +400,29 @@
       monthNamesShort: ["1<{$smarty.const._MD_TADLUNCH2_MONTH}>","2<{$smarty.const._MD_TADLUNCH2_MONTH}>","3<{$smarty.const._MD_TADLUNCH2_MONTH}>","4<{$smarty.const._MD_TADLUNCH2_MONTH}>","5<{$smarty.const._MD_TADLUNCH2_MONTH}>","6<{$smarty.const._MD_TADLUNCH2_MONTH}>","7<{$smarty.const._MD_TADLUNCH2_MONTH}>","8<{$smarty.const._MD_TADLUNCH2_MONTH}>","9<{$smarty.const._MD_TADLUNCH2_MONTH}>","10<{$smarty.const._MD_TADLUNCH2_MONTH}>","11<{$smarty.const._MD_TADLUNCH2_MONTH}>","12<{$smarty.const._MD_TADLUNCH2_MONTH}>"],
       dayNames: ["<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_SU}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_MO}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_TU}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_WE}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_TH}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_FR}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_SA}>"],
       dayNamesShort: ["<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_SU}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_MO}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_TU}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_WE}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_TH}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_FR}>","<{$smarty.const._MD_TADLUNCH2_WEEK}><{$smarty.const._MD_TADLUNCH2_SA}>"],
-      eventClick: function(calEvent, jsEvent, view) {
-        $(this).attr("class", "lunch_fancy fancybox.ajax");
-        $(this).attr("href", calEvent.rel);
-        $(this).css("background-color", "transparent").css("color", "#163266").css("line-height", "120%").css("border","none");
+
+      eventClick: function(calEvent) {
+        if (calEvent.rel) {
+          $.fancybox({
+            'href' : calEvent.rel,
+            'type' : 'iframe',
+            'fitToView' : true,
+            'width'   : '1280',
+            'height'    : 'auto',
+            'autoSize'  : false,
+            'closeClick'  : false,
+            'openEffect'  : 'none',
+            'closeEffect' : 'none'
+          });
+          return false;
+        }
       },
       events: function(start, end, callback) {
         $.getJSON("get_events.php",
         {
           start: start.getTime(),
           end: end.getTime(),
-          rel: "<{$xoops_url}>",
+          // rel: "<{$xoops_url}>",
           lunch_target:"<{$lunch_target}>"
         },
         function(result) {
