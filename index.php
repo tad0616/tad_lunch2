@@ -302,7 +302,7 @@ function list_tad_lunch2_data($show_ym = "", $target = "")
     $now_Ym = date("Y-m");
     $nowYm  = empty($show_ym) ? $now_Ym : $show_ym;
 
-    $sql    = "select left(`lunch_date`,7) as dd from `" . $xoopsDB->prefix("tad_lunch2_data") . "` group by left(`lunch_date`,7) order by dd desc";
+    $sql = "SELECT left(`lunch_date`,7) AS dd FROM `" . $xoopsDB->prefix("tad_lunch2_data") . "` GROUP BY left(`lunch_date`,7) ORDER BY dd DESC";
     $result = $xoopsDB->query($sql) or web_error($sql);
 
     $all_options = "";
@@ -467,7 +467,7 @@ function change_stuff($stuff)
 function get_tad_lunch2_all()
 {
     global $xoopsDB;
-    $sql      = "select * from `" . $xoopsDB->prefix("tad_lunch2") . "`";
+    $sql = "SELECT * FROM `" . $xoopsDB->prefix("tad_lunch2") . "`";
     $result   = $xoopsDB->query($sql) or web_error($sql);
     $data_arr = "";
     $i        = 0;

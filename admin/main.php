@@ -120,7 +120,7 @@ function list_tad_lunch2()
 {
     global $xoopsDB, $xoopsTpl, $isAdmin;
 
-    $sql = "select * from `" . $xoopsDB->prefix("tad_lunch2") . "` ";
+    $sql = "SELECT * FROM `" . $xoopsDB->prefix("tad_lunch2") . "` ";
 
     //getPageBar($原sql語法, 每頁顯示幾筆資料, 最多顯示幾個頁數選項);
     $PageBar = getPageBar($sql, 20, 10);

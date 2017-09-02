@@ -11,7 +11,7 @@ function tad_lunch2_mem_setup($lunch_sn = "")
 
     $exist_uid = explode(',', $xoopsModuleConfig['lunch_manager']);
 
-    $sql = "select uid,name,uname,email from " . $xoopsDB->prefix("users") . " ";
+    $sql = "SELECT uid,name,uname,email FROM " . $xoopsDB->prefix("users") . " ";
 
     $result = $xoopsDB->query($sql) or web_error($sql);
 
