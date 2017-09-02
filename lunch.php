@@ -377,7 +377,7 @@ function change_stuff($stuff)
 }
 
 /*-----------執行動作判斷區----------*/
-$lunch_data_sn = empty($_REQUEST['lunch_data_sn']) ? "" : intval($_REQUEST['lunch_data_sn']);
+$lunch_data_sn = empty($_REQUEST['lunch_data_sn']) ? "" : (int)$_REQUEST['lunch_data_sn'];
 show_one_tad_lunch2_data($lunch_data_sn);
 
 /*-----------秀出結果區--------------*/

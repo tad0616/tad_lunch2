@@ -589,10 +589,10 @@ function import2DB($lunch_sn = "", $lunch_target = "")
         //24醣類  carbohydrate
         //25總熱量  calorie
 
-        $col[22] = intval($col[22]);
-        $col[23] = intval($col[23]);
-        $col[24] = intval($col[24]);
-        $col[25] = intval($col[25]);
+        $col[22] = (int)$col[22];
+        $col[23] = (int)$col[23];
+        $col[24] = (int)$col[24];
+        $col[25] = (int)$col[25];
         $sql     = "replace into " . $xoopsDB->prefix("tad_lunch2_data") . " (`lunch_target`, `lunch_sn`, `lunch_date`, `main_food`, `main_food_stuff`, `main_dish`, `main_dish_stuff`, `main_dish_cook`, `side_dish1`, `side_dish1_stuff`, `side_dish1_cook`, `side_dish2`, `side_dish2_stuff`, `side_dish2_cook`, `side_dish3`, `side_dish3_stuff`, `side_dish3_cook`, `fruit`, `soup`, `soup_stuff`, `soup_cook`, `protein`, `fat`, `carbohydrate`, `calorie`) values('{$lunch_target}','{$lunch_sn}','{$col[0]}','{$col[1]}','{$col[8]}','{$col[2]}','{$col[9]}','{$col[16]}','{$col[3]}','{$col[10]}','{$col[17]}','{$col[4]}','{$col[11]}','{$col[18]}','{$col[5]}','{$col[12]}','{$col[19]}','{$col[6]}','{$col[7]}','{$col[14]}','{$col[21]}','{$col[22]}','{$col[23]}','{$col[24]}','{$col[25]}')";
 
         $xoopsDB->queryF($sql) or web_error($sql);
