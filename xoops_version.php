@@ -10,7 +10,7 @@ $modversion['credits']     = _MI_TADLUNCH2_CREDITS;
 $modversion['help']        = 'page=help';
 $modversion['license']     = 'GPL see LICENSE';
 $modversion['image']       = "images/logo.png";
-$modversion['dirname']     = basename(dirname(__FILE__));
+$modversion['dirname']     = basename(__DIR__);
 
 //---模組狀態資訊---//
 $modversion['release_date']        = '2017-06-16';
