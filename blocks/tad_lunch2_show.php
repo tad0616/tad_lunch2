@@ -4,9 +4,9 @@ function tad_lunch2_show($options)
 {
     global $xoopsDB;
 
-    $modhandler        = xoops_gethandler('module');
+    $modhandler        = xoops_getHandler('module');
     $xoopsModule       = $modhandler->getByDirname("tad_lunch2");
-    $config_handler    = xoops_gethandler('config');
+    $config_handler    = xoops_getHandler('config');
     $xoopsModuleConfig = &$config_handler->getConfigsByCat(0, $xoopsModule->getVar('mid'));
 
     $today = date("Y-m-d");
@@ -93,10 +93,10 @@ function tad_lunch2_show($options)
 //區塊編輯函式
 function tad_lunch2_show_edit($options)
 {
-    $modhandler        = xoops_gethandler('module');
-    $xoopsModule       = &$modhandler->getByDirname("tad_lunch2");
-    $config_handler    = xoops_gethandler('config');
-    $xoopsModuleConfig = &$config_handler->getConfigsByCat(0, $xoopsModule->getVar('mid'));
+    $modhandler        = xoops_getHandler('module');
+    $xoopsModule       = $modhandler->getByDirname("tad_lunch2");
+    $config_handler    = xoops_getHandler('config');
+    $xoopsModuleConfig = $config_handler->getConfigsByCat(0, $xoopsModule->getVar('mid'));
 
     $seled0_0 = ($options[0] == "1") ? "selected" : "";
     $seled0_1 = ($options[0] == "2") ? "selected" : "";
