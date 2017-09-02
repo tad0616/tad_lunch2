@@ -5,7 +5,7 @@ function tad_lunch2_show($options)
     global $xoopsDB;
 
     $modhandler        = xoops_gethandler('module');
-    $xoopsModule       = &$modhandler->getByDirname("tad_lunch2");
+    $xoopsModule       = $modhandler->getByDirname("tad_lunch2");
     $config_handler    = xoops_gethandler('config');
     $xoopsModuleConfig = &$config_handler->getConfigsByCat(0, $xoopsModule->getVar('mid'));
 

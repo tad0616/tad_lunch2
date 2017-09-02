@@ -52,4 +52,3 @@ copy( $source, $target );
 }
 }
  */
-?>
