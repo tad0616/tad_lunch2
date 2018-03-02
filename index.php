@@ -171,7 +171,7 @@ function tad_lunch2_data_form($lunch_data_sn = "")
 function get_source($col = "main_food")
 {
     global $xoopsDB, $TadUpFiles;
-
+    $arr = array();
     $sql    = "select `{$col}` from `" . $xoopsDB->prefix("tad_lunch2_data") . "` group by `{$col}` order by `{$col}`";
     $result = $xoopsDB->query($sql) or web_error($sql);
 
