@@ -187,7 +187,7 @@ function show_one_tad_lunch2($lunch_sn = "")
     if (empty($lunch_sn)) {
         return;
     } else {
-        $lunch_sn = intval($lunch_sn);
+        $lunch_sn = (int)$lunch_sn;
     }
 
     $sql    = "select * from `" . $xoopsDB->prefix("tad_lunch2") . "` where `lunch_sn` = '{$lunch_sn}' ";
