@@ -130,7 +130,7 @@ function list_tad_lunch2()
 
     $result = $xoopsDB->query($sql) or web_error($sql);
 
-    $all_content = "";
+    $all_content = array();
     $i           = 0;
     while ($all = $xoopsDB->fetchArray($result)) {
         //以下會產生這些變數： $lunch_sn , $lunch_title , $lunch_factory , $lunch_dietician , $lunch_factory_tel , $lunch_factory_fax , $lunch_factory_addr
@@ -187,7 +187,7 @@ function show_one_tad_lunch2($lunch_sn = "")
     if (empty($lunch_sn)) {
         return;
     } else {
-        $lunch_sn = (int)$lunch_sn;
+        $lunch_sn = (int) $lunch_sn;
     }
 
     $sql    = "select * from `" . $xoopsDB->prefix("tad_lunch2") . "` where `lunch_sn` = '{$lunch_sn}' ";
