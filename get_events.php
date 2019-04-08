@@ -17,13 +17,17 @@ $result = $xoopsDB->query($sql) or web_error($sql);
 $myEvents = "";
 $i        = 0;
 
-$show_main_food  = in_array("main_food", $xoopsModuleConfig['use_cols']) ? true : false;
-$show_main_dish  = in_array("main_dish", $xoopsModuleConfig['use_cols']) ? true : false;
-$show_side_dish1 = in_array("side_dish1", $xoopsModuleConfig['use_cols']) ? true : false;
-$show_side_dish2 = in_array("side_dish2", $xoopsModuleConfig['use_cols']) ? true : false;
-$show_side_dish3 = in_array("side_dish3", $xoopsModuleConfig['use_cols']) ? true : false;
-$show_fruit      = in_array("fruit", $xoopsModuleConfig['use_cols']) ? true : false;
-$show_soup       = in_array("soup", $xoopsModuleConfig['use_cols']) ? true : false;
+if (empty($xoopsModuleConfig['use_cols'])) {
+    $show_main_food = $show_main_dish = $show_side_dish1 = $show_side_dish2 = $show_side_dish3 = $show_fruit = $show_soup = true;
+} else {
+    $show_main_food  = in_array("main_food", $xoopsModuleConfig['use_cols']) ? true : false;
+    $show_main_dish  = in_array("main_dish", $xoopsModuleConfig['use_cols']) ? true : false;
+    $show_side_dish1 = in_array("side_dish1", $xoopsModuleConfig['use_cols']) ? true : false;
+    $show_side_dish2 = in_array("side_dish2", $xoopsModuleConfig['use_cols']) ? true : false;
+    $show_side_dish3 = in_array("side_dish3", $xoopsModuleConfig['use_cols']) ? true : false;
+    $show_fruit      = in_array("fruit", $xoopsModuleConfig['use_cols']) ? true : false;
+    $show_soup       = in_array("soup", $xoopsModuleConfig['use_cols']) ? true : false;
+}
 
 if ($xoopsModuleConfig['show_kind'] == '1') {
     $main_food_for  = _MD_TADLUNCH2_MDIN_FOOD . _TAD_FOR;
@@ -71,10 +75,11 @@ while ($all = $xoopsDB->fetchArray($result)) {
         $name .= $soup_for . $soup . "\n";
     }
 
-    $myEvents[$i]['id']    = $lunch_data_sn;
-    $myEvents[$i]['title'] = $name;
-    $myEvents[$i]['start'] = strtotime($lunch_date);
-    $myEvents[$i]['rel']   = XOOPS_URL . "/modules/tad_lunch2/lunch.php?lunch_data_sn=" . $lunch_data_sn;
+    $myEvents[$i]['id']        = $lunch_data_sn;
+    $myEvents[$i]['title']     = $name;
+    $myEvents[$i]['start']     = strtotime($lunch_date);
+    $myEvents[$i]['rel']       = XOOPS_URL . "/modules/tad_lunch2/lunch.php?lunch_data_sn=" . $lunch_data_sn;
+    $myEvents[$i]['className'] = 'lunch_fancy fancybox.ajax';
     $i++;
 }
 

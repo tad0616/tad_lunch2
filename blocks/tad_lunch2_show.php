@@ -4,9 +4,9 @@ function tad_lunch2_show($options)
 {
     global $xoopsDB;
 
-    $modhandler        = xoops_gethandler('module');
-    $xoopsModule       = &$modhandler->getByDirname("tad_lunch2");
-    $config_handler    = xoops_gethandler('config');
+    $modhandler        = xoops_getHandler('module');
+    $xoopsModule       = $modhandler->getByDirname("tad_lunch2");
+    $config_handler    = xoops_getHandler('config');
     $xoopsModuleConfig = &$config_handler->getConfigsByCat(0, $xoopsModule->getVar('mid'));
 
     $today = date("Y-m-d");
@@ -17,59 +17,63 @@ function tad_lunch2_show($options)
 
     $all_content = "";
     $i           = 0;
+    $lunchs      = '';
     //for($n=0;$n<$options[0];$n++){
     foreach ($tarr as $target) {
-        $today = date("Y-m-d", mktime(0, 0, 0, date("m"), date("d"), date("Y")));
+        for ($n = 0; $n < $options[0]; $n++) {
+            $today = date("Y-m-d", mktime(0, 0, 0, date("m"), date("d") + $n, date("Y")));
 
-        $sql = "select * from `" . $xoopsDB->prefix("tad_lunch2_data") . "` where lunch_date = '{$today}' and lunch_target='{$target}' order by lunch_date ";
-        //die($sql);
-        $result = $xoopsDB->query($sql);
-        $total  = $xoopsDB->getRowsNum($result);
-        if (empty($total)) {
-            $sql    = "select * from `" . $xoopsDB->prefix("tad_lunch2_data") . "` where  lunch_date >= '{$today}' and main_food <>'' and  lunch_target='{$target}'   order by lunch_date limit 0,{$options[0]}";
+            $sql = "select * from `" . $xoopsDB->prefix("tad_lunch2_data") . "` where lunch_date = '{$today}' and lunch_target='{$target}' order by lunch_date ";
+            //die($sql);
             $result = $xoopsDB->query($sql);
-        }
-
-        while ($all = $xoopsDB->fetchArray($result)) {
-            //以下會產生這些變數： $lunch_data_sn ,$lunch_target, $lunch_sn , $lunch_date , $main_food , $main_food_stuff , $main_dish , $main_dish_stuff , $main_dish_cook , $side_dish1 , $side_dish1_stuff , $side_dish1_cook , $side_dish2 , $side_dish2_stuff , $side_dish2_cook , $side_dish3 , $side_dish3_stuff , $side_dish3_cook , $fruit , $soup , $soup_stuff , $soup_cook , $protein , $fat , $carbohydrate , $calorie
-            foreach ($all as $k => $v) {
-                $$k = $v;
+            $total  = $xoopsDB->getRowsNum($result);
+            if (empty($total)) {
+                $sql    = "select * from `" . $xoopsDB->prefix("tad_lunch2_data") . "` where  lunch_date >= '{$today}' and main_food <>'' and  lunch_target='{$target}'   order by lunch_date limit 0,{$options[0]}";
+                $result = $xoopsDB->query($sql);
             }
-            $w = date("w", strtotime($lunch_date));
+            $all_content = '';
+            while ($all = $xoopsDB->fetchArray($result)) {
+                //以下會產生這些變數： $lunch_data_sn ,$lunch_target, $lunch_sn , $lunch_date , $main_food , $main_food_stuff , $main_dish , $main_dish_stuff , $main_dish_cook , $side_dish1 , $side_dish1_stuff , $side_dish1_cook , $side_dish2 , $side_dish2_stuff , $side_dish2_cook , $side_dish3 , $side_dish3_stuff , $side_dish3_cook , $fruit , $soup , $soup_stuff , $soup_cook , $protein , $fat , $carbohydrate , $calorie
+                foreach ($all as $k => $v) {
+                    $$k = $v;
+                }
+                $w = date("w", strtotime($lunch_date));
 
-            $all_content[$i]['lunch_data_sn']    = $lunch_data_sn;
-            $all_content[$i]['lunch_target']     = $lunch_target;
-            $all_content[$i]['lunch_sn']         = $lunch_sn;
-            $all_content[$i]['lunch_date']       = $lunch_date;
-            $all_content[$i]['main_food']        = $main_food;
-            $all_content[$i]['main_food_stuff']  = $main_food_stuff;
-            $all_content[$i]['main_dish']        = $main_dish;
-            $all_content[$i]['main_dish_stuff']  = $main_dish_stuff;
-            $all_content[$i]['main_dish_cook']   = $main_dish_cook;
-            $all_content[$i]['side_dish1']       = $side_dish1;
-            $all_content[$i]['side_dish1_stuff'] = $side_dish1_stuff;
-            $all_content[$i]['side_dish1_cook']  = $side_dish1_cook;
-            $all_content[$i]['side_dish2']       = $side_dish2;
-            $all_content[$i]['side_dish2_stuff'] = $side_dish2_stuff;
-            $all_content[$i]['side_dish2_cook']  = $side_dish2_cook;
-            $all_content[$i]['side_dish3']       = $side_dish3;
-            $all_content[$i]['side_dish3_stuff'] = $side_dish3_stuff;
-            $all_content[$i]['side_dish3_cook']  = $side_dish3_cook;
-            $all_content[$i]['fruit']            = $fruit;
-            $all_content[$i]['soup']             = $soup;
-            $all_content[$i]['soup_stuff']       = $soup_stuff;
-            $all_content[$i]['soup_cook']        = $soup_cook;
-            $all_content[$i]['protein']          = $protein;
-            $all_content[$i]['fat']              = $fat;
-            $all_content[$i]['carbohydrate']     = $carbohydrate;
-            $all_content[$i]['calorie']          = $calorie;
-            $all_content[$i]['title']            = sprintf(_MB_TAD_LUNCH2_DATA_SHORT_MENU, $lunch_target);
-            $all_content[$i]['w']                = $cw[$w];
-            $i++;
+                $all_content[$i]['lunch_data_sn']    = $lunch_data_sn;
+                $all_content[$i]['lunch_target']     = $lunch_target;
+                $all_content[$i]['lunch_sn']         = $lunch_sn;
+                $all_content[$i]['lunch_date']       = $lunch_date;
+                $all_content[$i]['main_food']        = $main_food;
+                $all_content[$i]['main_food_stuff']  = $main_food_stuff;
+                $all_content[$i]['main_dish']        = $main_dish;
+                $all_content[$i]['main_dish_stuff']  = $main_dish_stuff;
+                $all_content[$i]['main_dish_cook']   = $main_dish_cook;
+                $all_content[$i]['side_dish1']       = $side_dish1;
+                $all_content[$i]['side_dish1_stuff'] = $side_dish1_stuff;
+                $all_content[$i]['side_dish1_cook']  = $side_dish1_cook;
+                $all_content[$i]['side_dish2']       = $side_dish2;
+                $all_content[$i]['side_dish2_stuff'] = $side_dish2_stuff;
+                $all_content[$i]['side_dish2_cook']  = $side_dish2_cook;
+                $all_content[$i]['side_dish3']       = $side_dish3;
+                $all_content[$i]['side_dish3_stuff'] = $side_dish3_stuff;
+                $all_content[$i]['side_dish3_cook']  = $side_dish3_cook;
+                $all_content[$i]['fruit']            = $fruit;
+                $all_content[$i]['soup']             = $soup;
+                $all_content[$i]['soup_stuff']       = $soup_stuff;
+                $all_content[$i]['soup_cook']        = $soup_cook;
+                $all_content[$i]['protein']          = $protein;
+                $all_content[$i]['fat']              = $fat;
+                $all_content[$i]['carbohydrate']     = $carbohydrate;
+                $all_content[$i]['calorie']          = $calorie;
+                $all_content[$i]['title']            = sprintf(_MB_TAD_LUNCH2_DATA_SHORT_MENU, $lunch_target);
+                $all_content[$i]['w']                = $cw[$w];
+                $i++;
+            }
+            $lunchs[$n] = $all_content;
         }
     }
     //刪除確認的JS
-    $block['content'] = $all_content;
+    $block['content'] = $lunchs;
     $block['type']    = empty($options[1]) ? "horizontal" : $options[1];
     if (empty($options[2])) {
         $options[2] = array('main_food', 'main_dish', 'side_dish1', 'side_dish2', 'side_dish3', 'fruit', 'soup', 'calorie');
@@ -80,8 +84,8 @@ function tad_lunch2_show($options)
         redirect_header("index.php", 3, _MA_NEED_TADTOOLS);
     }
     include_once XOOPS_ROOT_PATH . "/modules/tadtools/fancybox.php";
-    $fancybox               = new fancybox('.lunch_block_fancy');
-    $fancybox_code          = $fancybox->render();
+    $fancybox               = new fancybox('.lunch_block_fancy', '1280', 'auto');
+    $fancybox_code          = $fancybox->render(false);
     $block['fancybox_code'] = $fancybox_code;
     return $block;
 }
@@ -89,10 +93,10 @@ function tad_lunch2_show($options)
 //區塊編輯函式
 function tad_lunch2_show_edit($options)
 {
-    $modhandler        = xoops_gethandler('module');
-    $xoopsModule       = &$modhandler->getByDirname("tad_lunch2");
-    $config_handler    = xoops_gethandler('config');
-    $xoopsModuleConfig = &$config_handler->getConfigsByCat(0, $xoopsModule->getVar('mid'));
+    $modhandler        = xoops_getHandler('module');
+    $xoopsModule       = $modhandler->getByDirname("tad_lunch2");
+    $config_handler    = xoops_getHandler('config');
+    $xoopsModuleConfig = $config_handler->getConfigsByCat(0, $xoopsModule->getVar('mid'));
 
     $seled0_0 = ($options[0] == "1") ? "selected" : "";
     $seled0_1 = ($options[0] == "2") ? "selected" : "";
@@ -118,16 +122,18 @@ function tad_lunch2_show_edit($options)
     $fruit      = in_array("fruit", $sc) ? "checked" : "";
     $soup       = in_array("soup", $sc) ? "checked" : "";
     $calorie    = in_array("calorie", $sc) ? "checked" : "";
-
-    $main_food_use  = in_array("main_food", $xoopsModuleConfig['use_cols']) ? "" : "style='text-decoration:line-through;color:red;'";
-    $main_dish_use  = in_array("main_dish", $xoopsModuleConfig['use_cols']) ? "" : "style='text-decoration:line-through;color:red;'";
-    $side_dish1_use = in_array("side_dish1", $xoopsModuleConfig['use_cols']) ? "" : "style='text-decoration:line-through;color:red;'";
-    $side_dish2_use = in_array("side_dish2", $xoopsModuleConfig['use_cols']) ? "" : "style='text-decoration:line-through;color:red;'";
-    $side_dish3_use = in_array("side_dish3", $xoopsModuleConfig['use_cols']) ? "" : "style='text-decoration:line-through;color:red;'";
-    $fruit_use      = in_array("fruit", $xoopsModuleConfig['use_cols']) ? "" : "style='text-decoration:line-through;color:red;'";
-    $soup_use       = in_array("soup", $xoopsModuleConfig['use_cols']) ? "" : "style='text-decoration:line-through;color:red;'";
-    $calorie_use    = in_array("calorie", $xoopsModuleConfig['use_cols']) ? "" : "style='text-decoration:line-through;color:red;'";
-
+    if (empty($xoopsModuleConfig['use_cols'])) {
+        $main_food_use = $main_dish_use = $side_dish1_use = $side_dish2_use = $side_dish3_use = $fruit_use = $soup_use = $calorie_use = '';
+    } else {
+        $main_food_use  = in_array("main_food", $xoopsModuleConfig['use_cols']) ? "" : "style='text-decoration:line-through;color:red;'";
+        $main_dish_use  = in_array("main_dish", $xoopsModuleConfig['use_cols']) ? "" : "style='text-decoration:line-through;color:red;'";
+        $side_dish1_use = in_array("side_dish1", $xoopsModuleConfig['use_cols']) ? "" : "style='text-decoration:line-through;color:red;'";
+        $side_dish2_use = in_array("side_dish2", $xoopsModuleConfig['use_cols']) ? "" : "style='text-decoration:line-through;color:red;'";
+        $side_dish3_use = in_array("side_dish3", $xoopsModuleConfig['use_cols']) ? "" : "style='text-decoration:line-through;color:red;'";
+        $fruit_use      = in_array("fruit", $xoopsModuleConfig['use_cols']) ? "" : "style='text-decoration:line-through;color:red;'";
+        $soup_use       = in_array("soup", $xoopsModuleConfig['use_cols']) ? "" : "style='text-decoration:line-through;color:red;'";
+        $calorie_use    = in_array("calorie", $xoopsModuleConfig['use_cols']) ? "" : "style='text-decoration:line-through;color:red;'";
+    }
     $form = "
   <script>
   function bbv(){

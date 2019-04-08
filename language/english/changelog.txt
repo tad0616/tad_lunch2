@@ -1,3 +1,17 @@
+Tad Lunch2 2.1 (2017-06-16 release)
+================================================
+1. Fixed an issue where the default data did not appear
+2. Complete accessibility 2.0 A level detection
+3. Fix the problem that the image can not be uploaded in the block
+4. The correction block can not display the problem of the multi-day menu
+
+
+Tad Lunch2 2.0.2 (2017-01-08 release)
+================================================
+ 1.Change the col-md of boootstrap to col-sm
+ 2.The compatibility of XOOPS 2.5.8
+
+
 Tad_lunch2 2.0.1 (2016-05-26 release)
 =================================================
 1.Remove BootStrap2 code

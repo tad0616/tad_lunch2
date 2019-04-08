@@ -1,6 +1,6 @@
 <?php
 /*-----------引入檔案區--------------*/
-$xoopsOption['template_main'] = "tad_lunch2_adm_main.html";
+$xoopsOption['template_main'] = "tad_lunch2_adm_main.tpl";
 include_once "header.php";
 include_once "../function.php";
 
@@ -120,7 +120,7 @@ function list_tad_lunch2()
 {
     global $xoopsDB, $xoopsTpl, $isAdmin;
 
-    $sql = "select * from `" . $xoopsDB->prefix("tad_lunch2") . "` ";
+    $sql = "SELECT * FROM `" . $xoopsDB->prefix("tad_lunch2") . "` ";
 
     //getPageBar($原sql語法, 每頁顯示幾筆資料, 最多顯示幾個頁數選項);
     $PageBar = getPageBar($sql, 20, 10);
@@ -187,7 +187,7 @@ function show_one_tad_lunch2($lunch_sn = "")
     if (empty($lunch_sn)) {
         return;
     } else {
-        $lunch_sn = intval($lunch_sn);
+        $lunch_sn = (int)$lunch_sn;
     }
 
     $sql    = "select * from `" . $xoopsDB->prefix("tad_lunch2") . "` where `lunch_sn` = '{$lunch_sn}' ";

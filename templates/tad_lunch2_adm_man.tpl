@@ -19,7 +19,7 @@
   <form action="man.php" method="post" id="myForm" enctype="multipart/form-data" class="form-horizontal" role="form">
 
     <div class="form-group">
-      <div class="col-md-5">
+      <div class="col-sm-5">
         <h3><{$smarty.const._MA_TADLUNCH2_LUNCH_USER}></h3>
         <select id="repository" size="12" multiple="multiple" tmt:linkedselect="true" class="form-control" style="height: 200px;">
           <{if $repository}>
@@ -30,7 +30,7 @@
         </select>
 
       </div>
-      <div class="col-md-1 text-center">
+      <div class="col-sm-1 text-center">
         <img src="<{$xoops_url}>/modules/tad_lunch2/images/right.png" onclick="tmt.spry.linkedselect.util.moveOptions('repository', 'destination'); getOptions();" alt="right"><br>
         <img src="<{$xoops_url}>/modules/tad_lunch2/images/left.png" onclick="tmt.spry.linkedselect.util.moveOptions('destination' , 'repository'); getOptions();" alt="left"><br><br>
 
@@ -41,7 +41,7 @@
         <input type="hidden" name="op" value="save_tad_lunch2_mem">
         <button type="submit" class="btn btn-primary"><{$smarty.const._TAD_SAVE}></button>
       </div>
-      <div class="col-md-5">
+      <div class="col-sm-5">
         <h3><{$smarty.const._MA_TADLUNCH2_LUNCH_MANAGER}></h3>
         <select id="destination" size="12" multiple="multiple" tmt:linkedselect="true" class="form-control" style="height: 200px;">
           <{if $destination}>

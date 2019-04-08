@@ -1,6 +1,6 @@
 <?php
 /*-----------引入檔案區--------------*/
-$xoopsOption['template_main'] = "tad_lunch2_adm_man.html";
+$xoopsOption['template_main'] = "tad_lunch2_adm_man.tpl";
 include_once "header.php";
 include_once "../function.php";
 
@@ -11,7 +11,7 @@ function tad_lunch2_mem_setup($lunch_sn = "")
 
     $exist_uid = explode(',', $xoopsModuleConfig['lunch_manager']);
 
-    $sql = "select uid,name,uname,email from " . $xoopsDB->prefix("users") . " ";
+    $sql = "SELECT uid,name,uname,email FROM " . $xoopsDB->prefix("users") . " ";
 
     $result = $xoopsDB->query($sql) or web_error($sql);
 

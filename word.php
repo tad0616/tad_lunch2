@@ -1,9 +1,12 @@
 <?php
 include_once "header.php";
 
+include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
+$ym = system_CleanVars($_REQUEST, 'ym', '', 'string');
+
 $myts = MyTextSanitizer::getInstance();
-if (!empty($_GET['ym'])) {
-    list($year, $month) = explode("-", $_GET['ym']);
+if (!empty($ym)) {
+    list($year, $month) = explode("-", $ym);
     $month              = sprintf("%02s", $month);
 } else {
     $year  = date("Y");
