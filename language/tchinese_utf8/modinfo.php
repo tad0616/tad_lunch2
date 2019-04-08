@@ -32,7 +32,7 @@ define('_MI_TADLUNCH2_SHOW_KIND', '模組列表是否顯示類別');
 define('_MI_TADLUNCH2_SHOW_KIND_DESC', '若選否，僅單純秀出「米飯」、「洋蔥紅蘿蔔炒蛋」...這類的食物名稱，而不秀出「主食」、「主菜」...等類別名稱');
 
 define('_MI_TADLUNCH2_DIRNAME', basename(dirname(dirname(__DIR__))));
-define('_MI_TADLUNCH2_HELP_HEADER', __DIR__ . '/help/helpheader.html');
+define('_MI_TADLUNCH2_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
 define('_MI_TADLUNCH2_BACK_2_ADMIN', '管理');
 
 //help
