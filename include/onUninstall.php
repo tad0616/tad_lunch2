@@ -1,5 +1,8 @@
 <?php
 /*
+
+use XoopsModules\Tad_lunch2\Utility;
+
 function xoops_module_uninstall_模組目錄(&$module) {
 GLOBAL $xoopsDB;
 $date=date("Ymd");
@@ -11,7 +14,7 @@ return true;
 
 
 //刪除目錄
-function delete_directory($dirname) {
+function tad_lunch2_delete_directory($dirname) {
 if (is_dir($dirname))
 $dir_handle = opendir($dirname);
 if (!$dir_handle)
@@ -21,7 +24,7 @@ if ($file != "." && $file != "..") {
 if (!is_dir($dirname."/".$file))
 unlink($dirname."/".$file);
 else
-delete_directory($dirname.'/'.$file);
+tad_lunch2_delete_directory($dirname.'/'.$file);
 }
 }
 closedir($dir_handle);
