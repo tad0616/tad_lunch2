@@ -17,7 +17,7 @@ function tad_lunch2_form($lunch_sn = "")
     if (!empty($lunch_sn)) {
         $DBV = get_tad_lunch2($lunch_sn);
     } else {
-        $DBV = array();
+        $DBV = [];
     }
 
     //預設值設定
@@ -130,7 +130,7 @@ function list_tad_lunch2()
 
     $result = $xoopsDB->query($sql) or web_error($sql);
 
-    $all_content = array();
+    $all_content = [];
     $i           = 0;
     while ($all = $xoopsDB->fetchArray($result)) {
         //以下會產生這些變數： $lunch_sn , $lunch_title , $lunch_factory , $lunch_dietician , $lunch_factory_tel , $lunch_factory_fax , $lunch_factory_addr

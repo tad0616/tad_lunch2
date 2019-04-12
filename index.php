@@ -21,7 +21,7 @@ function tad_lunch2_data_form($lunch_data_sn = "")
     if (!empty($lunch_data_sn)) {
         $DBV = get_tad_lunch2_data($lunch_data_sn);
     } else {
-        $DBV = array();
+        $DBV = [];
     }
 
     //預設值設定
@@ -171,7 +171,7 @@ function tad_lunch2_data_form($lunch_data_sn = "")
 function get_source($col = "main_food")
 {
     global $xoopsDB, $TadUpFiles;
-    $arr = array();
+    $arr = [];
     $sql    = "select `{$col}` from `" . $xoopsDB->prefix("tad_lunch2_data") . "` group by `{$col}` order by `{$col}`";
     $result = $xoopsDB->query($sql) or web_error($sql);
 
@@ -304,7 +304,7 @@ function list_tad_lunch2_data($show_ym = "", $target = "")
     $sql = "SELECT left(`lunch_date`,7) AS dd FROM `" . $xoopsDB->prefix("tad_lunch2_data") . "` GROUP BY left(`lunch_date`,7) ORDER BY dd DESC";
     $result = $xoopsDB->query($sql) or web_error($sql);
 
-    $all_options = array();
+    $all_options = [];
     $i           = 0;
 
     //$all_options[0]['ym']=$now_Ym;
@@ -334,7 +334,7 @@ function list_tad_lunch2_data($show_ym = "", $target = "")
 
     $result = $xoopsDB->query($sql) or web_error($sql);
 
-    $all_content = array();
+    $all_content = [];
     $i           = 0;
     while ($all = $xoopsDB->fetchArray($result)) {
         //以下會產生這些變數： $lunch_data_sn ,$lunch_target, $lunch_sn , $lunch_date , $main_food , $main_food_stuff , $main_dish , $main_dish_stuff , $main_dish_cook , $side_dish1 , $side_dish1_stuff , $side_dish1_cook , $side_dish2 , $side_dish2_stuff , $side_dish2_cook , $side_dish3 , $side_dish3_stuff , $side_dish3_cook , $fruit , $soup , $soup_stuff , $soup_cook , $protein , $fat , $carbohydrate , $calorie
@@ -379,7 +379,7 @@ function list_tad_lunch2_data($show_ym = "", $target = "")
     $xoopsTpl->assign('now_op', 'list_tad_lunch2_data');
     $xoopsTpl->assign('lunch_target', $lunch_target);
 
-    $target_arr = array();
+    $target_arr = [];
     $i          = 0;
     foreach ($lunch_target_arr as $target) {
         $target_arr[$i]['title'] = trim($target);
@@ -428,7 +428,7 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
         return;
     }
 
-    $all_data = array();
+    $all_data = [];
 
     $sql = "select a.*,b.* from `" . $xoopsDB->prefix("tad_lunch2_data") . "` as a left join `" . $xoopsDB->prefix("tad_lunch2") . "` as b on a.lunch_sn=b.lunch_sn where a.`lunch_data_sn` = '{$lunch_data_sn}' ";
 
@@ -468,7 +468,7 @@ function get_tad_lunch2_all()
     global $xoopsDB;
     $sql = "SELECT * FROM `" . $xoopsDB->prefix("tad_lunch2") . "`";
     $result   = $xoopsDB->query($sql) or web_error($sql);
-    $data_arr = array();
+    $data_arr = [];
     $i        = 0;
     while ($data = $xoopsDB->fetchArray($result)) {
         $data_arr[$i] = $data;

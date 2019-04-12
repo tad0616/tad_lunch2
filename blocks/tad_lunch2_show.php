@@ -16,7 +16,7 @@ function tad_lunch2_show($options)
     $tarr         = explode(',', $lunch_target);
 
     $i      = 0;
-    $lunchs = array();
+    $lunchs = [];
     //for($n=0;$n<$options[0];$n++){
     foreach ($tarr as $target) {
         for ($n = 0; $n < $options[0]; $n++) {
@@ -30,7 +30,7 @@ function tad_lunch2_show($options)
                 $sql    = "select * from `" . $xoopsDB->prefix("tad_lunch2_data") . "` where  lunch_date >= '{$today}' and main_food <>'' and  lunch_target='{$target}'   order by lunch_date limit 0,{$options[0]}";
                 $result = $xoopsDB->query($sql);
             }
-            $all_content = array();
+            $all_content = [];
             while ($all = $xoopsDB->fetchArray($result)) {
                 //以下會產生這些變數： $lunch_data_sn ,$lunch_target, $lunch_sn , $lunch_date , $main_food , $main_food_stuff , $main_dish , $main_dish_stuff , $main_dish_cook , $side_dish1 , $side_dish1_stuff , $side_dish1_cook , $side_dish2 , $side_dish2_stuff , $side_dish2_cook , $side_dish3 , $side_dish3_stuff , $side_dish3_cook , $fruit , $soup , $soup_stuff , $soup_cook , $protein , $fat , $carbohydrate , $calorie
                 foreach ($all as $k => $v) {
@@ -75,7 +75,7 @@ function tad_lunch2_show($options)
     $block['content'] = $lunchs;
     $block['type']    = empty($options[1]) ? "horizontal" : $options[1];
     if (empty($options[2])) {
-        $options[2] = array('main_food', 'main_dish', 'side_dish1', 'side_dish2', 'side_dish3', 'fruit', 'soup', 'calorie');
+        $options[2] = ['main_food', 'main_dish', 'side_dish1', 'side_dish2', 'side_dish3', 'fruit', 'soup', 'calorie'];
     }
     $block['show_cols'] = explode(",", $options[2]);
 

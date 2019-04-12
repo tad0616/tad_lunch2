@@ -1,5 +1,5 @@
 <?php
-$modversion = array();
+$modversion = [];
 
 //---模組基本資訊---//
 $modversion['name']        = _MI_TADLUNCH2_NAME;
@@ -23,7 +23,7 @@ $modversion['min_php']             = '5.4';
 $modversion['min_xoops']           = '2.5.7';
 
 //---paypal資訊---//
-$modversion['paypal']                  = array();
+$modversion['paypal']                  = [];
 $modversion['paypal']['business']      = 'tad0616@gmail.com';
 $modversion['paypal']['item_name']     = 'Donation :' . _MI_TADLUNCH2_AUTHOR;
 $modversion['paypal']['amount']        = 0;
@@ -93,8 +93,8 @@ $modversion['config'][3]['title']       = '_MI_TADLUNCH2_USE_COLS';
 $modversion['config'][3]['description'] = '_MI_TADLUNCH2_USE_COLS_DESC';
 $modversion['config'][3]['formtype']    = 'select_multi';
 $modversion['config'][3]['valuetype']   = 'array';
-$modversion['config'][3]['options']     = array(_MI_TADLUNCH2_MAIN_FOOD => "main_food", _MI_TADLUNCH2_MAIN_DISH => "main_dish", _MI_TADLUNCH2_SIDE_DISH1 => "side_dish1", _MI_TADLUNCH2_SIDE_DISH2 => "side_dish2", _MI_TADLUNCH2_SIDE_DISH3 => "side_dish3", _MI_TADLUNCH2_FRUIT => "fruit", _MI_TADLUNCH2_SOUP => "soup", _MI_TADLUNCH2_CALORIE => "calorie");
-$modversion['config'][3]['default']     = array('main_food', 'main_dish', 'side_dish1', 'side_dish2', 'side_dish3', 'fruit', 'soup', 'calorie');
+$modversion['config'][3]['options']     = [_MI_TADLUNCH2_MAIN_FOOD => "main_food", _MI_TADLUNCH2_MAIN_DISH => "main_dish", _MI_TADLUNCH2_SIDE_DISH1 => "side_dish1", _MI_TADLUNCH2_SIDE_DISH2 => "side_dish2", _MI_TADLUNCH2_SIDE_DISH3 => "side_dish3", _MI_TADLUNCH2_FRUIT => "fruit", _MI_TADLUNCH2_SOUP => "soup", _MI_TADLUNCH2_CALORIE => "calorie"];
+$modversion['config'][3]['default']     = ['main_food', 'main_dish', 'side_dish1', 'side_dish2', 'side_dish3', 'fruit', 'soup', 'calorie'];
 
 $modversion['config'][4]['name']        = 'show_kind';
 $modversion['config'][4]['title']       = '_MI_TADLUNCH2_SHOW_KIND';
