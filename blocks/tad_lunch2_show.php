@@ -106,8 +106,8 @@ function tad_lunch2_show_edit($options)
     $seled0_5 = ('6' == $options[0]) ? 'selected' : '';
     $seled0_6 = ('7' == $options[0]) ? 'selected' : '';
 
-    $horizontal = ('horizontal' == $options[1]) ? 'checked' : '';
-    $vertical = ('vertical' == $options[1]) ? 'checked' : '';
+    $horizontal = ('horizontal' === $options[1]) ? 'checked' : '';
+    $vertical = ('vertical' === $options[1]) ? 'checked' : '';
 
     if (empty($options[2])) {
         $options[2] = 'main_food,main_dish,side_dish1,side_dish2,side_dish3,fruit,soup,calorie';

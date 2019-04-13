@@ -4,9 +4,9 @@ include_once 'header.php';
 $op = isset($_POST['op']) ? $_POST['op'] : '';
 $col = isset($_POST['col']) ? $_POST['col'] : '';
 $val = isset($_POST['val']) ? $_POST['val'] : '';
-if ('get_stuff' == $op) {
+if ('get_stuff' === $op) {
     $search_col = "{$col}_stuff";
-} elseif ('get_cook' == $op) {
+} elseif ('get_cook' === $op) {
     $search_col = "{$col}_cook";
 } else {
     exit;
