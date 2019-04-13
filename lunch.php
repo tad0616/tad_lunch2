@@ -1,12 +1,12 @@
 <?php
 /*-----------引入檔案區--------------*/
-include "header.php";
-include_once XOOPS_ROOT_PATH . "/header.php";
+include 'header.php';
+include_once XOOPS_ROOT_PATH . '/header.php';
 
 /*-----------功能函數區--------------*/
 
 //以流水號秀出某筆tad_lunch2_data資料內容
-function show_one_tad_lunch2_data($lunch_data_sn = "")
+function show_one_tad_lunch2_data($lunch_data_sn = '')
 {
     global $xoopsDB, $xoopsTpl, $isAdmin, $isManager, $xoopsModuleConfig;
 
@@ -14,19 +14,19 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
         return;
     }
 
-    include_once XOOPS_ROOT_PATH . "/modules/tadtools/TadUpFiles.php";
-    $TadUpFiles = new TadUpFiles("tad_lunch2");
+    include_once XOOPS_ROOT_PATH . '/modules/tadtools/TadUpFiles.php';
+    $TadUpFiles = new TadUpFiles('tad_lunch2');
 
     //上傳表單name, 是否縮圖, 顯示模式 (filename、small), 顯示描述, 顯示下載次數, 數量限制, 自訂路徑, 加密, 自動播放時間(0 or 3000)
     //show_files($upname="",$thumb=true,$show_mode="",$show_description=false,$show_dl=false,$limit=NULL,$path=NULL,$hash=false,$playSpeed=5000)
     //
 
     $bootstrap = get_bootstrap('return');
-    $jquery    = get_jquery('return');
+    $jquery = get_jquery('return');
 
     $all_data = "{$bootstrap}{$jquery}";
 
-    $sql = "select a.*,b.* from `" . $xoopsDB->prefix("tad_lunch2_data") . "` as a left join `" . $xoopsDB->prefix("tad_lunch2") . "` as b on a.lunch_sn=b.lunch_sn where a.`lunch_data_sn` = '{$lunch_data_sn}' ";
+    $sql = 'select a.*,b.* from `' . $xoopsDB->prefix('tad_lunch2_data') . '` as a left join `' . $xoopsDB->prefix('tad_lunch2') . "` as b on a.lunch_sn=b.lunch_sn where a.`lunch_data_sn` = '{$lunch_data_sn}' ";
     // die($sql);
     $result = $xoopsDB->query($sql) or web_error($sql);
 
@@ -49,16 +49,16 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
 
     $upform = $TadUpFiles->upform(false, 'lunch', 1, false);
 
-    $main_food_stuff  = change_stuff($main_food_stuff);
-    $main_dish_stuff  = change_stuff($main_dish_stuff);
+    $main_food_stuff = change_stuff($main_food_stuff);
+    $main_dish_stuff = change_stuff($main_dish_stuff);
     $side_dish1_stuff = change_stuff($side_dish1_stuff);
     $side_dish2_stuff = change_stuff($side_dish2_stuff);
     $side_dish3_stuff = change_stuff($main_food_stuff);
-    $soup_stuff       = change_stuff($soup_stuff);
+    $soup_stuff = change_stuff($soup_stuff);
 
     $title = sprintf(_MD_TAD_LUNCH2_DATA_MENU, $lunch_date, $lunch_target);
 
-    $tool = "";
+    $tool = '';
     if ($isAdmin or $isManager) {
         $tool = "
             <script type='text/javascript'>
@@ -82,14 +82,14 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
 
                   <a href='javascript:delete_tad_lunch2_data_func($lunch_data_sn)' class='btn btn-xs btn-danger'>" . _TAD_DEL . "</a>
                   <a href='" . XOOPS_URL . "/modules/tad_lunch2/index.php?op=tad_lunch2_data_form&lunch_data_sn={$lunch_data_sn}' class='btn btn-xs btn-warning'>" . _TAD_EDIT . "</a>
-                  <a href='" . XOOPS_URL . "/modules/tad_lunch2/index.php?op=tad_lunch2_data_form' class='btn btn-xs btn-info'>" . _TAD_ADD . "</a>
+                  <a href='" . XOOPS_URL . "/modules/tad_lunch2/index.php?op=tad_lunch2_data_form' class='btn btn-xs btn-info'>" . _TAD_ADD . '</a>
                 </div>
 
               </form>
-            </div>";
+            </div>';
     }
 
-    $show_protein = $show_fat = $show_carbohydrate = $show_calorie = "";
+    $show_protein = $show_fat = $show_carbohydrate = $show_calorie = '';
     if ($protein) {
         $show_protein = "
             <div class='col-sm-3'>
@@ -125,19 +125,19 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
     if (empty($xoopsModuleConfig['use_cols'])) {
         $show_main_food = $show_main_dish = $show_side_dish1 = $show_side_dish2 = $show_side_dish3 = $show_fruit = $show_soup = true;
     } else {
-        $show_main_food  = in_array("main_food", $xoopsModuleConfig['use_cols']) ? true : false;
-        $show_main_dish  = in_array("main_dish", $xoopsModuleConfig['use_cols']) ? true : false;
-        $show_side_dish1 = in_array("side_dish1", $xoopsModuleConfig['use_cols']) ? true : false;
-        $show_side_dish2 = in_array("side_dish2", $xoopsModuleConfig['use_cols']) ? true : false;
-        $show_side_dish3 = in_array("side_dish3", $xoopsModuleConfig['use_cols']) ? true : false;
-        $show_fruit      = in_array("fruit", $xoopsModuleConfig['use_cols']) ? true : false;
-        $show_soup       = in_array("soup", $xoopsModuleConfig['use_cols']) ? true : false;
+        $show_main_food = in_array('main_food', $xoopsModuleConfig['use_cols'], true) ? true : false;
+        $show_main_dish = in_array('main_dish', $xoopsModuleConfig['use_cols'], true) ? true : false;
+        $show_side_dish1 = in_array('side_dish1', $xoopsModuleConfig['use_cols'], true) ? true : false;
+        $show_side_dish2 = in_array('side_dish2', $xoopsModuleConfig['use_cols'], true) ? true : false;
+        $show_side_dish3 = in_array('side_dish3', $xoopsModuleConfig['use_cols'], true) ? true : false;
+        $show_fruit = in_array('fruit', $xoopsModuleConfig['use_cols'], true) ? true : false;
+        $show_soup = in_array('soup', $xoopsModuleConfig['use_cols'], true) ? true : false;
     }
     if ($show_main_food) {
         $main_food_title = "
             <th id='main_food' style='text-align:center;'><!--主食-->
-              <img src='" . XOOPS_URL . "/modules/tad_lunch2/images/main_food.png' alt='" . _MD_TADLUNCH2_MDIN_FOOD . "'>" . _MD_TADLUNCH2_MDIN_FOOD . "
-            </th>";
+              <img src='" . XOOPS_URL . "/modules/tad_lunch2/images/main_food.png' alt='" . _MD_TADLUNCH2_MDIN_FOOD . "'>" . _MD_TADLUNCH2_MDIN_FOOD . '
+            </th>';
 
         $main_food_content = "
               <td headers='main_food' style='text-align:center;'>$main_food</td>
@@ -155,8 +155,8 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
     if ($show_main_dish) {
         $main_dish_title = "
               <th id='main_dish' style='text-align:center;'><!--主菜-->
-              <img src='" . XOOPS_URL . "/modules/tad_lunch2/images/main_dish.png' alt='" . _MD_TADLUNCH2_MDIN_DISH . "'>" . _MD_TADLUNCH2_MDIN_DISH . "
-              </th>";
+              <img src='" . XOOPS_URL . "/modules/tad_lunch2/images/main_dish.png' alt='" . _MD_TADLUNCH2_MDIN_DISH . "'>" . _MD_TADLUNCH2_MDIN_DISH . '
+              </th>';
 
         $main_dish_content = "
               <td headers='main_dish' style='text-align:center;'>$main_dish</td>
@@ -174,8 +174,8 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
     if ($show_side_dish1) {
         $side_dish1_title = "
              <th id='side_dish1' style='text-align:center;'><!--副菜1-->
-             <img src='" . XOOPS_URL . "/modules/tad_lunch2/images/side_dish1.png' alt='" . _MD_TADLUNCH2_SIDE_DISH1 . "'>" . _MD_TADLUNCH2_SIDE_DISH1 . "
-             </th>";
+             <img src='" . XOOPS_URL . "/modules/tad_lunch2/images/side_dish1.png' alt='" . _MD_TADLUNCH2_SIDE_DISH1 . "'>" . _MD_TADLUNCH2_SIDE_DISH1 . '
+             </th>';
 
         $side_dish1_content = "
               <td headers='side_dish1' style='text-align:center;'>$side_dish1</td>
@@ -193,8 +193,8 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
     if ($show_side_dish2) {
         $side_dish2_title = "
              <th id='side_dish2' style='text-align:center;'><!--副菜2-->
-             <img src='" . XOOPS_URL . "/modules/tad_lunch2/images/side_dish2.png' alt='" . _MD_TADLUNCH2_SIDE_DISH2 . "'>" . _MD_TADLUNCH2_SIDE_DISH2 . "
-             </th>";
+             <img src='" . XOOPS_URL . "/modules/tad_lunch2/images/side_dish2.png' alt='" . _MD_TADLUNCH2_SIDE_DISH2 . "'>" . _MD_TADLUNCH2_SIDE_DISH2 . '
+             </th>';
 
         $side_dish2_content = "
               <td headers='side_dish2' style='text-align:center;'>$side_dish2</td>
@@ -212,8 +212,8 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
     if ($show_side_dish3) {
         $side_dish3_title = "
              <th id='side_dish3' style='text-align:center;'><!--副菜3-->
-             <img src='" . XOOPS_URL . "/modules/tad_lunch2/images/side_dish3.png' alt='" . _MD_TADLUNCH2_SIDE_DISH3 . "'>" . _MD_TADLUNCH2_SIDE_DISH3 . "
-             </th>";
+             <img src='" . XOOPS_URL . "/modules/tad_lunch2/images/side_dish3.png' alt='" . _MD_TADLUNCH2_SIDE_DISH3 . "'>" . _MD_TADLUNCH2_SIDE_DISH3 . '
+             </th>';
 
         $side_dish3_content = "
               <td headers='side_dish3' style='text-align:center;'>$side_dish3</td>
@@ -231,8 +231,8 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
     if ($show_fruit) {
         $fruit_title = "
             <th id='fruit' style='text-align:center;'><!--水果-->
-            <img src='" . XOOPS_URL . "/modules/tad_lunch2/images/fruit.png' alt='" . _MD_TADLUNCH2_FRUIT . "'>" . _MD_TADLUNCH2_FRUIT . "
-            </th>";
+            <img src='" . XOOPS_URL . "/modules/tad_lunch2/images/fruit.png' alt='" . _MD_TADLUNCH2_FRUIT . "'>" . _MD_TADLUNCH2_FRUIT . '
+            </th>';
 
         $fruit_content = "
               <td headers='fruit' style='text-align:center;'>$fruit</td>
@@ -250,8 +250,8 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
     if ($show_soup) {
         $soup_title = "
             <th id='soup' style='text-align:center;'><!--湯點-->
-            <img src='" . XOOPS_URL . "/modules/tad_lunch2/images/soup.png' alt='" . _MD_TADLUNCH2_MDIN_FOOD . "'>" . _MD_TADLUNCH2_SOUP . "
-            </th>";
+            <img src='" . XOOPS_URL . "/modules/tad_lunch2/images/soup.png' alt='" . _MD_TADLUNCH2_MDIN_FOOD . "'>" . _MD_TADLUNCH2_SOUP . '
+            </th>';
 
         $soup_content = "
               <td headers='soup' style='text-align:center;'>$soup</td>
@@ -313,7 +313,6 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
     $tool";
 
     if ($show_files) {
-
         $all_data .= "
             <div class='row'>
               <div class='col-sm-4'>
@@ -371,13 +370,14 @@ function show_one_tad_lunch2_data($lunch_data_sn = "")
 
 function change_stuff($stuff)
 {
-    $stuff = str_replace(";", "<br>", $stuff);
-    $stuff = str_replace("g ", "g<br>", $stuff);
+    $stuff = str_replace(';', '<br>', $stuff);
+    $stuff = str_replace('g ', 'g<br>', $stuff);
+
     return $stuff;
 }
 
 /*-----------執行動作判斷區----------*/
-$lunch_data_sn = empty($_REQUEST['lunch_data_sn']) ? "" : (int)$_REQUEST['lunch_data_sn'];
+$lunch_data_sn = empty($_REQUEST['lunch_data_sn']) ? '' : (int)$_REQUEST['lunch_data_sn'];
 show_one_tad_lunch2_data($lunch_data_sn);
 
 /*-----------秀出結果區--------------*/

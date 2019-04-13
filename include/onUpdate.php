@@ -6,8 +6,8 @@ function xoops_module_update_tad_lunch2(&$module, $old_version)
 {
     global $xoopsDB;
 
-    Utility::mk_dir(XOOPS_ROOT_PATH . "/uploads/tad_lunch2");
-    Utility::mk_dir(XOOPS_ROOT_PATH . "/uploads/tad_lunch2/thumbs");
+    Utility::mk_dir(XOOPS_ROOT_PATH . '/uploads/tad_lunch2');
+    Utility::mk_dir(XOOPS_ROOT_PATH . '/uploads/tad_lunch2/thumbs');
     if (!Utility::chk_chk1()) {
         Utility::go_update1();
     }
@@ -19,4 +19,3 @@ function xoops_module_update_tad_lunch2(&$module, $old_version)
 
     return true;
 }
-
