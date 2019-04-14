@@ -364,7 +364,7 @@
 <!--列出所有資料-->
 <{if $now_op=="list_tad_lunch2_data"}>
 
-  <link rel="stylesheet" type="text/css" href="class/fullcalendar/redmond/theme.css" />
+  <link rel="stylesheet" type="text/css" href="class/fullcalendar/redmond/theme.css">
   <link rel="stylesheet" type="text/css" href="class/fullcalendar/fullcalendar.css">
   <script src="class/fullcalendar/fullcalendar.js" type="text/javascript"></script>
   <style type="text/css" media="screen">

@@ -1,8 +1,8 @@
 <?php
 /*-----------引入檔案區--------------*/
-$xoopsOption['template_main'] = 'tad_lunch2_adm_man.tpl';
-include_once 'header.php';
-include_once '../function.php';
+$GLOBALS['xoopsOption']['template_main'] = 'tad_lunch2_adm_man.tpl';
+require_once __DIR__ . '/header.php';
+require_once dirname(__DIR__) . '/function.php';
 
 /*-----------功能函數區--------------*/
 function tad_lunch2_mem_setup($lunch_sn = '')
@@ -18,7 +18,7 @@ function tad_lunch2_mem_setup($lunch_sn = '')
     $myts = MyTextSanitizer::getInstance();
     $destination = $repository = '';
     $i = 0;
-    while ($all = $xoopsDB->fetchArray($result)) {
+    while (false !== ($all = $xoopsDB->fetchArray($result))) {
         foreach ($all as $k => $v) {
             $$k = $v;
         }
@@ -59,7 +59,7 @@ function save_tad_lunch2_mem()
 }
 
 /*-----------執行動作判斷區----------*/
-include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
+require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 $op = system_CleanVars($_REQUEST, 'op', '', 'string');
 
 switch ($op) {
@@ -78,4 +78,4 @@ switch ($op) {
 
 /*-----------秀出結果區--------------*/
 $xoopsTpl->assign('isAdmin', true);
-include_once 'footer.php';
+require_once __DIR__ . '/footer.php';

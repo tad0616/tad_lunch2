@@ -1,7 +1,7 @@
 <?php
 /*-----------引入檔案區--------------*/
-include 'header.php';
-include_once XOOPS_ROOT_PATH . '/header.php';
+require __DIR__ . '/header.php';
+require_once XOOPS_ROOT_PATH . '/header.php';
 
 /*-----------功能函數區--------------*/
 
@@ -14,7 +14,7 @@ function show_one_tad_lunch2_data($lunch_data_sn = '')
         return;
     }
 
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/TadUpFiles.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tadtools/TadUpFiles.php';
     $TadUpFiles = new TadUpFiles('tad_lunch2');
 
     //上傳表單name, 是否縮圖, 顯示模式 (filename、small), 顯示描述, 顯示下載次數, 數量限制, 自訂路徑, 加密, 自動播放時間(0 or 3000)
@@ -382,4 +382,4 @@ show_one_tad_lunch2_data($lunch_data_sn);
 
 /*-----------秀出結果區--------------*/
 
-include_once XOOPS_ROOT_PATH . '/footer.php';
+require_once XOOPS_ROOT_PATH . '/footer.php';

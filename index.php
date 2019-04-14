@@ -1,10 +1,10 @@
 <?php
 /*-----------引入檔案區--------------*/
-include 'header.php';
-$xoopsOption['template_main'] = 'tad_lunch2_index.tpl';
-include_once XOOPS_ROOT_PATH . '/header.php';
+require __DIR__ . '/header.php';
+$GLOBALS['xoopsOption']['template_main'] = 'tad_lunch2_index.tpl';
+require_once XOOPS_ROOT_PATH . '/header.php';
 
-include_once XOOPS_ROOT_PATH . '/modules/tadtools/TadUpFiles.php';
+require_once XOOPS_ROOT_PATH . '/modules/tadtools/TadUpFiles.php';
 $TadUpFiles = new TadUpFiles('tad_lunch2');
 /*-----------功能函數區--------------*/
 
@@ -136,7 +136,7 @@ function tad_lunch2_data_form($lunch_data_sn = '')
     if (!file_exists(TADTOOLS_PATH . '/formValidator.php')) {
         redirect_header('index.php', 3, _MD_NEED_TADTOOLS);
     }
-    include_once TADTOOLS_PATH . '/formValidator.php';
+    require_once TADTOOLS_PATH . '/formValidator.php';
     $formValidator = new formValidator('#myForm', true);
     $formValidator_code = $formValidator->render();
 
@@ -174,7 +174,7 @@ function get_source($col = 'main_food')
     $sql = "select `{$col}` from `" . $xoopsDB->prefix('tad_lunch2_data') . "` group by `{$col}` order by `{$col}`";
     $result = $xoopsDB->query($sql) or web_error($sql);
 
-    while (list($data) = $xoopsDB->fetchRow($result)) {
+    while (false !== (list($data) = $xoopsDB->fetchRow($result))) {
         $arr[] = $data;
     }
     $main = "'" . implode("','", $arr) . "'";
@@ -312,7 +312,7 @@ function list_tad_lunch2_data($show_ym = '', $target = '')
     //$all_options[0]['ym_title']=str_replace("-", _MD_TADLUNCH2_Y, $now_Ym)._MD_TADLUNCH2_M;
 
     //$i=1;
-    while (list($dd) = $xoopsDB->fetchRow($result)) {
+    while (false !== (list($dd) = $xoopsDB->fetchRow($result))) {
         //if($now_Ym==$dd)continue;
         $all_options[$i]['ym'] = $dd;
         $all_options[$i]['ym_title'] = str_replace('-', _MD_TADLUNCH2_Y, $dd) . _MD_TADLUNCH2_M;
@@ -337,7 +337,7 @@ function list_tad_lunch2_data($show_ym = '', $target = '')
 
     $all_content = [];
     $i = 0;
-    while ($all = $xoopsDB->fetchArray($result)) {
+    while (false !== ($all = $xoopsDB->fetchArray($result))) {
         //以下會產生這些變數： $lunch_data_sn ,$lunch_target, $lunch_sn , $lunch_date , $main_food , $main_food_stuff , $main_dish , $main_dish_stuff , $main_dish_cook , $side_dish1 , $side_dish1_stuff , $side_dish1_cook , $side_dish2 , $side_dish2_stuff , $side_dish2_cook , $side_dish3 , $side_dish3_stuff , $side_dish3_cook , $fruit , $soup , $soup_stuff , $soup_cook , $protein , $fat , $carbohydrate , $calorie
         foreach ($all as $k => $v) {
             $$k = $v;
@@ -391,7 +391,7 @@ function list_tad_lunch2_data($show_ym = '', $target = '')
     if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/fancybox.php')) {
         redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
     }
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/fancybox.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tadtools/fancybox.php';
     $fancybox = new fancybox('.lunch_fancy');
     $fancybox_code = $fancybox->render(false);
     $xoopsTpl->assign('fancybox_code', $fancybox_code);
@@ -436,7 +436,7 @@ function show_one_tad_lunch2_data($lunch_data_sn = '')
 
     $result = $xoopsDB->query($sql) or web_error($sql);
     $i = 0;
-    while ($all = $xoopsDB->fetchArray($result)) {
+    while (false !== ($all = $xoopsDB->fetchArray($result))) {
         //以下會產生這些變數： $lunch_data_sn , $lunch_sn , $lunch_date , $main_food , $main_food_stuff , $main_dish , $main_dish_stuff , $main_dish_cook , $side_dish1 , $side_dish1_stuff , $side_dish1_cook , $side_dish2 , $side_dish2_stuff , $side_dish2_cook , $side_dish3 , $side_dish3_stuff , $side_dish3_cook , $fruit , $soup , $soup_stuff , $soup_cook , $protein , $fat , $carbohydrate , $calorie
 
         $all['main_food_stuff'] = change_stuff($all['main_food_stuff']);
@@ -471,7 +471,7 @@ function get_tad_lunch2_all()
     $result = $xoopsDB->query($sql) or web_error($sql);
     $data_arr = [];
     $i = 0;
-    while ($data = $xoopsDB->fetchArray($result)) {
+    while (false !== ($data = $xoopsDB->fetchArray($result))) {
         $data_arr[$i] = $data;
         $i++;
     }
@@ -490,7 +490,7 @@ function import_excel($lunch_sn = '', $lunch_target = '', $file = '', $file_name
 
     $myts = MyTextSanitizer::getInstance();
 
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/PHPExcel/IOFactory.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tadtools/PHPExcel/IOFactory.php';
     if (preg_match('/\.(xlsx)$/i', $file_name)) {
         $reader = PHPExcel_IOFactory::createReader('Excel2007');
     } else {
@@ -602,7 +602,7 @@ function import2DB($lunch_sn = '', $lunch_target = '')
 }
 
 /*-----------執行動作判斷區----------*/
-include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
+require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 $op = system_CleanVars($_REQUEST, 'op', '', 'string');
 $lunch_sn = system_CleanVars($_REQUEST, 'lunch_sn', 0, 'int');
 $lunch_data_sn = system_CleanVars($_REQUEST, 'lunch_data_sn', 0, 'int');
@@ -671,4 +671,4 @@ $xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
 $xoopsTpl->assign('jquery', get_jquery(true));
 $xoopsTpl->assign('isAdmin', $isAdmin);
 $xoopsTpl->assign('isManager', $isManager);
-include_once XOOPS_ROOT_PATH . '/footer.php';
+require_once XOOPS_ROOT_PATH . '/footer.php';
