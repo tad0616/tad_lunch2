@@ -1,39 +1,39 @@
 <?php
-require_once XOOPS_ROOT_PATH . '/modules/tadtools/language/' . $xoopsConfig['language'] . '/modinfo_common.php';
+xoops_loadLanguage('modinfo_common', 'tadtools');
 
-define('_MI_TADLUNCH2_NAME', 'Àç¾i¤ÈÀ\¤½§i');
-define('_MI_TADLUNCH2_AUTHOR', 'Àç¾i¤ÈÀ\¤½§i');
+define('_MI_TADLUNCH2_NAME', 'ï¿½ï¿½iï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½i');
+define('_MI_TADLUNCH2_AUTHOR', 'ï¿½ï¿½iï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½i');
 define('_MI_TADLUNCH2_CREDITS', 'tad');
-define('_MI_TADLUNCH2_DESC', '¦¹¼Ò²Õªº¥Î¨Ó§Ö³t¶×¤JÀç¾i¤ÈÀ\¸ê°T¥H«K¤½§i');
-define('_MI_TADLUNCH2_AUTHOR_WEB', 'Tad ±Ð§÷ºô');
-define('_MI_TADLUNCH2_ADMENU1', 'Àç¾i¤ÈÀ\³]©w');
-define('_MI_TADLUNCH2_ADMENU1_DESC', 'Àç¾i¤ÈÀ\³]©w');
-define('_MI_TADLUNCH2_ADMENU2', 'ºÞ²z¤H³]©w');
-define('_MI_TADLUNCH2_ADMENU2_DESC', 'ºÞ²z¤H³]©w');
-define('_MI_TADLUNCH2_BNAME1', 'Àç¾i¤ÈÀ\¤½§i');
-define('_MI_TADLUNCH2_BDESC1', 'Àç¾i¤ÈÀ\¤½§i(tad_lunch2_show)');
-define('_MI_TADLUNCH2_FOR_WHOM', 'µæ³æ¨Ñµ¹¦~¯Å');
-define('_MI_TADLUNCH2_FOR_WHOM_DESC', '­Y¤£¦P¦~¯Å¦P®É¦³¤£¦P¼t°Ó¨ÑÀ\¡A½Ð¦b¦¹³]©w¦~¯Å¡A¥Î¤p¼g¤À¸¹¡u;¡v¹j¶}§Y¥i¡C');
-define('_MI_TADLUNCH2_FOR_WHOM_DEFAULT', '¥þ®Õ');
-define('_MI_TADLUNCH2_MANAGER', '¤ÈÀ\ºÞ²z¤H¡]¤Å°Ê¡^');
-define('_MI_TADLUNCH2_MANAGER_DESC', '½Ð¤ÅÅÜ°Ê¡A¦¹Äæ¶È¨Ñµ{¦¡Àx¦s¥Î¡C');
+define('_MI_TADLUNCH2_DESC', 'ï¿½ï¿½ï¿½Ò²Õªï¿½ï¿½Î¨Ó§Ö³tï¿½×¤Jï¿½ï¿½iï¿½ï¿½ï¿½\ï¿½ï¿½Tï¿½Hï¿½Kï¿½ï¿½ï¿½i');
+define('_MI_TADLUNCH2_AUTHOR_WEB', 'Tad ï¿½Ð§ï¿½ï¿½ï¿½');
+define('_MI_TADLUNCH2_ADMENU1', 'ï¿½ï¿½iï¿½ï¿½ï¿½\ï¿½]ï¿½w');
+define('_MI_TADLUNCH2_ADMENU1_DESC', 'ï¿½ï¿½iï¿½ï¿½ï¿½\ï¿½]ï¿½w');
+define('_MI_TADLUNCH2_ADMENU2', 'ï¿½Þ²zï¿½Hï¿½]ï¿½w');
+define('_MI_TADLUNCH2_ADMENU2_DESC', 'ï¿½Þ²zï¿½Hï¿½]ï¿½w');
+define('_MI_TADLUNCH2_BNAME1', 'ï¿½ï¿½iï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½i');
+define('_MI_TADLUNCH2_BDESC1', 'ï¿½ï¿½iï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½i(tad_lunch2_show)');
+define('_MI_TADLUNCH2_FOR_WHOM', 'ï¿½ï¿½ï¿½Ñµï¿½ï¿½~ï¿½ï¿½');
+define('_MI_TADLUNCH2_FOR_WHOM_DESC', 'ï¿½Yï¿½ï¿½ï¿½Pï¿½~ï¿½Å¦Pï¿½É¦ï¿½ï¿½ï¿½ï¿½Pï¿½tï¿½Ó¨ï¿½ï¿½\ï¿½Aï¿½Ð¦bï¿½ï¿½ï¿½]ï¿½wï¿½~ï¿½Å¡Aï¿½Î¤pï¿½gï¿½ï¿½ï¿½ï¿½ï¿½u;ï¿½vï¿½jï¿½}ï¿½Yï¿½iï¿½C');
+define('_MI_TADLUNCH2_FOR_WHOM_DEFAULT', 'ï¿½ï¿½ï¿½ï¿½');
+define('_MI_TADLUNCH2_MANAGER', 'ï¿½ï¿½ï¿½\ï¿½Þ²zï¿½Hï¿½]ï¿½Å°Ê¡^');
+define('_MI_TADLUNCH2_MANAGER_DESC', 'ï¿½Ð¤ï¿½ï¿½Ü°Ê¡Aï¿½ï¿½ï¿½ï¿½È¨Ñµ{ï¿½ï¿½ï¿½xï¿½sï¿½Î¡C');
 
-define('_MI_TADLUNCH2_USE_COLS', '±ýÅã¥ÜÄæ¦ì');
-define('_MI_TADLUNCH2_USE_COLS_DESC', '·|§@¥Î¦b°Ï¶ô©Î¥ô¦ó»Ý§e²{ªº¦a¤è¡]¿é¤Jªºªí³æ¤£¨ü¼vÅT¡^');
-define('_MI_TADLUNCH2_MAIN_FOOD', '¥D­¹');
-define('_MI_TADLUNCH2_MAIN_DISH', '¥Dµæ');
-define('_MI_TADLUNCH2_SIDE_DISH1', '°Æµæ1');
-define('_MI_TADLUNCH2_SIDE_DISH2', '°Æµæ2');
-define('_MI_TADLUNCH2_SIDE_DISH3', '°Æµæ3');
-define('_MI_TADLUNCH2_FRUIT', '¤ôªG');
-define('_MI_TADLUNCH2_SOUP', '´öÂI');
-define('_MI_TADLUNCH2_CALORIE', 'Á`¼ö¶q');
-define('_MI_TADLUNCH2_SHOW_KIND', '¼Ò²Õ¦Cªí¬O§_Åã¥ÜÃþ§O');
-define('_MI_TADLUNCH2_SHOW_KIND_DESC', '­Y¿ï§_¡A¶È³æ¯Â¨q¥X¡u¦Ì¶º¡v¡B¡u¬v½µ¬õÅÚ½³ª£³J¡v...³oÃþªº­¹ª«¦WºÙ¡A¦Ó¤£¨q¥X¡u¥D­¹¡v¡B¡u¥Dµæ¡v...µ¥Ãþ§O¦WºÙ');
+define('_MI_TADLUNCH2_USE_COLS', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
+define('_MI_TADLUNCH2_USE_COLS_DESC', 'ï¿½|ï¿½@ï¿½Î¦bï¿½Ï¶ï¿½ï¿½Î¥ï¿½ï¿½ï¿½Ý§eï¿½{ï¿½ï¿½ï¿½aï¿½ï¿½]ï¿½ï¿½Jï¿½ï¿½ï¿½ï¿½æ¤£ï¿½ï¿½ï¿½vï¿½Tï¿½^');
+define('_MI_TADLUNCH2_MAIN_FOOD', 'ï¿½Dï¿½ï¿½');
+define('_MI_TADLUNCH2_MAIN_DISH', 'ï¿½Dï¿½ï¿½');
+define('_MI_TADLUNCH2_SIDE_DISH1', 'ï¿½Æµï¿½1');
+define('_MI_TADLUNCH2_SIDE_DISH2', 'ï¿½Æµï¿½2');
+define('_MI_TADLUNCH2_SIDE_DISH3', 'ï¿½Æµï¿½3');
+define('_MI_TADLUNCH2_FRUIT', 'ï¿½ï¿½ï¿½G');
+define('_MI_TADLUNCH2_SOUP', 'ï¿½ï¿½ï¿½I');
+define('_MI_TADLUNCH2_CALORIE', 'ï¿½`ï¿½ï¿½ï¿½q');
+define('_MI_TADLUNCH2_SHOW_KIND', 'ï¿½Ò²Õ¦Cï¿½ï¿½Oï¿½_ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½O');
+define('_MI_TADLUNCH2_SHOW_KIND_DESC', 'ï¿½Yï¿½ï¿½_ï¿½Aï¿½È³ï¿½Â¨qï¿½Xï¿½uï¿½Ì¶ï¿½ï¿½vï¿½Bï¿½uï¿½vï¿½ï¿½ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½ï¿½Jï¿½v...ï¿½oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½Ù¡Aï¿½Ó¤ï¿½ï¿½qï¿½Xï¿½uï¿½Dï¿½ï¿½ï¿½vï¿½Bï¿½uï¿½Dï¿½ï¿½v...ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½Wï¿½ï¿½');
 
 define('_MI_TADLUNCH2_DIRNAME', basename(dirname(dirname(__DIR__))));
 define('_MI_TADLUNCH2_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
-define('_MI_TADLUNCH2_BACK_2_ADMIN', 'ºÞ²z');
+define('_MI_TADLUNCH2_BACK_2_ADMIN', 'ï¿½Þ²z');
 
 //help
-define('_MI_TADLUNCH2_HELP_OVERVIEW', '·§­n');
+define('_MI_TADLUNCH2_HELP_OVERVIEW', 'ï¿½ï¿½ï¿½n');

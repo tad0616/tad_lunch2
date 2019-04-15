@@ -1,13 +1,13 @@
 <?php
-require_once dirname(dirname(__DIR__)) . '/tadtools/language/' . $xoopsConfig['language'] . '/admin_common.php';
-define('_TAD_NEED_TADTOOLS', ' »Ý­n modules/tadtools¡A¥i¦Ü<a href="http://campus-xoops.tn.edu.tw/modules/tad_modules/index.php?module_sn=1" target="_blank">XOOPS»´ÃP¬[</a>¤U¸ü¡C');
+xoops_loadLanguage('admin_common', 'tadtools');
+define('_TAD_NEED_TADTOOLS', ' ï¿½Ý­n modules/tadtoolsï¿½Aï¿½iï¿½ï¿½<a href="http://campus-xoops.tn.edu.tw/modules/tad_modules/index.php?module_sn=1" target="_blank">XOOPSï¿½ï¿½ï¿½Pï¿½[</a>ï¿½Uï¿½ï¿½ï¿½C');
 
-define('_MA_TADLUNCH2_LUNCH_SN', '½s¸¹');
-define('_MA_TADLUNCH2_LUNCH_TITLE', '¨ÑÀ\¨Ó·½');
-define('_MA_TADLUNCH2_LUNCH_FACTORY', '¼t°Ó¦WºÙ');
-define('_MA_TADLUNCH2_LUNCH_DIETICIAN', 'Àç¾i®v');
-define('_MA_TADLUNCH2_LUNCH_FACTORY_TEL', '¼t°Ó¹q¸Ü');
-define('_MA_TADLUNCH2_LUNCH_FACTORY_FAX', '¼t°Ó¶Ç¯u');
-define('_MA_TADLUNCH2_LUNCH_FACTORY_ADDR', '¼t°Ó¦a§}');
-define('_MA_TADLUNCH2_LUNCH_USER', '²{¦³¨Ï¥ÎªÌ');
-define('_MA_TADLUNCH2_LUNCH_MANAGER', 'Àç¾i¤ÈÀ\ºÞ²zªÌ');
+define('_MA_TADLUNCH2_LUNCH_SN', 'ï¿½sï¿½ï¿½');
+define('_MA_TADLUNCH2_LUNCH_TITLE', 'ï¿½ï¿½ï¿½\ï¿½Ó·ï¿½');
+define('_MA_TADLUNCH2_LUNCH_FACTORY', 'ï¿½tï¿½Ó¦Wï¿½ï¿½');
+define('_MA_TADLUNCH2_LUNCH_DIETICIAN', 'ï¿½ï¿½iï¿½v');
+define('_MA_TADLUNCH2_LUNCH_FACTORY_TEL', 'ï¿½tï¿½Ó¹qï¿½ï¿½');
+define('_MA_TADLUNCH2_LUNCH_FACTORY_FAX', 'ï¿½tï¿½Ó¶Ç¯u');
+define('_MA_TADLUNCH2_LUNCH_FACTORY_ADDR', 'ï¿½tï¿½Ó¦aï¿½}');
+define('_MA_TADLUNCH2_LUNCH_USER', 'ï¿½{ï¿½ï¿½ï¿½Ï¥Îªï¿½');
+define('_MA_TADLUNCH2_LUNCH_MANAGER', 'ï¿½ï¿½iï¿½ï¿½ï¿½\ï¿½Þ²zï¿½ï¿½');
