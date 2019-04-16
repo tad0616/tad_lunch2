@@ -20,13 +20,13 @@ $i = 0;
 if (empty($xoopsModuleConfig['use_cols'])) {
     $show_main_food = $show_main_dish = $show_side_dish1 = $show_side_dish2 = $show_side_dish3 = $show_fruit = $show_soup = true;
 } else {
-    $show_main_food = in_array('main_food', $xoopsModuleConfig['use_cols'], true) ? true : false;
-    $show_main_dish = in_array('main_dish', $xoopsModuleConfig['use_cols'], true) ? true : false;
-    $show_side_dish1 = in_array('side_dish1', $xoopsModuleConfig['use_cols'], true) ? true : false;
-    $show_side_dish2 = in_array('side_dish2', $xoopsModuleConfig['use_cols'], true) ? true : false;
-    $show_side_dish3 = in_array('side_dish3', $xoopsModuleConfig['use_cols'], true) ? true : false;
-    $show_fruit = in_array('fruit', $xoopsModuleConfig['use_cols'], true) ? true : false;
-    $show_soup = in_array('soup', $xoopsModuleConfig['use_cols'], true) ? true : false;
+    $show_main_food = in_array('main_food', $xoopsModuleConfig['use_cols']) ? true : false;
+    $show_main_dish = in_array('main_dish', $xoopsModuleConfig['use_cols']) ? true : false;
+    $show_side_dish1 = in_array('side_dish1', $xoopsModuleConfig['use_cols']) ? true : false;
+    $show_side_dish2 = in_array('side_dish2', $xoopsModuleConfig['use_cols']) ? true : false;
+    $show_side_dish3 = in_array('side_dish3', $xoopsModuleConfig['use_cols']) ? true : false;
+    $show_fruit = in_array('fruit', $xoopsModuleConfig['use_cols']) ? true : false;
+    $show_soup = in_array('soup', $xoopsModuleConfig['use_cols']) ? true : false;
 }
 
 if ('1' == $xoopsModuleConfig['show_kind']) {

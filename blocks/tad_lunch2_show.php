@@ -114,25 +114,25 @@ function tad_lunch2_show_edit($options)
     }
 
     $sc = explode(',', $options[2]);
-    $main_food = in_array('main_food', $sc, true) ? 'checked' : '';
-    $main_dish = in_array('main_dish', $sc, true) ? 'checked' : '';
-    $side_dish1 = in_array('side_dish1', $sc, true) ? 'checked' : '';
-    $side_dish2 = in_array('side_dish2', $sc, true) ? 'checked' : '';
-    $side_dish3 = in_array('side_dish3', $sc, true) ? 'checked' : '';
-    $fruit = in_array('fruit', $sc, true) ? 'checked' : '';
-    $soup = in_array('soup', $sc, true) ? 'checked' : '';
-    $calorie = in_array('calorie', $sc, true) ? 'checked' : '';
+    $main_food = in_array('main_food', $sc) ? 'checked' : '';
+    $main_dish = in_array('main_dish', $sc) ? 'checked' : '';
+    $side_dish1 = in_array('side_dish1', $sc) ? 'checked' : '';
+    $side_dish2 = in_array('side_dish2', $sc) ? 'checked' : '';
+    $side_dish3 = in_array('side_dish3', $sc) ? 'checked' : '';
+    $fruit = in_array('fruit', $sc) ? 'checked' : '';
+    $soup = in_array('soup', $sc) ? 'checked' : '';
+    $calorie = in_array('calorie', $sc) ? 'checked' : '';
     if (empty($xoopsModuleConfig['use_cols'])) {
         $main_food_use = $main_dish_use = $side_dish1_use = $side_dish2_use = $side_dish3_use = $fruit_use = $soup_use = $calorie_use = '';
     } else {
-        $main_food_use = in_array('main_food', $xoopsModuleConfig['use_cols'], true) ? '' : "style='text-decoration:line-through;color:red;'";
-        $main_dish_use = in_array('main_dish', $xoopsModuleConfig['use_cols'], true) ? '' : "style='text-decoration:line-through;color:red;'";
-        $side_dish1_use = in_array('side_dish1', $xoopsModuleConfig['use_cols'], true) ? '' : "style='text-decoration:line-through;color:red;'";
-        $side_dish2_use = in_array('side_dish2', $xoopsModuleConfig['use_cols'], true) ? '' : "style='text-decoration:line-through;color:red;'";
-        $side_dish3_use = in_array('side_dish3', $xoopsModuleConfig['use_cols'], true) ? '' : "style='text-decoration:line-through;color:red;'";
-        $fruit_use = in_array('fruit', $xoopsModuleConfig['use_cols'], true) ? '' : "style='text-decoration:line-through;color:red;'";
-        $soup_use = in_array('soup', $xoopsModuleConfig['use_cols'], true) ? '' : "style='text-decoration:line-through;color:red;'";
-        $calorie_use = in_array('calorie', $xoopsModuleConfig['use_cols'], true) ? '' : "style='text-decoration:line-through;color:red;'";
+        $main_food_use = in_array('main_food', $xoopsModuleConfig['use_cols']) ? '' : "style='text-decoration:line-through;color:red;'";
+        $main_dish_use = in_array('main_dish', $xoopsModuleConfig['use_cols']) ? '' : "style='text-decoration:line-through;color:red;'";
+        $side_dish1_use = in_array('side_dish1', $xoopsModuleConfig['use_cols']) ? '' : "style='text-decoration:line-through;color:red;'";
+        $side_dish2_use = in_array('side_dish2', $xoopsModuleConfig['use_cols']) ? '' : "style='text-decoration:line-through;color:red;'";
+        $side_dish3_use = in_array('side_dish3', $xoopsModuleConfig['use_cols']) ? '' : "style='text-decoration:line-through;color:red;'";
+        $fruit_use = in_array('fruit', $xoopsModuleConfig['use_cols']) ? '' : "style='text-decoration:line-through;color:red;'";
+        $soup_use = in_array('soup', $xoopsModuleConfig['use_cols']) ? '' : "style='text-decoration:line-through;color:red;'";
+        $calorie_use = in_array('calorie', $xoopsModuleConfig['use_cols']) ? '' : "style='text-decoration:line-through;color:red;'";
     }
     $form = "
   <script>

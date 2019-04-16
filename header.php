@@ -7,7 +7,7 @@ $isAdmin = $isManager = false;
 if ($xoopsUser) {
     $module_id = $xoopsModule->getVar('mid');
     $isAdmin = $xoopsUser->isAdmin($module_id);
-    $isManager = in_array($xoopsUser->uid(), explode(',', $xoopsModuleConfig['lunch_manager']), true) ? true : false;
+    $isManager = in_array($xoopsUser->uid(), explode(',', $xoopsModuleConfig['lunch_manager'])) ? true : false;
 }
 
 $interface_menu[_TAD_TO_MOD] = 'index.php';
