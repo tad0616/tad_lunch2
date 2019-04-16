@@ -29,7 +29,7 @@ function tad_lunch2_mem_setup($lunch_sn = '')
             $name = $uname;
         }
 
-        if (in_array($uid, $exist_uid, true)) {
+        if (in_array($uid, $exist_uid)) {
             $destination[$i]['uid'] = $uid;
             $destination[$i]['name'] = $name;
             $destination[$i]['email'] = $email;
