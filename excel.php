@@ -125,9 +125,9 @@ while ($all = $xoopsDB->fetchArray($result)) {
 
 $title = (_CHARSET === 'UTF-8') ? iconv('UTF-8', 'Big5', $title) : $title;
 header('Content-Type: application/vnd.ms-excel');
-header("Content-Disposition: attachment;filename={$title}.xls");
+header("Content-Disposition: attachment;filename={$title}.xlsx");
 header('Cache-Control: max-age=0');
-$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 $objWriter->setPreCalculateFormulas(false);
 $objWriter->save('php://output');
 exit;
