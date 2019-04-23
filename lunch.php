@@ -1,6 +1,7 @@
 <?php
 /*-----------引入檔案區--------------*/
-require __DIR__ . '/header.php';
+use XoopsModules\Tadtools\Utility;
+require 'header.php';
 require_once XOOPS_ROOT_PATH . '/header.php';
 
 /*-----------功能函數區--------------*/
@@ -21,7 +22,7 @@ function show_one_tad_lunch2_data($lunch_data_sn = '')
     //show_files($upname="",$thumb=true,$show_mode="",$show_description=false,$show_dl=false,$limit=NULL,$path=NULL,$hash=false,$playSpeed=5000)
     //
 
-    $bootstrap = get_bootstrap('return');
+    $bootstrap = Utility::get_bootstrap('return');
     $jquery = get_jquery('return');
 
     $all_data = "{$bootstrap}{$jquery}";
