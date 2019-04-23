@@ -80,7 +80,7 @@ function tad_lunch2_show($options)
     $block['show_cols'] = explode(',', $options[2]);
 
     if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/fancybox.php')) {
-        redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
+        redirect_header('index.php', 3, _TAD_NEED_TADTOOLS);
     }
     require_once XOOPS_ROOT_PATH . '/modules/tadtools/fancybox.php';
     $fancybox = new fancybox('.lunch_block_fancy', '1280', 'auto');

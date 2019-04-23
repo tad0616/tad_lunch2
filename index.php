@@ -389,7 +389,7 @@ function list_tad_lunch2_data($show_ym = '', $target = '')
     $xoopsTpl->assign('lunch_target_arr', $target_arr);
 
     if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/fancybox.php')) {
-        redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
+        redirect_header('index.php', 3, _TAD_NEED_TADTOOLS);
     }
     require_once XOOPS_ROOT_PATH . '/modules/tadtools/fancybox.php';
     $fancybox = new fancybox('.lunch_fancy');
