@@ -222,10 +222,10 @@ switch ($op) {
 /*---判斷動作請貼在下方---*/
 
     //替換資料
-    case 'replace_tad_lunch2':
-        replace_tad_lunch2();
-        header("location: {$_SERVER['PHP_SELF']}");
-        break;
+//    case 'replace_tad_lunch2':
+//        replace_tad_lunch2();
+//        header("location: {$_SERVER['PHP_SELF']}");
+//        break;
     //新增資料
     case 'insert_tad_lunch2':
         $lunch_sn = insert_tad_lunch2();

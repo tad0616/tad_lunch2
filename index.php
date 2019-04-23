@@ -615,11 +615,11 @@ switch ($op) {
     /*---判斷動作請貼在下方---*/
 
     //替換資料
-    case 'replace_tad_lunch2_data':
-        replace_tad_lunch2_data();
-        header("location: {$_SERVER['PHP_SELF']}");
-        exit;
-        break;
+//    case 'replace_tad_lunch2_data':
+//        replace_tad_lunch2_data();
+//        header("location: {$_SERVER['PHP_SELF']}");
+//        exit;
+//        break;
     //新增資料
     case 'insert_tad_lunch2_data':
         $lunch_data_sn = insert_tad_lunch2_data();
