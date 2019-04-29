@@ -12,7 +12,7 @@ if (empty($_REQUEST['lunch_target'])) {
 }
 
 $sql = 'select  * from `' . $xoopsDB->prefix('tad_lunch2_data') . "` where lunch_date >= '$start' and lunch_date <= '$end' and lunch_target='{$lunch_target}'";
-$result = $xoopsDB->query($sql) or web_error($sql);
+$result = $xoopsDB->query($sql) or Utility::web_error($sql);
 
 $myEvents = [];
 $i = 0;

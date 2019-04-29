@@ -82,7 +82,7 @@ function insert_tad_lunch2()
     $sql = 'insert into `' . $xoopsDB->prefix('tad_lunch2') . "`
   (`lunch_title` , `lunch_factory` , `lunch_dietician` , `lunch_factory_tel` , `lunch_factory_fax` , `lunch_factory_addr`)
   values('{$_POST['lunch_title']}' , '{$_POST['lunch_factory']}' , '{$_POST['lunch_dietician']}' , '{$_POST['lunch_factory_tel']}' , '{$_POST['lunch_factory_fax']}' , '{$_POST['lunch_factory_addr']}')";
-    $xoopsDB->query($sql) or web_error($sql);
+    $xoopsDB->query($sql) or Utility::web_error($sql);
 
     //取得最後新增資料的流水編號
     $lunch_sn = $xoopsDB->getInsertId();
@@ -111,7 +111,7 @@ function update_tad_lunch2($lunch_sn = '')
    `lunch_factory_fax` = '{$_POST['lunch_factory_fax']}' ,
    `lunch_factory_addr` = '{$_POST['lunch_factory_addr']}'
   where `lunch_sn` = '$lunch_sn'";
-    $xoopsDB->queryF($sql) or web_error($sql);
+    $xoopsDB->queryF($sql) or Utility::web_error($sql);
 
     return $lunch_sn;
 }
@@ -129,7 +129,7 @@ function list_tad_lunch2()
     $sql = $PageBar['sql'];
     $total = $PageBar['total'];
 
-    $result = $xoopsDB->query($sql) or web_error($sql);
+    $result = $xoopsDB->query($sql) or Utility::web_error($sql);
 
     $all_content = [];
     $i = 0;
@@ -167,7 +167,7 @@ function get_tad_lunch2($lunch_sn = '')
     }
 
     $sql = 'select * from `' . $xoopsDB->prefix('tad_lunch2') . "` where `lunch_sn` = '{$lunch_sn}'";
-    $result = $xoopsDB->query($sql) or web_error($sql);
+    $result = $xoopsDB->query($sql) or Utility::web_error($sql);
     $data = $xoopsDB->fetchArray($result);
 
     return $data;
@@ -178,7 +178,7 @@ function delete_tad_lunch2($lunch_sn = '')
 {
     global $xoopsDB, $isAdmin;
     $sql = 'delete from `' . $xoopsDB->prefix('tad_lunch2') . "` where `lunch_sn` = '{$lunch_sn}'";
-    $xoopsDB->queryF($sql) or web_error($sql);
+    $xoopsDB->queryF($sql) or Utility::web_error($sql);
 }
 
 //以流水號秀出某筆tad_lunch2資料內容
@@ -192,7 +192,7 @@ function show_one_tad_lunch2($lunch_sn = '')
     $lunch_sn = (int) $lunch_sn;
 
     $sql = 'select * from `' . $xoopsDB->prefix('tad_lunch2') . "` where `lunch_sn` = '{$lunch_sn}' ";
-    $result = $xoopsDB->query($sql) or web_error($sql);
+    $result = $xoopsDB->query($sql) or Utility::web_error($sql);
     $all = $xoopsDB->fetchArray($result);
 
     //以下會產生這些變數： $lunch_sn , $lunch_title , $lunch_factory , $lunch_dietician , $lunch_factory_tel , $lunch_factory_fax , $lunch_factory_addr

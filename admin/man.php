@@ -13,7 +13,7 @@ function tad_lunch2_mem_setup($lunch_sn = '')
 
     $sql = 'SELECT uid,name,uname,email FROM ' . $xoopsDB->prefix('users') . ' ';
 
-    $result = $xoopsDB->query($sql) or web_error($sql);
+    $result = $xoopsDB->query($sql) or Utility::web_error($sql);
 
     $myts = MyTextSanitizer::getInstance();
     $destination = $repository = '';
@@ -55,7 +55,7 @@ function save_tad_lunch2_mem()
     `conf_value` = '{$_POST['tad_lunch2_man_arr']}'
     where `conf_name` = 'lunch_manager'";
 
-    $xoopsDB->queryF($sql) or web_error($sql);
+    $xoopsDB->queryF($sql) or Utility::web_error($sql);
 }
 
 /*-----------執行動作判斷區----------*/

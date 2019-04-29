@@ -83,7 +83,7 @@ $objActSheet->setCellValue('A1', _MD_TADLUNCH2_LUNCH_DATE)
 $and_lunch_target = empty($lunch_target) ? '' : "and lunch_target='{$lunch_target}'";
 $sql = 'select * from `' . $xoopsDB->prefix('tad_lunch2_data') . "` where lunch_date like '{$year}-{$month}-%' $and_lunch_target order by `lunch_date`,`lunch_target`";
 
-$result = $xoopsDB->query($sql) or web_error($sql);
+$result = $xoopsDB->query($sql) or Utility::web_error($sql);
 
 $i = 2;
 while ($all = $xoopsDB->fetchArray($result)) {

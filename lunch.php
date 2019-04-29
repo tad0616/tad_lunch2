@@ -29,7 +29,7 @@ function show_one_tad_lunch2_data($lunch_data_sn = '')
 
     $sql = 'select a.*,b.* from `' . $xoopsDB->prefix('tad_lunch2_data') . '` as a left join `' . $xoopsDB->prefix('tad_lunch2') . "` as b on a.lunch_sn=b.lunch_sn where a.`lunch_data_sn` = '{$lunch_data_sn}' ";
     // die($sql);
-    $result = $xoopsDB->query($sql) or web_error($sql);
+    $result = $xoopsDB->query($sql) or Utility::web_error($sql);
 
     $all = $xoopsDB->fetchArray($result);
 
