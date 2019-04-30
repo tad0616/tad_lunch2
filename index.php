@@ -1,10 +1,12 @@
 <?php
+use XoopsModules\Tadtools\FancyBox;
+use XoopsModules\Tadtools\FormValidator;
+use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
 include 'header.php';
 $xoopsOption['template_main'] = 'tad_lunch2_index.tpl';
 include_once XOOPS_ROOT_PATH . '/header.php';
 
-include_once XOOPS_ROOT_PATH . '/modules/tadtools/TadUpFiles.php';
 $TadUpFiles = new TadUpFiles('tad_lunch2');
 /*-----------功能函數區--------------*/
 
@@ -133,15 +135,10 @@ function tad_lunch2_data_form($lunch_data_sn = '')
     $op = (empty($lunch_data_sn)) ? 'insert_tad_lunch2_data' : 'update_tad_lunch2_data';
     //$op="replace_tad_lunch2_data";
 
-    if (!file_exists(TADTOOLS_PATH . '/formValidator.php')) {
-        redirect_header('index.php', 3, _MD_NEED_TADTOOLS);
-    }
-    include_once TADTOOLS_PATH . '/formValidator.php';
-    $formValidator = new formValidator('#myForm', true);
-    $formValidator_code = $formValidator->render();
+    $FormValidator = new FormValidator('#myForm', true);
+    $FormValidator->render();
 
     $xoopsTpl->assign('action', $_SERVER['PHP_SELF']);
-    $xoopsTpl->assign('formValidator_code', $formValidator_code);
     $xoopsTpl->assign('now_op', 'tad_lunch2_data_form');
     $xoopsTpl->assign('next_op', $op);
     $xoopsTpl->assign('lunch_company', get_tad_lunch2_all());
@@ -187,7 +184,7 @@ function insert_tad_lunch2_data()
 {
     global $xoopsDB, $xoopsUser, $xoopsModuleConfig, $TadUpFiles;
 
-    $myts = MyTextSanitizer::getInstance();
+    $myts = \MyTextSanitizer::getInstance();
     $_POST['lunch_date'] = $myts->addSlashes($_POST['lunch_date']);
     $_POST['lunch_target'] = $myts->addSlashes($_POST['lunch_target']);
     $_POST['main_food'] = $myts->addSlashes($_POST['main_food']);
@@ -233,7 +230,7 @@ function update_tad_lunch2_data($lunch_data_sn = '')
 {
     global $xoopsDB, $xoopsUser, $TadUpFiles;
 
-    $myts = MyTextSanitizer::getInstance();
+    $myts = \MyTextSanitizer::getInstance();
     $_POST['lunch_date'] = $myts->addSlashes($_POST['lunch_date']);
     $_POST['lunch_target'] = $myts->addSlashes($_POST['lunch_target']);
     $_POST['main_food'] = $myts->addSlashes($_POST['main_food']);
@@ -388,13 +385,8 @@ function list_tad_lunch2_data($show_ym = '', $target = '')
     }
     $xoopsTpl->assign('lunch_target_arr', $target_arr);
 
-    if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/fancybox.php')) {
-        redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
-    }
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/fancybox.php';
-    $fancybox = new fancybox('.lunch_fancy');
-    $fancybox_code = $fancybox->render(false);
-    $xoopsTpl->assign('fancybox_code', $fancybox_code);
+    $FancyBox = new FancyBox('.lunch_fancy');
+    $FancyBox->render(false);
     //加在連結中：class="edit_dropdown" rel="group"（圖） data-fancybox-type="iframe"（HTML）
 }
 
@@ -488,7 +480,7 @@ function import_excel($lunch_sn = '', $lunch_target = '', $file = '', $file_name
         return;
     }
 
-    $myts = MyTextSanitizer::getInstance();
+    $myts = \MyTextSanitizer::getInstance();
 
     include_once XOOPS_ROOT_PATH . '/modules/tadtools/PHPExcel/IOFactory.php';
     if (preg_match('/\.(xlsx)$/i', $file_name)) {
@@ -559,7 +551,7 @@ function import2DB($lunch_sn = '', $lunch_target = '')
 {
     global $xoopsDB;
 
-    $myts = MyTextSanitizer::getInstance();
+    $myts = \MyTextSanitizer::getInstance();
     foreach ($_POST['c'] as $row => $col) {
         foreach ($col as $i => $val) {
             $col[$i] = $myts->addSlashes($val);
@@ -607,7 +599,7 @@ $op = system_CleanVars($_REQUEST, 'op', '', 'string');
 $lunch_sn = system_CleanVars($_REQUEST, 'lunch_sn', 0, 'int');
 $lunch_data_sn = system_CleanVars($_REQUEST, 'lunch_data_sn', 0, 'int');
 
-$myts = MyTextSanitizer::getInstance();
+$myts = \MyTextSanitizer::getInstance();
 $ym = (!empty($_REQUEST['ym']) and 7 == mb_strlen($_REQUEST['ym'])) ? $myts->htmlSpecialChars($_REQUEST['ym']) : '';
 $target = (!empty($_REQUEST['lunch_target'])) ? $myts->htmlSpecialChars($_REQUEST['lunch_target']) : '';
 
@@ -667,8 +659,8 @@ switch ($op) {
 }
 
 /*-----------秀出結果區--------------*/
-$xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
-$xoopsTpl->assign('jquery', get_jquery(true));
+$xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu));
+$xoopsTpl->assign('jquery', Utility::get_jquery(true));
 $xoopsTpl->assign('isAdmin', $isAdmin);
 $xoopsTpl->assign('isManager', $isManager);
 include_once XOOPS_ROOT_PATH . '/footer.php';

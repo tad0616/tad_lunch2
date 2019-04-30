@@ -4,8 +4,6 @@
 <script type="text/javascript" src="<{$xoops_url}>/modules/tadtools/My97DatePicker/WdatePicker.js"></script>
 
 <{if $now_op=="tad_lunch2_data_form"}>
-  <{$formValidator_code}>
-
   <link rel="stylesheet" type="text/css" href="<{$xoops_url}>/modules/tad_lunch2/class/jquery-combobox/css/jquery.combobox/style.css">
   <script type="text/javascript" src="<{$xoops_url}>/modules/tad_lunch2/class/jquery-combobox/js/jquery.combobox.js"></script>
 

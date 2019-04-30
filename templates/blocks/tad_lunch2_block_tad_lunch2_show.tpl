@@ -1,7 +1,4 @@
 <{if $block.content}>
-
-  <{$block.fancybox_code}>
-
   <{if $block.type=="vertical"}>
     <table class="table table-striped table-bordered table-hover">
       <thead>

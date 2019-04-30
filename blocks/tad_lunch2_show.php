@@ -1,4 +1,6 @@
 <?php
+use XoopsModules\Tadtools\FancyBox;
+
 //區塊主函式 (營養午餐公告(tad_lunch2_show))
 function tad_lunch2_show($options)
 {
@@ -79,13 +81,8 @@ function tad_lunch2_show($options)
     }
     $block['show_cols'] = explode(',', $options[2]);
 
-    if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/fancybox.php')) {
-        redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
-    }
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/fancybox.php';
-    $fancybox = new fancybox('.lunch_block_fancy', '1280', 'auto');
-    $fancybox_code = $fancybox->render(false);
-    $block['fancybox_code'] = $fancybox_code;
+    $FancyBox = new FancyBox('.lunch_block_fancy', '1280', 'auto');
+    $FancyBox->render(false);
 
     return $block;
 }

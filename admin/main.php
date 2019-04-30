@@ -1,4 +1,5 @@
 <?php
+use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
 $xoopsOption['template_main'] = 'tad_lunch2_adm_main.tpl';
 include_once 'header.php';
@@ -53,15 +54,10 @@ function tad_lunch2_form($lunch_sn = '')
     $op = (empty($lunch_sn)) ? 'insert_tad_lunch2' : 'update_tad_lunch2';
     //$op="replace_tad_lunch2";
 
-    if (!file_exists(TADTOOLS_PATH . '/formValidator.php')) {
-        redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
-    }
-    include_once TADTOOLS_PATH . '/formValidator.php';
-    $formValidator = new formValidator('#myForm', true);
-    $formValidator_code = $formValidator->render();
+    $FormValidator = new FormValidator('#myForm', true);
+    $FormValidator->render();
 
     $xoopsTpl->assign('action', $_SERVER['PHP_SELF']);
-    $xoopsTpl->assign('formValidator_code', $formValidator_code);
     $xoopsTpl->assign('now_op', 'tad_lunch2_form');
     $xoopsTpl->assign('next_op', $op);
 }
@@ -71,7 +67,7 @@ function insert_tad_lunch2()
 {
     global $xoopsDB, $xoopsUser;
 
-    $myts = MyTextSanitizer::getInstance();
+    $myts = \MyTextSanitizer::getInstance();
     $_POST['lunch_title'] = $myts->addSlashes($_POST['lunch_title']);
     $_POST['lunch_factory'] = $myts->addSlashes($_POST['lunch_factory']);
     $_POST['lunch_dietician'] = $myts->addSlashes($_POST['lunch_dietician']);
@@ -95,7 +91,7 @@ function update_tad_lunch2($lunch_sn = '')
 {
     global $xoopsDB, $xoopsUser;
 
-    $myts = MyTextSanitizer::getInstance();
+    $myts = \MyTextSanitizer::getInstance();
     $_POST['lunch_title'] = $myts->addSlashes($_POST['lunch_title']);
     $_POST['lunch_factory'] = $myts->addSlashes($_POST['lunch_factory']);
     $_POST['lunch_dietician'] = $myts->addSlashes($_POST['lunch_dietician']);
@@ -124,7 +120,7 @@ function list_tad_lunch2()
     $sql = 'SELECT * FROM `' . $xoopsDB->prefix('tad_lunch2') . '` ';
 
     //getPageBar($原sql語法, 每頁顯示幾筆資料, 最多顯示幾個頁數選項);
-    $PageBar = getPageBar($sql, 20, 10);
+    $PageBar = Utility::getPageBar($sql, 20, 10);
     $bar = $PageBar['bar'];
     $sql = $PageBar['sql'];
     $total = $PageBar['total'];

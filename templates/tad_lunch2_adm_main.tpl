@@ -3,8 +3,6 @@
 
   <!--顯示表單-->
   <{if $now_op=="tad_lunch2_form"}>
-    <{$formValidator_code}>
-
     <form action="<{$action}>" method="post" id="myForm" enctype="multipart/form-data" class="form-horizontal" role="form">
       <!--菜單名稱-->
       <div class="form-group">

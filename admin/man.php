@@ -1,4 +1,5 @@
 <?php
+use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
 $xoopsOption['template_main'] = 'tad_lunch2_adm_man.tpl';
 include_once 'header.php';
@@ -15,7 +16,7 @@ function tad_lunch2_mem_setup($lunch_sn = '')
 
     $result = $xoopsDB->query($sql) or Utility::web_error($sql);
 
-    $myts = MyTextSanitizer::getInstance();
+    $myts = \MyTextSanitizer::getInstance();
     $destination = $repository = '';
     $i = 0;
     while ($all = $xoopsDB->fetchArray($result)) {

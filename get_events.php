@@ -1,4 +1,5 @@
 <?php
+use XoopsModules\Tadtools\Utility;
 include_once 'header.php';
 
 $start = date('Y-m-d', $_REQUEST['start'] / 1000);
