@@ -1,6 +1,9 @@
 <?php
 use XoopsModules\Tadtools\FancyBox;
 
+if (!class_exists('XoopsModules\Tadtools\FancyBox')) {
+    require XOOPS_ROOT_PATH . '/modules/tadtools/preloads/autoloader.php';
+}
 //區塊主函式 (營養午餐公告(tad_lunch2_show))
 function tad_lunch2_show($options)
 {
