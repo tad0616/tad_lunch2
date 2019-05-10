@@ -1,9 +1,11 @@
 <?php
 include_once 'header.php';
 
-$op = isset($_POST['op']) ? $_POST['op'] : '';
-$col = isset($_POST['col']) ? $_POST['col'] : '';
-$val = isset($_POST['val']) ? $_POST['val'] : '';
+include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
+$op = system_CleanVars($_REQUEST, 'op', '', 'string');
+$col = system_CleanVars($_REQUEST, 'col', '', 'string');
+$val = system_CleanVars($_REQUEST, 'val', '', 'string');
+
 if ('get_stuff' === $op) {
     $search_col = "{$col}_stuff";
 } elseif ('get_cook' === $op) {

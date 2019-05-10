@@ -612,43 +612,45 @@ switch ($op) {
         replace_tad_lunch2_data();
         header("location: {$_SERVER['PHP_SELF']}");
         exit;
-        break;
+
     //新增資料
     case 'insert_tad_lunch2_data':
         $lunch_data_sn = insert_tad_lunch2_data();
         header("location: {$_SERVER['PHP_SELF']}?lunch_data_sn=$lunch_data_sn");
         exit;
-        break;
+
     //更新資料
     case 'update_tad_lunch2_data':
         update_tad_lunch2_data($lunch_data_sn);
         header("location: {$_SERVER['PHP_SELF']}");
         exit;
-        break;
+
     //輸入表格
     case 'tad_lunch2_data_form':
         tad_lunch2_data_form($lunch_data_sn);
         break;
+
     //刪除資料
     case 'delete_tad_lunch2_data':
         delete_tad_lunch2_data($lunch_data_sn);
         header("location: {$_SERVER['PHP_SELF']}");
         exit;
-        break;
+
     case 'import_excel':
-        //import_excel($lunch_sn,$_POST['lunch_target'],$_FILES['importfile']['tmp_name']);
-        import_excel($lunch_sn, $_POST['lunch_target'], $_FILES['importfile']['tmp_name'], $_FILES['importfile']['name']); //加入檔名
+        import_excel($lunch_sn, $target, $_FILES['importfile']['tmp_name'], $_FILES['importfile']['name']); //加入檔名
         break;
+
     case 'import2DB':
-        import2DB($lunch_sn, $_POST['lunch_target']);
+        import2DB($lunch_sn, $target);
         break;
+
     case 'update_pic':
         $TadUpFiles->set_col('lunch_data_sn', $lunch_data_sn);
         $desc = sprintf(_MD_TADLUNCH2_PIC_DESC, $_POST['lunch_date']);
         $TadUpFiles->upload_file('lunch', 1024, 400, null, $desc, true);
         header("location: {$_SERVER['PHP_SELF']}");
         exit;
-        break;
+
     //預設動作
     default:
         if (empty($lunch_data_sn)) {
