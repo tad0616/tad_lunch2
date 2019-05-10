@@ -3,6 +3,8 @@ Tad Lunch2 2.2 (released from 2019-05-10)
 1. Support XOOPS 2.5.10
 2. No longer supports PHP 5.3
 3. Strengthen security
+4. Support BootStrap4
+5. Support PHP7.3
 
 
 Tad Lunch2 2.1 (2017-06-16 release)

@@ -17,7 +17,7 @@ function tad_lunch2_mem_setup($lunch_sn = '')
     $result = $xoopsDB->query($sql) or Utility::web_error($sql);
 
     $myts = \MyTextSanitizer::getInstance();
-    $destination = $repository = '';
+    $destination = $repository = [];
     $i = 0;
     while ($all = $xoopsDB->fetchArray($result)) {
         foreach ($all as $k => $v) {
