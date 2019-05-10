@@ -3,7 +3,7 @@ $modversion = [];
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLUNCH2_NAME;
-$modversion['version'] = '2.1';
+$modversion['version'] = '2.2';
 $modversion['description'] = _MI_TADLUNCH2_DESC;
 $modversion['author'] = _MI_TADLUNCH2_AUTHOR;
 $modversion['credits'] = _MI_TADLUNCH2_CREDITS;
@@ -13,7 +13,7 @@ $modversion['image'] = 'images/logo.png';
 $modversion['dirname'] = basename(__DIR__);
 
 //---模組狀態資訊---//
-$modversion['release_date'] = '2017-06-16';
+$modversion['release_date'] = '2019-05-10';
 $modversion['module_website_url'] = 'https://tad0616.net';
 $modversion['module_website_name'] = _MI_TADLUNCH2_AUTHOR_WEB;
 $modversion['module_status'] = 'release';
