@@ -174,7 +174,7 @@ function get_source($col = 'main_food')
     $sql = "select `{$col}` from `" . $xoopsDB->prefix('tad_lunch2_data') . "` group by `{$col}` order by `{$col}`";
     $result = $xoopsDB->query($sql) or web_error($sql);
 
-    while (false !== (list($data) = $xoopsDB->fetchRow($result))) {
+    while (list($data) = $xoopsDB->fetchRow($result)) {
         $arr[] = $data;
     }
     $main = "'" . implode("','", $arr) . "'";
@@ -312,7 +312,7 @@ function list_tad_lunch2_data($show_ym = '', $target = '')
     //$all_options[0]['ym_title']=str_replace("-", _MD_TADLUNCH2_Y, $now_Ym)._MD_TADLUNCH2_M;
 
     //$i=1;
-    while (false !== (list($dd) = $xoopsDB->fetchRow($result))) {
+    while (list($dd) = $xoopsDB->fetchRow($result)) {
         //if($now_Ym==$dd)continue;
         $all_options[$i]['ym'] = $dd;
         $all_options[$i]['ym_title'] = str_replace('-', _MD_TADLUNCH2_Y, $dd) . _MD_TADLUNCH2_M;
