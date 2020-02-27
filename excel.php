@@ -14,8 +14,8 @@ if (!empty($_GET['ym'])) {
 $lunch_target = $myts->addSlashes($_GET['lunch_target']);
 $title = sprintf(_MD_TADLUNCH2_YM, $year, $month) . $lunch_target . _MD_TADLUNCH2_SMNAME1;
 
-require_once XOOPS_ROOT_PATH . '/modules/tadtools/PHPExcel.php'; //引入 PHPExcel 物件庫
-require_once XOOPS_ROOT_PATH . '/modules/tadtools/PHPExcel/IOFactory.php'; //引入 PHPExcel_IOFactory 物件庫
+require_once XOOPS_ROOT_PATH . '/modules/tadtools/vendor/phpoffice/phpexcel/Classes/PHPExcel.php'; //引入 PHPExcel 物件庫
+require_once XOOPS_ROOT_PATH . '/modules/tadtools/vendor/phpoffice/phpexcel/Classes/PHPExcel/IOFactory.php'; //引入PHPExcel_IOFactory 物件庫
 $objPHPExcel = new PHPExcel(); //實體化Excel
 //----------內容-----------//
 
