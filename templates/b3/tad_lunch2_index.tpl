@@ -370,12 +370,12 @@
       border:none; /* default BORDER color */
       background-color: transparent; /* default BACKGROUND color */
       color: #000000;               /* default TEXT color */
-      font-size: 12px;
+      font-size: 0.8em;
       cursor: default;
     }
 
     .fc-event-title{
-      font-size: 12px;
+      font-size: 0.8em;
       line-height: 120%;
       padding: 0px 1px;
       color: #000000;

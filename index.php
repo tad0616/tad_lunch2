@@ -526,9 +526,9 @@ function import_excel($lunch_sn = '', $lunch_target = '', $file = '', $file_name
             }
 
             $all .= $isTitle ? "
-            <th style='font-size:11px;'>{$show_txt}</th>
+            <th style='font-size:0.78em;'>{$show_txt}</th>
             " : "
-            <td style='font-size:11px;'>{$show_txt}
+            <td style='font-size:0.78em;'>{$show_txt}
             <input type='hidden' name='c[{$row}][$column]' value='{$val}' class='span12'>
             </td>
             ";
